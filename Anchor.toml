@@ -1,0 +1,19 @@
+[features]
+seeds = false
+skip-lint = false
+[programs.localnet]
+twamm = "TWAPzC9xaeBpgDNF26z5VAcmxBowVz5uqmTx47LkWUy"
+[programs.testnet]
+twamm = "TWAPzC9xaeBpgDNF26z5VAcmxBowVz5uqmTx47LkWUy"
+[programs.devnet]
+twamm = "TWAPzC9xaeBpgDNF26z5VAcmxBowVz5uqmTx47LkWUy"
+
+[registry]
+url = "https://api.apr.dev"
+
+[provider]
+cluster = "mainnet"
+wallet = "/Users/lpfinance/Users/lpfinance/.config/solana/id.json"
+
+[scripts]
+test = "yarn run ts-mocha -p ./tsconfig.json -t 1000000 tests/**/*.ts"

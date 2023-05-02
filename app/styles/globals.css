@@ -1,0 +1,38 @@
+@font-face {
+  font-family: "SF Mono Medium";
+  font-style: normal;
+  font-weight: normal;
+  src: local("SF Mono Medium"),
+    url(../src/fonts/SFMonoMedium.woff) format("woff");
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "SF Mono Medium";
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+p {
+  margin-bottom: 0 !important;
+}
+
+ul {
+  margin-bottom: inherit !important;
+}
+
+.not-allowed {
+  cursor: not-allowed !important;
+}
