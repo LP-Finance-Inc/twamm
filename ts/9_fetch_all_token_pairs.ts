@@ -12,8 +12,6 @@ const fetch_all_token_pairs = async() => {
     let tokenPairs = await program.account.tokenPair.all();
     for (let i=0; i<tokenPairs.length; i++) {
         console.log(tokenPairs[i].account.configA.mint.toString());
-        console.log(tokenPairs[i].account.statsA.orderVolumeUsd.toString());
-        console.log(tokenPairs[i].account.statsB.orderVolumeUsd.toString());
         console.log();
     }
     return tokenPairs;

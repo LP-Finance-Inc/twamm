@@ -22,7 +22,7 @@ const initTokenPair = async() => {
         new PublicKey("TWAPzC9xaeBpgDNF26z5VAcmxBowVz5uqmTx47LkWUy")
       );
       
-    let tokenAMint = new PublicKey("So11111111111111111111111111111111111111112"); // SOL 
+    let tokenAMint = new PublicKey("AUrMpCDYYcPuHhyNX8gEEqbmDPFUpBpHrNW3vPeCFn5Z"); // AVAX 
     let tokenBMint = new PublicKey("EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"); // USDC
 
     let tokenACustodyKey = await spl.getAssociatedTokenAddress(
@@ -51,7 +51,7 @@ const initTokenPair = async() => {
     let tokenAOracle = { pyth: {} } as never;
     let tokenBOracle = { pyth: {} } as never;
 
-    let oracleAccountTokenA = new PublicKey("H6ARHf6YXhGYeQfUzQNGk6rDNnLBQKrenN712K4AQJEG");
+    let oracleAccountTokenA = new PublicKey("Ax9ujW5B9oqcv59N8m6f1BpTBq2rGeGaBcpKjC5UYsXU");
     let oracleAccountTokenB = new PublicKey("Gnt27xtC473ZT2Mw5u8wZ68Z3gULkSTb5DuxJy7eJotD")
     let tx = await program.methods
         .initTokenPair({

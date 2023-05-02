@@ -102,6 +102,17 @@ async function main(tokenAArray: Array<number>) {
 }
 
 main([
-  "So11111111111111111111111111111111111111112",
-  "Saber2gLauYim4Mvftnrasomsv6NvAuncvMEZwcLpD1",
+  "So11111111111111111111111111111111111111112", // SOL
+  "3NZ9JMVBmGAqocybic2c7LQCJScmgsAZ6vQqTDzcqmJh", // BTC
+  "7vfCXTUXx5WJV5JADk17DUJ4ksgau7utNKj4b963voxs", // ETH
+  "MangoCzJ36AjZyKwVj3VnYU4GTonjfVEnJmvvWaxLac", // MNGO
+  "hntyVP6YFm1Hg25TN9WGLqM12b8TQmcknKrdu1oxWux", // HNT
+  "AUrMpCDYYcPuHhyNX8gEEqbmDPFUpBpHrNW3vPeCFn5Z", // AVAX (Allbridge)
 ]);
+
+/*
+Following Tokens cannot find route
+
+  "9gP2kCy3wA1ctvYWQk75guqXuHfrEomqydHLtcTCqiLa", // BNB
+  "Gz7VkD4MacbEB6yC5XD3HcumEiYx2EtDYYrfikGsvopG", // MATIC
+*/

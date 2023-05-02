@@ -39,6 +39,7 @@ const fetcher =
     }
 
     const data = await resp.json();
+
     return data.data[params.id].price;
   };
 

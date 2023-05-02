@@ -81,11 +81,11 @@ export default ({
   );
 
   const price = usePrice({
-    id: b?.symbol as string,
+    id: b?.address as string,
   });
 
   const priceA = usePrice({
-    id: a?.symbol as string,
+    id: a?.address as string,
   });
 
   useEffect(() => {

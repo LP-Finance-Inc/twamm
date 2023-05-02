@@ -6,18 +6,18 @@ export default ({
   defaultValue = 0,
   disabled = false,
   maxAmount,
-  name,
+  address,
   onChange: handleChange,
 }: {
   defaultValue?: number;
   disabled?: boolean;
   maxAmount?: number;
-  name?: string;
+  address?: string;
   onChange: (arg0: number) => void;
 }) => {
   const [amount, setAmount] = useState<number>(defaultValue);
 
-  const price = usePrice(name ? { id: name } : undefined);
+  const price = usePrice(address ? { id: address } : undefined);
 
   const onChange = useCallback(
     (next: number) => {
