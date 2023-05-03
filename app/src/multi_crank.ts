@@ -106,8 +106,9 @@ main([
   "3NZ9JMVBmGAqocybic2c7LQCJScmgsAZ6vQqTDzcqmJh", // BTC
   "7vfCXTUXx5WJV5JADk17DUJ4ksgau7utNKj4b963voxs", // ETH
   "MangoCzJ36AjZyKwVj3VnYU4GTonjfVEnJmvvWaxLac", // MNGO
-  "hntyVP6YFm1Hg25TN9WGLqM12b8TQmcknKrdu1oxWux", // HNT
-  "AUrMpCDYYcPuHhyNX8gEEqbmDPFUpBpHrNW3vPeCFn5Z", // AVAX (Allbridge)
+  "orcaEKTdK7LKz57vaAYr9QeNsVEPfiu6QeMU1kektZE", // ORCA
+  "HZRCwxP2Vq9PCpPXooayhJ2bxTpo5xfpQrwB1svh332p", // LDO
+  "A9mUU4qviSctJVPJdBJWkb28deg915LYJKrzQ19ji3FM", // USDCet
 ]);
 
 /*
