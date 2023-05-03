@@ -6,6 +6,8 @@ import OfflineOverlay from "../organisms/offline-overlay";
 import styles from "./anon.module.css";
 import Logo from "../../public/images/lp-logo.png";
 import Wallstreet from "../../public/images/wall.gif";
+import MobileWallstreet from "../../public/images/wallstreet.jpeg";
+import useBreakpoints from "../hooks/use-breakpoints";
 
 export default forwardRef((props: { handleInputValue: any }, ref) => {
   const inputRef = useRef<any>();
@@ -15,6 +17,8 @@ export default forwardRef((props: { handleInputValue: any }, ref) => {
       return inputRef.current.value;
     },
   }));
+
+  const { isMobile } = useBreakpoints();
 
   return (
     <div className={styles.root}>
@@ -39,7 +43,7 @@ export default forwardRef((props: { handleInputValue: any }, ref) => {
           </Box>
           <div className={styles.unlockImg}>
             <Image
-              src={Wallstreet}
+              src={isMobile ? MobileWallstreet : Wallstreet}
               placeholder="blur"
               alt="Wallstreet"
               fill
