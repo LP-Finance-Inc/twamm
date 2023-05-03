@@ -1,0 +1,49 @@
+.box {
+  position: relative;
+  width: 250px;
+  height: 80px;
+}
+
+.main {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+.heading {
+  text-align: center;
+}
+
+.unlockImg {
+  position: relative;
+  width: 250px;
+  height: 150px;
+  margin-top: 25px;
+}
+
+.InputBox {
+  margin-top: 30px;
+}
+
+.Input {
+  color: #0f0;
+  border-radius: 8px;
+  width: 280px;
+  border: none;
+  outline: none;
+  padding: 1rem;
+  background-color: #161724;
+  box-shadow: inset -4px -4px 5px rgba(87, 87, 87, 0.2),
+    inset 4px 4px 5px rgba(9, 9, 14, 0.5);
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -o-border-radius: 8px;
+}
+
+.Input::placeholder {
+  color: #0c0;
+}
