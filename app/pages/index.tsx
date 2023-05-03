@@ -6,7 +6,19 @@ import IndexPage from "../src/pages/index-page";
 import AnonPage from "../src/pages/anon-page";
 import { useSnackbar } from "../src/contexts/notification-context";
 
-const SecretCodes = ["hello", "this"];
+// We are not intending to hide this strictly lol :) You can use this to access.
+const SecretCodes = [
+  "wtf is twamm",
+  "solano defi",
+  "mrgn", // marginfi
+  "noot!", // penguin
+  "doggy", // samo
+  "yujin",
+  "wen mango", // mango
+  "wen toly", // toly
+];
+const welcome = ["Twap me baby", "Hmm, your size is size"];
+const whoAreYou = ["Your size is not size", "Insider traders not allowed"];
 
 const Home: NextPage = () => {
   const { enqueueSnackbar } = useSnackbar();
@@ -18,13 +30,16 @@ const Home: NextPage = () => {
     if (event.key === "Enter") {
       const value = ref.current.getInputValue();
       const findCode = SecretCodes.find((code) => code === value);
+
       if (value === findCode) {
         setIsLogged(true);
-        enqueueSnackbar("Welcome our twamm app", {
+        const msg = welcome[Math.floor(Math.random() * welcome.length)];
+        enqueueSnackbar(msg, {
           variant: "success",
         });
       } else {
-        enqueueSnackbar("Password not matched!", {
+        const msg = whoAreYou[Math.floor(Math.random() * whoAreYou.length)];
+        enqueueSnackbar(msg, {
           variant: "error",
         });
       }
