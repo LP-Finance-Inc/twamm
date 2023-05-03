@@ -2,7 +2,6 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import SyncAltIcon from "@mui/icons-material/SyncAlt";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
 import * as Styled from "./exchange-pair-form.styled";
 import AmountField from "../atoms/amount-field";

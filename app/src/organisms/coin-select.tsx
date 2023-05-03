@@ -26,9 +26,8 @@ const populateTokenRecords = (data?: JupToken[]) => {
         ...token,
         image: token.logoURI,
       };
-    } catch (error) {
-      console.log(error);
-    }
+      // eslint-disable-next-line no-empty
+    } catch (error) {}
   });
 
   return records;
