@@ -56,7 +56,9 @@ const fetcher =
     const [err, routes] = routesData;
 
     if (err) {
-      throw new Error("Can not load routes for the exchange. Try again later");
+      throw new Error(
+        "Can not load routes for the exchange. Try to adjust your input"
+      );
     }
 
     if (!routes.data || routes.data.length === 0)

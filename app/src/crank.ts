@@ -20,6 +20,7 @@ async function do_crank(client: CrankClient) {
       amount > 0
         ? await client.getRoutes("buy", amount)
         : await client.getRoutes("sell", amount.neg());
+
     if (!routes) {
       return [false, "Failed to get routes"];
     }

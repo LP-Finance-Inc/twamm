@@ -99,7 +99,7 @@ export default ({
       let tifPeriod;
       let epochs: number;
       let tifAccountedTokenAFormattedAmount;
-      const crankInterval = 10; // 5 seconds
+      const crankInterval = 10; // 10 seconds
       if (selected?.tif) {
         tifPeriod = selected?.tif;
         epochs = tifPeriod / crankInterval;
