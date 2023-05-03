@@ -169,7 +169,7 @@ export default ({
     return <Loading />;
 
   return (
-    <>
+    <Box mt={2}>
       <UniversalPopover ariaLabelledBy="select-coin-title" ref={selectCoinRef}>
         <CoinSelect
           id="select-coin-title"
@@ -204,6 +204,6 @@ export default ({
           url={explorerUrl}
         />
       </Box>
-    </>
+    </Box>
   );
 };

@@ -26,8 +26,8 @@ export default ({ address, name, onChange, onSelect, src }: Props) => {
 
   return (
     <Styled.TokenField>
-      <Grid container spacing={1}>
-        <Grid item xs={12} sm={4}>
+      <Grid container direction="row" alignItems="center">
+        <Grid item xs={12} sm={3}>
           <TokenSelect
             alt={displayName}
             image={src}
@@ -35,17 +35,17 @@ export default ({ address, name, onChange, onSelect, src }: Props) => {
             onClick={onSelect}
           />
         </Grid>
-        <Grid item xs={12} sm={8}>
+        <Grid item xs={12} sm={9}>
           <TokenField
             maxAmount={balance.data}
             address={address}
             onChange={onChange}
           />
-          <Styled.TokenTotal>
-            {i18n.TokenUserBalance}: {displayBalance} {displayName}
-          </Styled.TokenTotal>
         </Grid>
       </Grid>
+      {/* <Styled.TokenTotal>
+        {i18n.TokenUserBalance}: {displayBalance} {displayName}
+      </Styled.TokenTotal> */}
     </Styled.TokenField>
   );
 };

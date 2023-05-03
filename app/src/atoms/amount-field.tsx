@@ -50,33 +50,38 @@ export default ({
   );
 
   return (
-    <>
-      {isPending && <Skeleton variant="rounded" animation="wave" height={76} />}
-      {!isPending && (
-        <Styled.InputRoot>
-          <Styled.TokenAmountTextField
-            allowNegative={false}
-            disabled={disabled}
-            value={amount}
-            onChange={onChange}
-          />
-          <Styled.SecondaryControls direction="row" spacing={1}>
-            <Styled.TokenAmountInUSD>{displayAmount}</Styled.TokenAmountInUSD>
-            {!maxAmount ? null : (
-              <Styled.TokenAmountMaxButton onClick={onMaxClick} size="small">
-                max
-              </Styled.TokenAmountMaxButton>
-            )}
-          </Styled.SecondaryControls>
-          <Styled.SecondaryControls direction="row" spacing={1}>
-            {!outValue ? null : (
-              <Styled.TokenAmountInUSD>
-                ~{formatPrice(outValue)}
-              </Styled.TokenAmountInUSD>
-            )}
-          </Styled.SecondaryControls>
-        </Styled.InputRoot>
+    <Styled.InputRoot>
+      <Styled.TokenAmountTextField
+        allowNegative={false}
+        disabled={disabled}
+        value={amount}
+        onChange={onChange}
+      />
+      <Styled.TokenAmountInUSD>{displayAmount}</Styled.TokenAmountInUSD>
+      {isPending ? (
+        <Styled.SkeletonBox>
+          <Skeleton variant="rounded" animation="wave" height={20} width={50} />
+        </Styled.SkeletonBox>
+      ) : (
+        // eslint-disable-next-line react/jsx-no-useless-fragment
+        <>
+          {!outValue ? null : (
+            <Styled.TokenAmountInUSD>
+              ~{formatPrice(outValue)}
+            </Styled.TokenAmountInUSD>
+          )}
+        </>
       )}
-    </>
+    </Styled.InputRoot>
   );
 };
+
+// {
+//   /* <Styled.SecondaryControls direction="row" spacing={1}>
+//             {!maxAmount ? null : (
+//               <Styled.TokenAmountMaxButton onClick={onMaxClick} size="small">
+//                 max
+//               </Styled.TokenAmountMaxButton>
+//             )}
+//           </Styled.SecondaryControls> */
+// }

@@ -3,10 +3,18 @@ import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import { styled } from "@mui/material/styles";
 
+export const TokenField = styled(Box)`
+  background: #161724;
+  padding: 0.8rem 0.8rem;
+  border-radius: 0.75rem;
+  box-shadow: inset -4px -4px 5px rgba(87, 87, 87, 0.1),
+    inset 4px 4px 5px rgba(9, 9, 14, 0.3);
+`;
+
 export const TokenLabelBox = styled(Box)`
   color: ${({ theme }) => theme.palette.text.secondary};
   padding-bottom: ${({ theme }) => theme.spacing(1)};
-  font-size: 14px;
+  font-size: 0.9rem;
   font-weight: 600;
 `;
 
@@ -18,16 +26,15 @@ export const OperationImage = styled(Box)`
 `;
 
 export const OperationButton = styled(IconButton)`
-  width: 47px;
-  height: 47px;
-  box-shadow: inset -4px -4px 5px rgba(87, 87, 87, 0.2),
-    inset 4px 4px 5px rgba(9, 9, 14, 0.5);
+  box-shadow: inset -4px -4px 5px rgba(87, 87, 87, 0.1),
+    inset 4px 4px 5px rgba(9, 9, 14, 0.3);
+  background: #161724;
 
   & > * {
-    border-radius: 100%;
-    padding: 1px;
+    border-radius: 50px;
+    color: #0f0;
     transform: rotate(90deg);
-    color: #0c0;
+    font-size: 1.5rem;
   }
 `;
 

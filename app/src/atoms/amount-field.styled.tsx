@@ -21,21 +21,21 @@ export const TokenAmountTextField = styled(NumericFormat)`
   width: 100%;
   outline: transparent;
   background: transparent;
-  padding: 5px 12px;
-  font-size: 1.5rem;
+  text-align: right;
+  display: flex;
+  align-items: flex-start;
+  direction: ltr;
+  font-size: 1.2rem;
   font-weight: 400;
   color: ${(p) => p.theme.palette.text.primary};
+
   &:disabled {
     color: ${(p) => p.theme.palette.text.secondary};
   }
 `;
 
 export const InputRoot = styled(Box)`
-  box-shadow: inset -4px -4px 5px rgba(87, 87, 87, 0.2),
-    inset 4px 4px 5px rgba(9, 9, 14, 0.5);
-  border: 0.5px solid rgba(255, 255, 255, 0.01);
-  border-radius: 16px !important;
-  height: 76px;
+  position: relative;
 `;
 
 export const TokenAmountMaxButton = styled(Button)`
@@ -48,8 +48,14 @@ export const TokenAmountMaxButton = styled(Button)`
 export const TokenName = styled("span")``;
 
 export const TokenAmountInUSD = styled(Box)`
+  text-align: right;
   color: ${({ theme }) => theme.palette.text.secondary};
-  padding: 0 12px;
-  font-size: 16px;
+  font-size: 0.85rem;
   font-weight: 500;
+`;
+
+export const SkeletonBox = styled(Box)`
+  display: flex;
+  justify-content: center;
+  text-align: right;
 `;

@@ -3,8 +3,8 @@ import { styled } from "@mui/material/styles";
 
 export const Swap = styled(Box)`
   border: 1px solid ${({ theme }) => theme.palette.action.selected};
-  box-shadow: 7px 7px 10px rgba(9, 9, 14, 0.5),
-    -7px -7px 10px rgba(87, 87, 87, 0.2);
-  border-radius: 20px;
+  box-shadow: 7px 7px 8px rgba(9, 9, 14, 0.2),
+    -7px -7px 8px rgba(87, 87, 87, 0.1);
+  border-radius: 1.5rem;
   background: #161724;
 `;

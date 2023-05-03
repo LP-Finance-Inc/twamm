@@ -167,9 +167,9 @@ export default ({
         </Styled.OperationButton>
       </Styled.OperationImage>
       <Styled.TokenLabelBox>{i18n.TradeOrderYouReceive}</Styled.TokenLabelBox>
-      <Box pb={2}>
-        <Grid container spacing={1}>
-          <Grid item xs={12} sm={4}>
+      <Styled.TokenField>
+        <Grid container direction="row" alignItems="center">
+          <Grid item xs={12} sm={3}>
             <TokenSelect
               alt={b?.symbol}
               disabled={!a}
@@ -178,7 +178,7 @@ export default ({
               onClick={handleOutputSelect}
             />
           </Grid>
-          <Grid item xs={12} sm={8}>
+          <Grid item xs={12} sm={9}>
             <AmountField
               disabled
               amount={amount ? outRef.current : 0}
@@ -187,7 +187,7 @@ export default ({
             />
           </Grid>
         </Grid>
-      </Box>
+      </Styled.TokenField>
       {amount != null &&
         selected &&
         amount > 0 &&

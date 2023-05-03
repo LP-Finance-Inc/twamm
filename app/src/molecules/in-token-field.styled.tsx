@@ -2,10 +2,11 @@ import Box from "@mui/material/Box";
 import { styled } from "@mui/material/styles";
 
 export const TokenField = styled(Box)`
-  background: rgba(255, 255, 255, 0.03);
-  padding: 9px 11px 15px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: 16px;
+  background: #161724;
+  padding: 0.8rem 0.8rem;
+  border-radius: 0.75rem;
+  box-shadow: inset -4px -4px 5px rgba(87, 87, 87, 0.1),
+    inset 4px 4px 5px rgba(9, 9, 14, 0.3);
 `;
 
 export const TokenTotal = styled(Box)`

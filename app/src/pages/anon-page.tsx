@@ -56,6 +56,7 @@ export default forwardRef((props: { handleInputValue: any }, ref) => {
               placeholder="Your code here…"
               minLength={5}
               maxLength={30}
+              autoComplete="none"
               className={styles.Input}
               onKeyDown={props.handleInputValue}
               ref={inputRef}
