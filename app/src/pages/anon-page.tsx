@@ -2,7 +2,6 @@ import { useRef, forwardRef, useImperativeHandle } from "react";
 import Image from "next/image";
 import NoSsr from "@mui/material/NoSsr";
 import Box from "@mui/material/Box";
-
 import OfflineOverlay from "../organisms/offline-overlay";
 import styles from "./anon.module.css";
 import Logo from "../../public/images/lp-logo.png";
