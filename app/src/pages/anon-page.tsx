@@ -6,7 +6,7 @@ import Box from "@mui/material/Box";
 import OfflineOverlay from "../organisms/offline-overlay";
 import styles from "./anon.module.css";
 import Logo from "../../public/images/lp-logo.png";
-import Wallstreet from "../../public/images/wallstreet.png";
+import Wallstreet from "../../public/images/wall.gif";
 
 export default forwardRef((props: { handleInputValue: any }, ref) => {
   const inputRef = useRef<any>();
@@ -47,18 +47,20 @@ export default forwardRef((props: { handleInputValue: any }, ref) => {
               style={{
                 objectFit: "contain",
               }}
+              blurDataURL="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
             />
           </div>
           <div className={styles.InputBox}>
             <input
               type="text"
               name="password"
-              placeholder="Your code here…"
+              placeholder="Your code here"
               minLength={5}
               maxLength={30}
               className={styles.Input}
               onKeyDown={props.handleInputValue}
               ref={inputRef}
+              style={{ textAlign: "center" }}
             />
           </div>
         </NoSsr>
