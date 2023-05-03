@@ -6,6 +6,8 @@ import IndexPage from "../src/pages/index-page";
 import AnonPage from "../src/pages/anon-page";
 import { useSnackbar } from "../src/contexts/notification-context";
 
+const SecretCodes = ["hello", "this"];
+
 const Home: NextPage = () => {
   const { enqueueSnackbar } = useSnackbar();
 
@@ -15,21 +17,16 @@ const Home: NextPage = () => {
   const handleInputValue = (event: any) => {
     if (event.key === "Enter") {
       const value = ref.current.getInputValue();
-      const twammPassword = localStorage.getItem("twamm-access");
-      if (twammPassword) {
-        if (value === twammPassword) {
-          setIsLogged(true);
-          enqueueSnackbar("Welcome our twamm app", {
-            variant: "success",
-          });
-        } else {
-          enqueueSnackbar("Password not matched!", {
-            variant: "error",
-          });
-        }
-      } else {
-        localStorage.setItem("twamm-access", value);
+      const findCode = SecretCodes.find((code) => code === value);
+      if (value === findCode) {
         setIsLogged(true);
+        enqueueSnackbar("Welcome our twamm app", {
+          variant: "success",
+        });
+      } else {
+        enqueueSnackbar("Password not matched!", {
+          variant: "error",
+        });
       }
     }
   };
