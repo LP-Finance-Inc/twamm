@@ -1,7 +1,7 @@
 import Box from "@mui/material/Box";
 import useSWR from "swr";
 import Typography from "@mui/material/Typography";
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 
 import BlankTokenPairs from "../atoms/token-pair-cards-blank";
 import TokenPairsChart from "./token-pairs-chart";
@@ -18,9 +18,9 @@ const fetcher = async (url: string) => fetch(url).then((res) => res.json());
 export default () => {
   const tokenPairs = useTokenPairs(undefined, refreshEach(5 * 60000));
   const { isMobile } = useBreakpoints();
-  const [day] = useState<number>(1);
 
-  const { data, isLoading } = useSWR(`${api.volume}?day=${day}`, fetcher);
+  // Adjust this day param
+  const { data, isLoading } = useSWR(`${api.volume}?day=10000`, fetcher);
 
   const content = useMemo(() => {
     if (!tokenPairs.data) {
