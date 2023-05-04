@@ -166,7 +166,23 @@ export default ({
           <SyncAltIcon />
         </Styled.OperationButton>
       </Styled.OperationImage>
-      <Styled.TokenLabelBox>{i18n.TradeOrderYouReceive}</Styled.TokenLabelBox>
+      <Styled.TokenLabelBox>
+        {i18n.TradeOrderYouReceive}
+        {selected?.tif ? (
+          <>
+            {" "}
+            (
+            <a
+              href="http://docs.lp.finance/twamm/order-receive-amount-calculation"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <u>Simulated</u>
+            </a>
+            )
+          </>
+        ) : null}
+      </Styled.TokenLabelBox>
       <Box pb={2}>
         <Grid container spacing={1}>
           <Grid item xs={12} sm={4}>
