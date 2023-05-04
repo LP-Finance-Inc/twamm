@@ -19,8 +19,8 @@ export default () => {
   const tokenPairs = useTokenPairs(undefined, refreshEach(5 * 60000));
   const { isMobile } = useBreakpoints();
 
-  // 31 days data
-  const { data, isLoading } = useSWR(`${api.volume}?day=31`, fetcher);
+  // Adjust this day param
+  const { data, isLoading } = useSWR(`${api.volume}?day=10000`, fetcher);
 
   const content = useMemo(() => {
     if (!tokenPairs.data) {
