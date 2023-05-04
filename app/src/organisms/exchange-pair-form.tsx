@@ -2,7 +2,6 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import SyncAltIcon from "@mui/icons-material/SyncAlt";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
 import * as Styled from "./exchange-pair-form.styled";
 import AmountField from "../atoms/amount-field";
@@ -228,7 +227,7 @@ export default ({
           selected={selected}
         />
       </Box>
-      <div style={{ textAlign: "center", marginBottom: "20px" }}>
+      {/* <div style={{ textAlign: "center", marginBottom: "20px" }}>
         <Typography variant="overline">
           <Link
             href="https://docs.lp.finance/twamm/order-receive-amount-calculation"
@@ -238,7 +237,7 @@ export default ({
             {i18n.TwapCalculationDocs}
           </Link>
         </Typography>
-      </div>
+      </div> */}
     </form>
   );
 };
