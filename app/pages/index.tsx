@@ -14,10 +14,14 @@ const SecretCodes = [
   "noot!", // penguin
   "doggy", // samo
   "yujin",
-  "wen mango", // mango
+  "solshield", // solshield
+  "is mango back?", // mango
   "wen toly", // toly
+  "insiders", // solana insiders
+  "wen twap",
+  "solano",
 ];
-const welcome = ["Twap me baby", "Hmm, your size is size"];
+const welcome = ["Twap me baby", "Hmm, your size is size", "Wen TWAP?"];
 const whoAreYou = ["Your size is not size", "Insider traders not allowed"];
 
 const Home: NextPage = () => {
