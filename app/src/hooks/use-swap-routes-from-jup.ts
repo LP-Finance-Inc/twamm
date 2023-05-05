@@ -29,7 +29,7 @@ const fetcher =
   (api: ReturnType<typeof useJupiterV4Api>) =>
   async ({ params }: SWRParams<typeof swrKey>) => {
     const args = {
-      amount: String(params.amount * 10 ** params.decimals),
+      amount: String(Math.floor(params.amount * 10 ** params.decimals)),
       inputMint: params.inputMint,
       outputMint: params.outputMint,
       slippageBps: convertPercentage(params.slippage),
@@ -52,7 +52,6 @@ const fetcher =
         args.asLegacyTransaction
       )
     );
-
     const [err, routes] = routesData;
 
     if (err) {

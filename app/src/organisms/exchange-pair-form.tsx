@@ -93,7 +93,9 @@ export default ({
       const tokenA = a?.address;
       const tokenB = b?.address;
       const tokenBDecimals = b?.decimals;
-      const tokenAFormattedAmount = (amount ?? 0) * 10 ** (a?.decimals ?? 0);
+      const tokenAFormattedAmount = Math.floor(
+        (amount ?? 0) * 10 ** (a?.decimals ?? 0)
+      );
       // Calculate with TIF intervals
       let tifPeriod;
       let epochs: number;
