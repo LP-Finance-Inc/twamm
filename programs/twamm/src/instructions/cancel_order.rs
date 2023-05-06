@@ -250,33 +250,35 @@ pub fn cancel_order(ctx: Context<CancelOrder>, params: &CancelOrderParams) -> Re
     )?;
 
     // feat/platform-fee
-    // update token pair stats
-    msg!("Update token pair stats");
     if order.side == OrderSide::Sell {
-        if ctx.accounts.platform_account_token_b.is_some() {
+        if let Some(account) = &mut ctx.accounts.platform_account_token_b {
+            msg!("Transfer B Fees");
             token_pair.transfer_tokens(
                 ctx.accounts.custody_token_b.to_account_info(),
-                ctx.accounts.user_account_token_b.to_account_info(),
+                account.to_account_info(),
                 ctx.accounts.transfer_authority.clone(),
                 ctx.accounts.token_program.to_account_info(),
-                withdraw_amount_b,
+                withdraw_amount_fees,
             )?;
         } else {
+            msg!("Update token pair stats");
             token_pair.stats_b.fees_collected = token_pair
                 .stats_b
                 .fees_collected
                 .saturating_add(withdraw_amount_fees);
         }
     } else {
-        if ctx.accounts.platform_account_token_a.is_some() {
+        if let Some(account) = &mut ctx.accounts.platform_account_token_a {
+            msg!("Transfer A Fees");
             token_pair.transfer_tokens(
                 ctx.accounts.custody_token_a.to_account_info(),
-                ctx.accounts.user_account_token_a.to_account_info(),
+                account.to_account_info(),
                 ctx.accounts.transfer_authority.clone(),
                 ctx.accounts.token_program.to_account_info(),
-                withdraw_amount_a,
+                withdraw_amount_fees,
             )?;
         } else {
+            msg!("Update token pair stats");
             token_pair.stats_a.fees_collected = token_pair
                 .stats_a
                 .fees_collected
