@@ -667,6 +667,9 @@ export class TwammTester {
     lpAmount: number,
     nextPool?: boolean
   ) => {
+    // console.log(
+    //   this.program.idl.instructions[19].accounts
+    // )
     await this.program.methods
       .cancelOrder({
         lpAmount: new anchor.BN(lpAmount),
@@ -676,6 +679,8 @@ export class TwammTester {
         owner: this.users[userId].publicKey,
         userAccountTokenA: this.tokenAWallets[userId],
         userAccountTokenB: this.tokenBWallets[userId],
+        platformAccountTokenA: this.program.programId, // None
+        platformAccountTokenB: this.program.programId, // None
         tokenPair: this.tokenPairKey,
         transferAuthority: this.authorityKey,
         custodyTokenA: this.tokenACustodyKey,

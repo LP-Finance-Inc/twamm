@@ -12,7 +12,7 @@ twamm = "TWAPzC9xaeBpgDNF26z5VAcmxBowVz5uqmTx47LkWUy"
 url = "https://api.apr.dev"
 
 [provider]
-cluster = "mainnet"
+cluster = "localnet"
 wallet = "/Users/lpfinance/Users/lpfinance/.config/solana/id.json"
 
 [scripts]

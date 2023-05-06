@@ -39,6 +39,18 @@ pub struct CancelOrder<'info> {
 
     #[account(
         mut,
+        constraint = platform_account_token_a.mint == custody_token_a.mint
+    )]
+    pub platform_account_token_a: Option<Account<'info, TokenAccount>>,
+
+    #[account(
+        mut,
+        constraint = platform_account_token_b.mint == custody_token_b.mint
+    )]
+    pub platform_account_token_b: Option<Account<'info, TokenAccount>>,
+
+    #[account(
+        mut,
         seeds = [b"token_pair",
                  token_pair.config_a.mint.as_ref(),
                  token_pair.config_b.mint.as_ref()],
@@ -237,18 +249,39 @@ pub fn cancel_order(ctx: Context<CancelOrder>, params: &CancelOrderParams) -> Re
         withdraw_amount_b,
     )?;
 
+    // feat/platform-fee
     // update token pair stats
     msg!("Update token pair stats");
     if order.side == OrderSide::Sell {
-        token_pair.stats_b.fees_collected = token_pair
-            .stats_b
-            .fees_collected
-            .saturating_add(withdraw_amount_fees);
+        if ctx.accounts.platform_account_token_b.is_some() {
+            token_pair.transfer_tokens(
+                ctx.accounts.custody_token_b.to_account_info(),
+                ctx.accounts.user_account_token_b.to_account_info(),
+                ctx.accounts.transfer_authority.clone(),
+                ctx.accounts.token_program.to_account_info(),
+                withdraw_amount_b,
+            )?;
+        } else {
+            token_pair.stats_b.fees_collected = token_pair
+                .stats_b
+                .fees_collected
+                .saturating_add(withdraw_amount_fees);
+        }
     } else {
-        token_pair.stats_a.fees_collected = token_pair
-            .stats_a
-            .fees_collected
-            .wrapping_add(withdraw_amount_fees);
+        if ctx.accounts.platform_account_token_a.is_some() {
+            token_pair.transfer_tokens(
+                ctx.accounts.custody_token_a.to_account_info(),
+                ctx.accounts.user_account_token_a.to_account_info(),
+                ctx.accounts.transfer_authority.clone(),
+                ctx.accounts.token_program.to_account_info(),
+                withdraw_amount_a,
+            )?;
+        } else {
+            token_pair.stats_a.fees_collected = token_pair
+                .stats_a
+                .fees_collected
+                .wrapping_add(withdraw_amount_fees);
+        }
     };
 
     // close order account if no longer needed
