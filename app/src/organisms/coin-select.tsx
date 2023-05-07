@@ -14,7 +14,7 @@ import TokenTags from "../atoms/token-tags";
 import useJupTokensByMint from "../hooks/use-jup-tokens-by-mint";
 import * as Styled from "./coin-select.styled";
 
-const STARRED_COINS = ["usdt", "usdc", "sol"];
+const STARRED_COINS = ["usdcet", "usdc", "sol", "mngo", "msol", "stsol"];
 
 const populateTokenRecords = (data?: JupToken[]) => {
   if (!data) return {};
