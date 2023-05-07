@@ -630,6 +630,8 @@ export class CrankClient {
         owner: this.provider.wallet.publicKey,
         userAccountTokenA: this.tokenAWallet,
         userAccountTokenB: this.tokenBWallet,
+        platformAccountTokenA: this.program.programId, // set as null
+        platformAccountTokenB: this.program.programId, // set as null
         tokenPair: this.tokenPair,
         transferAuthority: this.transferAuthority,
         custodyTokenA: this.tokenACustody,

@@ -12,7 +12,7 @@ import i18n from "../i18n";
 import Logger from "../utils/logger";
 import useProgram from "./use-program";
 import useTxRunner from "../contexts/transaction-runner-context";
-import { NEXT_PUBLIC_ENABLE_TX_SIMUL } from "../env";
+import { NEXT_PUBLIC_ENABLE_TX_SIMUL, platformFeeAccount } from "../env";
 
 export default () => {
   const { provider, program } = useProgram();
@@ -71,11 +71,38 @@ export default () => {
       (i): i is TransactionInstruction => !isNil(i)
     );
 
+    let platformAccountTokenA;
+    let platformAccountTokenB;
+
+    if (platformFeeAccount !== "") {
+      platformAccountTokenA = program.programId;
+      platformAccountTokenB = program.programId;
+    } else {
+      const platformAccountTokenARaw =
+        await provider.connection.getTokenAccountsByOwner(
+          new PublicKey(platformFeeAccount),
+          {
+            mint: primary,
+          }
+        );
+      const platformAccountTokenBRaw =
+        await provider.connection.getTokenAccountsByOwner(
+          new PublicKey(platformFeeAccount),
+          {
+            mint: secondary,
+          }
+        );
+      platformAccountTokenA = platformAccountTokenARaw.value[0].pubkey;
+      platformAccountTokenB = platformAccountTokenBRaw.value[0].pubkey;
+    }
+
     const accounts = {
       payer: provider.wallet.publicKey,
       owner: provider.wallet.publicKey,
       userAccountTokenA: transferAccounts.aWallet,
       userAccountTokenB: transferAccounts.bWallet,
+      platformAccountTokenA,
+      platformAccountTokenB,
       tokenPair: transferAccounts.tokenPair,
       transferAuthority: transferAccounts.transferAuthority,
       custodyTokenA: transferAccounts.aCustody,

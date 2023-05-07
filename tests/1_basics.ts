@@ -520,6 +520,11 @@ describe("basics", () => {
     await twamm.cancelOrder(0, 3, 1000);
   });
 
+  it("cancelOrderWithPlatform", async () => {
+    await twamm.placeOrder(0, "sell", 3, 100);
+    await twamm.cancelOrderWithPlatform(0, 3, 100);
+  })
+
   it("setOraclePrice", async () => {
     await twamm.setOraclePrice(1000, 1000);
   });

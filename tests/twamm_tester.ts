@@ -460,6 +460,13 @@ export class TwammTester {
     ];
   };
 
+  getPlatformBalances = async () => {
+    return [
+      await this.getBalance(this.tokenAPlatformWallet),
+      await this.getBalance(this.tokenBPlatformWallet),
+    ];
+  }
+
   ensureFails = async (promise, message = null) => {
     let printErrors = this.printErrors;
     this.printErrors = false;
@@ -704,8 +711,6 @@ export class TwammTester {
     lpAmount: number,
     nextPool?: boolean
   ) => {
-    let platformAccountTokenA = this.tokenAPlatformWallet;
-
     await this.program.methods
       .cancelOrder({
         lpAmount: new anchor.BN(lpAmount),
@@ -715,8 +720,43 @@ export class TwammTester {
         owner: this.users[userId].publicKey,
         userAccountTokenA: this.tokenAWallets[userId],
         userAccountTokenB: this.tokenBWallets[userId],
-        platformAccountTokenA: this.tokenAPlatformWallet,//this.program.programId, //None
-        platformAccountTokenB: this.tokenBPlatformWallet,//this.program.programId, //None
+        platformAccountTokenA: this.program.programId, //None
+        platformAccountTokenB: this.program.programId, //None
+        tokenPair: this.tokenPairKey,
+        transferAuthority: this.authorityKey,
+        custodyTokenA: this.tokenACustodyKey,
+        custodyTokenB: this.tokenBCustodyKey,
+        order: await this.getOrderKey(userId, tif, nextPool ? 1 : 0),
+        pool: await this.getPoolKey(tif, nextPool ? 1 : 0),
+        tokenProgram: spl.TOKEN_PROGRAM_ID,
+      })
+      .signers([this.users[userId]])
+      .rpc()
+      .catch((err) => {
+        if (this.printErrors) {
+          console.error(err);
+        }
+        throw err;
+      }); 
+  };
+
+  cancelOrderWithPlatform = async (
+    userId: number,
+    tif: number,
+    lpAmount: number,
+    nextPool?: boolean
+  ) => {
+    await this.program.methods
+      .cancelOrder({
+        lpAmount: new anchor.BN(lpAmount),
+      })
+      .accounts({
+        payer: this.users[userId].publicKey,
+        owner: this.users[userId].publicKey,
+        userAccountTokenA: this.tokenAWallets[userId],
+        userAccountTokenB: this.tokenBWallets[userId],
+        platformAccountTokenA: this.tokenAPlatformWallet,
+        platformAccountTokenB: this.tokenBPlatformWallet,
         tokenPair: this.tokenPairKey,
         transferAuthority: this.authorityKey,
         custodyTokenA: this.tokenACustodyKey,
@@ -734,7 +774,6 @@ export class TwammTester {
         throw err;
       }); 
 
-      // disable when no platform fee
       let signerABalance = await this.provider
         .connection
         .getTokenAccountBalance(this.tokenAWallets[userId]);
