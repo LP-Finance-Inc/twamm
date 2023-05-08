@@ -10,7 +10,6 @@ import {
   XAxis,
   YAxis,
   Tooltip,
-  CartesianGrid,
 } from "recharts";
 
 import i18n from "../i18n";
