@@ -69,7 +69,6 @@ export default ({ data, isLoading }: { data?: any; isLoading: boolean }) => {
                         </linearGradient>
                       ))}
                     </defs>
-                    <CartesianGrid strokeDasharray="3 3" />
                     <XAxis
                       dataKey="timestamp"
                       tickFormatter={getDate}
