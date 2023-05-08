@@ -24,11 +24,9 @@ describe("single_user_with_platform", () => {
 
     // place and check order
     const [ta_balance, tb_balance] = await twamm.getBalances(0);
-    console.log(ta_balance, tb_balance);
     await twamm.placeOrder(0, side, tif, amount);
 
     const [ta_balance2, tb_balance2] = await twamm.getBalances(0);
-    console.log(ta_balance2, tb_balance2)
     expect(ta_balance2).to.equal(ta_balance);
     expect(tb_balance2).to.equal(tb_balance - amount);
 
@@ -79,20 +77,17 @@ describe("single_user_with_platform", () => {
     await twamm.reset(tifs, [1, 10]);
 
     const [ta_balance, tb_balance] = await twamm.getBalances(0);
-    const [platform_a_balance, platform_b_balance] = await twamm.getPlatformBalances(0);
+    const [platform_a_balance, platform_b_balance] = await twamm.getPlatformBalances();
     await twamm.placeOrder(0, side, tif, amount);
     await twamm.setTime(135);
     await twamm.settle(reverseSide, settleAmountFull);
-
     const [ta_balance1, tb_balance1] = await twamm.getBalances(1);
     await twamm.placeOrder(1, side, tif, amount, true);
-
     await twamm.cancelOrderWithPlatform(0, tif, amount);
     let tokenPair = await twamm.program.account.tokenPair.fetch(
       twamm.tokenPairKey
     );
-    let fees_collected = Number(tokenPair.statsA.feesCollected);
-    let source_amount_received = twamm.getTokenAAmount(amount / 2);
+
     expect(Number(tokenPair.statsA.feesCollected)).to.equal(0);
     expect(Number(tokenPair.statsB.feesCollected)).to.equal(0);
 
@@ -101,21 +96,21 @@ describe("single_user_with_platform", () => {
     expect(ta_balance2).to.equal(ta_balance1);
     expect(tb_balance2).to.equal(tb_balance1);
 
-    const [ta_balance3, tb_balance3] = await twamm.getBalances(0);
-    expect(ta_balance3).to.equal(
-      ta_balance +
-        source_amount_received -
-        Number(tokenPair.statsA.feesCollected)
-    );
-    expect(tb_balance3).to.equal(tb_balance - amount / 2);
+    let source_amount_received = twamm.getTokenAAmount(amount / 2);
 
-    const [ta_balance4, tb_balance4] = await twamm.getBalances(3);
+    const [platform_a_balance_post, platform_b_balance_post] = await twamm.getPlatformBalances();
+    
+    expect(platform_b_balance).to.equal(platform_b_balance_post);
+    expect(platform_a_balance_post - platform_a_balance)
+        .to.equal(Math.ceil(source_amount_received/10));
+
+    const sol_balance_pre  = await twamm.getSolBalanceFromIdx(3)
     let sol_fees = await twamm.getExtraSolBalance(twamm.authorityKey);
     expect(sol_fees).to.greaterThan(0);
-    await twamm.withdrawFees(fees_collected, 0, sol_fees);
-    const [ta_balance5, tb_balance5] = await twamm.getBalances(3);
-    expect(ta_balance5).to.equal(ta_balance4 + fees_collected);
-    expect(tb_balance5).to.equal(tb_balance4);
+
+    await twamm.withdrawFees(0, 0, sol_fees);
+    const sol_balance_post  = await twamm.getSolBalanceFromIdx(3)
+    expect(sol_balance_post - sol_balance_pre).to.equal(sol_fees);
   });
 
   it("scenario3", async () => {
@@ -123,6 +118,7 @@ describe("single_user_with_platform", () => {
     await twamm.reset(tifs, [1, 10]);
 
     const [ta_balance, tb_balance] = await twamm.getBalances(0);
+    const [platform_a_balance, platform_b_balance] = await twamm.getPlatformBalances();
     await twamm.placeOrder(0, side, tif, amount);
     await twamm.setTime(135);
     await twamm.settle(reverseSide, settleAmountFull);
@@ -131,26 +127,23 @@ describe("single_user_with_platform", () => {
     let tokenPair = await twamm.program.account.tokenPair.fetch(
       twamm.tokenPairKey
     );
-    let fees_collected = Number(tokenPair.statsA.feesCollected);
+
     let source_amount_received = twamm.getTokenAAmount(amount / 2);
-    expect(fees_collected).to.equal(Math.ceil(source_amount_received / 10));
+    const [platform_a_balance_post, platform_b_balance_post] = await twamm.getPlatformBalances();
+    expect(platform_b_balance).to.equal(platform_b_balance_post);
+    expect(platform_a_balance_post - platform_a_balance)
+        .to.equal(Math.ceil(source_amount_received/10));
+    expect(Number(tokenPair.statsA.feesCollected)).to.equal(0);
     expect(Number(tokenPair.statsB.feesCollected)).to.equal(0);
 
-    const [ta_balance3, tb_balance3] = await twamm.getBalances(0);
-    expect(ta_balance3).to.equal(
-      ta_balance +
-        source_amount_received -
-        Number(tokenPair.statsA.feesCollected)
-    );
-    expect(tb_balance3).to.equal(tb_balance - amount / 2);
-
     const [ta_balance4, tb_balance4] = await twamm.getBalances(3);
+    const sol_balance_pre  = await twamm.getSolBalanceFromIdx(3)
     let sol_fees = await twamm.getExtraSolBalance(twamm.authorityKey);
     expect(sol_fees).to.greaterThan(0);
-    await twamm.withdrawFees(fees_collected, 0, sol_fees);
+    await twamm.withdrawFees(0, 0, sol_fees);
     const [ta_balance5, tb_balance5] = await twamm.getBalances(3);
-    expect(ta_balance5).to.equal(ta_balance4 + fees_collected);
-    expect(tb_balance5).to.equal(tb_balance4);
+    const sol_balance_post  = await twamm.getSolBalanceFromIdx(3)
+    expect(sol_balance_post - sol_balance_pre).to.equal(sol_fees);
   });
 
   it("scenario4", async () => {
@@ -163,6 +156,7 @@ describe("single_user_with_platform", () => {
 
     // place and check order
     const [ta_balance, tb_balance] = await twamm.getBalances(0);
+    const [platform_a_balance, platform_b_balance] = await twamm.getPlatformBalances();
     await twamm.placeOrder(0, side, tif, amount);
 
     const [ta_balance2, tb_balance2] = await twamm.getBalances(0);
@@ -197,29 +191,18 @@ describe("single_user_with_platform", () => {
     let tokenPair = await twamm.program.account.tokenPair.fetch(
       twamm.tokenPairKey
     );
-    let fees_collected = Number(tokenPair.statsB.feesCollected);
-    expect(fees_collected).to.equal(settleAmountSmall / 10);
-    expect(Number(tokenPair.statsA.feesCollected)).to.equal(0);
-
-    // check received amount
-    const [ta_balance3, tb_balance3] = await twamm.getBalances(0);
-    expect(tb_balance3).to.equal(
-      tb_balance + settleAmountSmall - Number(tokenPair.statsB.feesCollected)
-    );
-    expect(ta_balance3).to.equal(
-      ta_balance - twamm.getTokenAAmount(settleAmountSmall)
-    );
-
-    // withdraw fees
-    const [ta_balance4, tb_balance4] = await twamm.getBalances(3);
-    let sol_fees = await twamm.getExtraSolBalance(twamm.authorityKey);
-    expect(sol_fees).to.greaterThan(0);
-    await twamm.withdrawFees(0, fees_collected, sol_fees);
-    const [ta_balance5, tb_balance5] = await twamm.getBalances(3);
-    expect(tb_balance5).to.equal(tb_balance4 + fees_collected);
-    expect(ta_balance5).to.equal(ta_balance4);
-    tokenPair = await twamm.program.account.tokenPair.fetch(twamm.tokenPairKey);
+    const [platform_a_balance_post, platform_b_balance_post] = await twamm.getPlatformBalances();
+    expect(platform_a_balance_post).to.equal(platform_a_balance);
+    expect(platform_b_balance_post - platform_b_balance).to.equal(settleAmountSmall / 10);
     expect(Number(tokenPair.statsA.feesCollected)).to.equal(0);
     expect(Number(tokenPair.statsB.feesCollected)).to.equal(0);
+
+    // withdraw sol fees
+    const sol_balance_pre  = await twamm.getSolBalanceFromIdx(3)
+    let sol_fees = await twamm.getExtraSolBalance(twamm.authorityKey);
+    expect(sol_fees).to.greaterThan(0);
+    await twamm.withdrawFees(0, 0, sol_fees);
+    const sol_balance_post  = await twamm.getSolBalanceFromIdx(3);
+    expect(sol_balance_post - sol_balance_pre).to.equal(sol_fees);
   });
 });

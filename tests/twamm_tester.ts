@@ -362,6 +362,13 @@ export class TwammTester {
       .catch(() => 0);
   };
 
+  getSolBalanceFromIdx = async(index: number) => {
+    return this.provider.connection
+      .getBalance(this.users[index].publicKey)
+      .then((balance) => balance)
+      .catch(() => 0);
+  };
+
   getExtraSolBalance = async (pubkey: PublicKey) => {
     let balance = await this.provider.connection
       .getBalance(pubkey)

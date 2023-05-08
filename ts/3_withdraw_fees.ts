@@ -59,11 +59,29 @@ const withdrawFees = async() => {
         mint: tokenBMint
       }
     )
+
+    let balance = await connection
+      .getBalance(authorityKey)
+      .then((balance) => balance)
+      .catch(() => 0);
+    let accountInfo = await connection.getAccountInfo(authorityKey);
+    let dataSize = accountInfo ? accountInfo.data.length : 0;
+    let minBalance =
+      await connection.getMinimumBalanceForRentExemption(
+        dataSize
+      );
+    let amountSol;
+    if (balance > minBalance) {
+      amountSol = balance - minBalance;
+    } else {
+      amountSol = 0;
+    }
+
     let tx = await program.methods
         .withdrawFees({
-            amountTokenA: new anchor.BN(0.027180869*10**9), // with decimals
+            amountTokenA: new anchor.BN(0*10**9), // with decimals
             amountTokenB: new anchor.BN(0*10**6), // with decimals
-            amountSol: new anchor.BN(0)
+            amountSol: new anchor.BN(amountSol)
         })
         .accounts({
             admin: signer.publicKey,
