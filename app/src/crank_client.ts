@@ -265,9 +265,7 @@ export class CrankClient {
         );
         continue;
       }
-      console.log(preInstructions[0].programId.toString())
-      console.log(swapInstruction.keys[0].pubkey.toString())
-      console.log(postInstructions)
+
       // check serialized transaction size
       let [ret, tx] = await this.crank(
         preInstructions,
@@ -424,6 +422,11 @@ export class CrankClient {
     }
     if (!poolAccounts.length) {
       return [true, 0];
+    }
+
+    // Check pool accounts
+    for (let i=0; i<poolAccounts.length; i++) {
+      console.log(`pubkey ${i}: ${poolAccounts[i].pubkey.toString()}`);
     }
 
     try {
