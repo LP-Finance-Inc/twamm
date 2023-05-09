@@ -187,6 +187,7 @@ export class CrankClient {
   };
 
   getInstructions = async (routes: RouteInfo[], maxSlippageFromBest = 0.05) => {
+
     if (!routes.length) {
       return null;
     }
@@ -424,11 +425,6 @@ export class CrankClient {
       return [true, 0];
     }
 
-    // Check pool accounts
-    for (let i=0; i<poolAccounts.length; i++) {
-      console.log(`pubkey ${i}: ${poolAccounts[i].pubkey.toString()}`);
-    }
-
     try {
       return [
         true,
@@ -498,6 +494,15 @@ export class CrankClient {
       poolAccounts.push(...swapInstruction.keys);
     }
 
+    // Check pool accounts
+    for (let i=0; i<poolAccounts.length; i++) {
+      console.log(`Account ${i}: ${poolAccounts[i].pubkey.toString()}`);
+      let accountInfo = await this.provider.connection.getAccountInfo(
+        poolAccounts[i].pubkey
+      );
+      console.log("Owner: ", accountInfo?.owner.toString());
+      console.log();
+    }
     // build method
     let methodBuilder = this.program.methods
       .crank({
