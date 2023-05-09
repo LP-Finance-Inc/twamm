@@ -164,17 +164,18 @@ export class CrankClient {
     );
   };
 
-  getRoutes = async (side: OrderSide, amount: BN, slippage = 5.0) => {
+  getRoutes = async (side: OrderSide, amount: BN, slippageBps = 5.0) => {
 
     return this.jupiter
       .computeRoutes({
         inputMint: side === "sell" ? this.tokenAMint : this.tokenBMint,
         outputMint: side === "sell" ? this.tokenBMint : this.tokenAMint,
         amount: JSBI.BigInt(amount.toString()),
-        slippage,
+        slippageBps,
         forceFetch: true,
         onlyDirectRoutes: true,
         swapMode: SwapMode.ExactIn,
+        asLegacyTransaction: true,
       })
       .then((routes) => {
         return routes;
@@ -217,6 +218,7 @@ export class CrankClient {
       const res = await this.jupiter
         .exchange({
           routeInfo: route,
+          asLegacyTransaction: true,
         })
         .then((result) => {
           return result;
@@ -232,13 +234,13 @@ export class CrankClient {
         continue;
       }
 
-      let { setupTransaction, swapTransaction, cleanupTransaction } =
-        res.transactions;
+      let { swapTransaction } = res;
 
-      if (setupTransaction || cleanupTransaction) {
-        this.log("DEBUG: Skipped route with setup/cleanup transactions");
-        continue;
-      }
+      // disabled for @jup-ag v4
+      // if (setupTransaction || cleanupTransaction) {
+      //   this.log("DEBUG: Skipped route with setup/cleanup transactions");
+      //   continue;
+      // }
 
       let preInstructions: TransactionInstruction[] =
         swapTransaction.instructions.length > 1
@@ -263,7 +265,9 @@ export class CrankClient {
         );
         continue;
       }
-
+      console.log(preInstructions[0].programId.toString())
+      console.log(swapInstruction.keys[0].pubkey.toString())
+      console.log(postInstructions)
       // check serialized transaction size
       let [ret, tx] = await this.crank(
         preInstructions,
