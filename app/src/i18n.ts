@@ -94,7 +94,7 @@ export default {
   TxRunnerSimulationFailure: "Failed to simulate",
   TxRunnerExecution: "Executing transaction...",
   TxRunnerSuccess: "Done!",
-  TxRunnerSuccessDescription: "You transaction was validated.",
+  TxRunnerSuccessDescription: "Your transaction was validated.",
   TxRunnerTransactionDetails: "See details here",
   Warning: "Warning",
   TwapCalculationDocs: "How is receive amount calulated for TWAP?",
