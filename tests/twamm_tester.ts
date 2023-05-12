@@ -8,6 +8,7 @@ import {
   AccountMeta,
   TransactionSignature,
   SYSVAR_RENT_PUBKEY,
+  Connection,
 } from "@solana/web3.js";
 import * as spl from "@solana/spl-token";
 
@@ -50,6 +51,10 @@ export class TwammTester {
 
   tokenAWallets: PublicKey[];
   tokenBWallets: PublicKey[];
+  // platform accounts
+  platform: Keypair;
+  tokenAPlatformWallet: PublicKey;
+  tokenBPlatformWallet: PublicKey;
 
   oracleTokenAKey: PublicKey;
   oracleTokenABump: number;
@@ -114,6 +119,13 @@ export class TwammTester {
     ]);
     this.users.push(Keypair.fromSeed(seed));
 
+    // Generate platform account
+    seed = Uint8Array.from([
+      251, 222, 108, 31, 114, 229, 147, 252, 163, 52, 150, 46, 148, 35, 127, 17,
+      20, 123, 5, 45, 214, 59, 219, 109, 209, 60, 40, 244, 5, 234, 120, 162,
+    ]);
+    this.platform = Keypair.fromSeed(seed);
+
     seed = Uint8Array.from([
       34, 252, 63, 205, 83, 121, 254, 147, 133, 101, 54, 176, 184, 2, 121, 36,
       231, 156, 164, 251, 17, 236, 116, 26, 176, 175, 241, 145, 157, 42, 109,
@@ -126,6 +138,7 @@ export class TwammTester {
       209, 101, 107, 244, 132, 192, 120, 235, 46, 187, 46, 132, 38, 17, 89, 9,
       114, 196, 244, 204, 78, 120, 140, 4, 196, 157, 1, 236, 163, 252, 141, 239,
     ]);
+
     this.tokenBMintKeypair = Keypair.fromSeed(seed);
     this.tokenBMint = this.tokenBMintKeypair.publicKey;
 
@@ -176,6 +189,9 @@ export class TwammTester {
 
     this.tokenAWallets = [];
     this.tokenBWallets = [];
+    this.tokenAPlatformWallet;
+    this.tokenBPlatformWallet;
+
     for (const wallet of this.users) {
       this.tokenAWallets.push(
         await spl.getAssociatedTokenAddress(this.tokenAMint, wallet.publicKey)
@@ -185,6 +201,9 @@ export class TwammTester {
         await spl.getAssociatedTokenAddress(this.tokenBMint, wallet.publicKey)
       );
     }
+    this.tokenAPlatformWallet = await spl.getAssociatedTokenAddress(this.tokenAMint, this.platform.publicKey);
+    this.tokenBPlatformWallet = await spl.getAssociatedTokenAddress(this.tokenBMint, this.platform.publicKey);
+    
 
     [this.oracleTokenAKey, this.oracleTokenABump] =
       await PublicKey.findProgramAddress(
@@ -287,6 +306,24 @@ export class TwammTester {
       if (tx) {
         this.confirmTx(tx);
       }
+      await this.provider.connection.requestAirdrop(
+        this.platform.publicKey,
+        1e9
+      );
+
+      await spl.createAssociatedTokenAccount(
+        this.provider.connection,
+        this.admin1,
+        this.tokenAMint,
+        this.platform.publicKey
+      );
+
+      await spl.createAssociatedTokenAccount(
+        this.provider.connection,
+        this.admin1,
+        this.tokenBMint,
+        this.platform.publicKey
+      );
     }
   };
 
@@ -321,6 +358,13 @@ export class TwammTester {
   getSolBalance = async (pubkey: PublicKey) => {
     return this.provider.connection
       .getBalance(pubkey)
+      .then((balance) => balance)
+      .catch(() => 0);
+  };
+
+  getSolBalanceFromIdx = async(index: number) => {
+    return this.provider.connection
+      .getBalance(this.users[index].publicKey)
       .then((balance) => balance)
       .catch(() => 0);
   };
@@ -422,6 +466,13 @@ export class TwammTester {
       await this.getBalance(this.tokenBWallets[userId]),
     ];
   };
+
+  getPlatformBalances = async () => {
+    return [
+      await this.getBalance(this.tokenAPlatformWallet),
+      await this.getBalance(this.tokenBPlatformWallet),
+    ];
+  }
 
   ensureFails = async (promise, message = null) => {
     let printErrors = this.printErrors;
@@ -676,6 +727,8 @@ export class TwammTester {
         owner: this.users[userId].publicKey,
         userAccountTokenA: this.tokenAWallets[userId],
         userAccountTokenB: this.tokenBWallets[userId],
+        platformAccountTokenA: this.program.programId, //None
+        platformAccountTokenB: this.program.programId, //None
         tokenPair: this.tokenPairKey,
         transferAuthority: this.authorityKey,
         custodyTokenA: this.tokenACustodyKey,
@@ -691,7 +744,74 @@ export class TwammTester {
           console.error(err);
         }
         throw err;
-      });
+      }); 
+  };
+
+  cancelOrderWithPlatform = async (
+    userId: number,
+    tif: number,
+    lpAmount: number,
+    nextPool?: boolean
+  ) => {
+    await this.program.methods
+      .cancelOrder({
+        lpAmount: new anchor.BN(lpAmount),
+      })
+      .accounts({
+        payer: this.users[userId].publicKey,
+        owner: this.users[userId].publicKey,
+        userAccountTokenA: this.tokenAWallets[userId],
+        userAccountTokenB: this.tokenBWallets[userId],
+        platformAccountTokenA: this.tokenAPlatformWallet,
+        platformAccountTokenB: this.tokenBPlatformWallet,
+        tokenPair: this.tokenPairKey,
+        transferAuthority: this.authorityKey,
+        custodyTokenA: this.tokenACustodyKey,
+        custodyTokenB: this.tokenBCustodyKey,
+        order: await this.getOrderKey(userId, tif, nextPool ? 1 : 0),
+        pool: await this.getPoolKey(tif, nextPool ? 1 : 0),
+        tokenProgram: spl.TOKEN_PROGRAM_ID,
+      })
+      .signers([this.users[userId]])
+      .rpc()
+      .catch((err) => {
+        if (this.printErrors) {
+          console.error(err);
+        }
+        throw err;
+      }); 
+
+      let signerABalance = await this.provider
+        .connection
+        .getTokenAccountBalance(this.tokenAWallets[userId]);
+      let signerBBalance = await this.provider
+        .connection
+        .getTokenAccountBalance(this.tokenBWallets[userId]);
+
+      let feeAccountABalance = await this.provider
+        .connection
+        .getTokenAccountBalance(this.tokenAPlatformWallet);
+      let feeAccountBBalance = await this.provider
+        .connection
+        .getTokenAccountBalance(this.tokenBPlatformWallet);
+
+      let custodyTokenABalance = await this.provider
+        .connection
+        .getTokenAccountBalance(this.tokenACustodyKey);
+      let custodyTokenBBalance = await this.provider
+        .connection
+        .getTokenAccountBalance(this.tokenBCustodyKey);
+      
+      console.log("SIGNER A BALANCE: ", signerABalance.value.amount);
+      console.log("SIGNER B BALANCE: ", signerBBalance.value.amount);
+      console.log("CUSTODY A BALANCE: ", custodyTokenABalance.value.amount);
+      console.log("CUSTODY B BALANCE: ", custodyTokenBBalance.value.amount);
+      console.log("Fee A: ", feeAccountABalance.value.amount);
+      console.log("Fee B: ", feeAccountBBalance.value.amount);
+      
+      if (parseInt(feeAccountABalance.value.amount) == 0 && parseInt(feeAccountBBalance.value.amount) == 0) {
+        console.log("FEES NOT COLLECTED!!!");
+      }
   };
 
   initPoolMetas = async (tifs: number[]) => {

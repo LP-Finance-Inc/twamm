@@ -19,12 +19,13 @@
     "test/unit": "jest ./*.test.tsx?"
   },
   "dependencies": {
+    "@coral-xyz/borsh": "^0.27.0",
     "@emotion/cache": "^11.10.3",
     "@emotion/react": "^11.10.4",
     "@emotion/server": "^11.10.0",
     "@emotion/styled": "^11.10.4",
     "@jup-ag/api": "3",
-    "@jup-ag/core": "2.0.0-beta.4",
+    "@jup-ag/core": "4.0.0-beta.18",
     "@mui/icons-material": "^5.10.3",
     "@mui/material": "5.10.5",
     "@mui/styled-engine": "^5.10.4",

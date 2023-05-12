@@ -121,8 +121,8 @@ export class CrankClient {
     BN.prototype.toJSON = function () {
       return this.toString(10);
     };
-    // this.jupiterId = "JUP4Fb2cqiRUcaTHdrPC8h2gNsA2ETXiPDD33WcGuJB"
-    this.jupiterId = "JUP3c2Uh3WA4Ng34tw6kPd2G4C5BB21Xo36Je1s32Ph";
+    this.jupiterId = "JUP4Fb2cqiRUcaTHdrPC8h2gNsA2ETXiPDD33WcGuJB"
+    // this.jupiterId = "JUP3c2Uh3WA4Ng34tw6kPd2G4C5BB21Xo36Je1s32Ph";
     this.jupiter = await Jupiter.load({
       connection: this.provider.connection,
       cluster: "mainnet-beta",
@@ -164,17 +164,18 @@ export class CrankClient {
     );
   };
 
-  getRoutes = async (side: OrderSide, amount: BN, slippage = 5.0) => {
+  getRoutes = async (side: OrderSide, amount: BN, slippageBps = 5.0) => {
 
     return this.jupiter
       .computeRoutes({
         inputMint: side === "sell" ? this.tokenAMint : this.tokenBMint,
         outputMint: side === "sell" ? this.tokenBMint : this.tokenAMint,
         amount: JSBI.BigInt(amount.toString()),
-        slippage,
+        slippageBps,
         forceFetch: true,
         onlyDirectRoutes: true,
         swapMode: SwapMode.ExactIn,
+        asLegacyTransaction: true,
       })
       .then((routes) => {
         return routes;
@@ -186,6 +187,7 @@ export class CrankClient {
   };
 
   getInstructions = async (routes: RouteInfo[], maxSlippageFromBest = 0.05) => {
+
     if (!routes.length) {
       return null;
     }
@@ -217,6 +219,7 @@ export class CrankClient {
       const res = await this.jupiter
         .exchange({
           routeInfo: route,
+          asLegacyTransaction: true,
         })
         .then((result) => {
           return result;
@@ -232,13 +235,13 @@ export class CrankClient {
         continue;
       }
 
-      let { setupTransaction, swapTransaction, cleanupTransaction } =
-        res.transactions;
+      let { swapTransaction } = res;
 
-      if (setupTransaction || cleanupTransaction) {
-        this.log("DEBUG: Skipped route with setup/cleanup transactions");
-        continue;
-      }
+      // disabled for @jup-ag v4
+      // if (setupTransaction || cleanupTransaction) {
+      //   this.log("DEBUG: Skipped route with setup/cleanup transactions");
+      //   continue;
+      // }
 
       let preInstructions: TransactionInstruction[] =
         swapTransaction.instructions.length > 1
@@ -630,6 +633,8 @@ export class CrankClient {
         owner: this.provider.wallet.publicKey,
         userAccountTokenA: this.tokenAWallet,
         userAccountTokenB: this.tokenBWallet,
+        platformAccountTokenA: this.program.programId, // set as null
+        platformAccountTokenB: this.program.programId, // set as null
         tokenPair: this.tokenPair,
         transferAuthority: this.transferAuthority,
         custodyTokenA: this.tokenACustody,
