@@ -494,15 +494,6 @@ export class CrankClient {
       poolAccounts.push(...swapInstruction.keys);
     }
 
-    // Check pool accounts
-    for (let i=0; i<poolAccounts.length; i++) {
-      console.log(`Account ${i}: ${poolAccounts[i].pubkey.toString()}`);
-      let accountInfo = await this.provider.connection.getAccountInfo(
-        poolAccounts[i].pubkey
-      );
-      console.log("Owner: ", accountInfo?.owner.toString());
-      console.log();
-    }
     // build method
     let methodBuilder = this.program.methods
       .crank({

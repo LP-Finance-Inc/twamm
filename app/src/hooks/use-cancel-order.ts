@@ -74,7 +74,7 @@ export default () => {
     let platformAccountTokenA;
     let platformAccountTokenB;
 
-    if (platformFeeAccount !== "") {
+    if (platformFeeAccount === "") {
       platformAccountTokenA = program.programId;
       platformAccountTokenB = program.programId;
     } else {
