@@ -7,4 +7,3 @@ test-ledger
 *.sw*
 .vercel
 **/.env
-ts
