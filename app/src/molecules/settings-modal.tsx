@@ -1,10 +1,6 @@
-// import type { MouseEvent } from "react";
-import Box from "@mui/material/Box";
-// import IconButton from "@mui/material/IconButton";
-// import InfoIcon from "@mui/icons-material/Info";
-// import Stack from "@mui/material/Stack";
-import Typography from "@mui/material/Typography";
 import { useRef } from "react";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
 
 import * as Styled from "./settings-modal.styled";
 import ClusterSelector from "./cluster-selector";
@@ -14,7 +10,6 @@ import PerformanceFeeSelector from "./performance-fee-selector";
 import Tooltip, { TooltipRef } from "../atoms/tooltip";
 import SlippageSelector from "./slippage-selector";
 import useTxRunner from "../contexts/transaction-runner-context";
-// import ToggleOption from "./toggle-option";
 
 export default ({
   id,
@@ -28,14 +23,8 @@ export default ({
 
   const onClose = () => onToggle(false);
 
-  /*
-   *const handleTooltipOpen = useCallback((event: MouseEvent<HTMLElement>) => {
-   *  tooltipRef.current?.toggle(event.currentTarget);
-   *}, []);
-   */
-
   return (
-    <Box p={2}>
+    <Styled.Container p={2}>
       <Typography id={id} variant="h5" pb={1}>
         {i18n.Settings}
       </Typography>
@@ -76,25 +65,6 @@ export default ({
           onClose={onClose}
         />
       </Styled.Setting>
-
-      {/*
-       *<Styled.Setting justifyContent="space-between" direction="row" py={1}>
-       *  <Stack direction="row">
-       *    <Styled.SettingLabel color="text.secondary" pr={1} variant="body2">
-       *      {i18n.SettingsSettingVersionedTx}
-       *    </Styled.SettingLabel>
-       *    <IconButton
-       *      sx={{ padding: 0 }}
-       *      color="warning"
-       *      onClick={handleTooltipOpen}
-       *    >
-       *      <InfoIcon fontSize="small" />
-       *    </IconButton>
-       *  </Stack>
-       *  <ToggleOption onClose={onClose} />
-       *</Styled.Setting>
-       */}
-
       <Box py={2}>
         <Styled.Line />
       </Box>
@@ -105,6 +75,6 @@ export default ({
         <ClusterSelector onClose={onClose} />
       </Styled.ClusterSetting>
       <Tooltip ref={tooltipRef} text={i18n.SettingsSettingVersionedTxInfo} />
-    </Box>
+    </Styled.Container>
   );
 };

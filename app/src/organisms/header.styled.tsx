@@ -33,6 +33,10 @@ export const UtilsControl = styled(Card)`
   display: flex;
   padding: 4px;
   color: #0c0;
+  background: #161724;
+  box-shadow: 4px 4px 6px rgba(9, 9, 14, 0.4),
+    -4px -4px 6px rgba(87, 87, 87, 0.1);
+  border: none;
 `;
 
 export const WalletButton = styled(WalletMultiButton)`
@@ -43,10 +47,12 @@ export const WalletButton = styled(WalletMultiButton)`
   justify-content: center;
 
   &.wallet-adapter-button {
-    background-color: rgba(255, 255, 255, 0.04);
     white-space: nowrap;
     color: #0c0;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: #161724;
+    border-radius: 12px;
+    box-shadow: 4px 4px 6px rgba(9, 9, 14, 0.4),
+      -4px -4px 6px rgba(87, 87, 87, 0.1);
   }
 
   &.wallet-adapter-button:active {

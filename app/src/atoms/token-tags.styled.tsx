@@ -9,4 +9,6 @@ export const Tags = styled(Stack)`
 export const Tag = styled(Chip)`
   border-radius: 6px;
   cursor: pointer;
+  border: 1px solid #0f0;
+  padding: 1rem 0;
 `;
