@@ -6,7 +6,6 @@ import * as Styled from "./pair-card-metrics.styled";
 import { formatPrice } from "../domain/index";
 
 export interface MetricProps {
-  title: string;
   value: number;
   formatted?: boolean;
 }
@@ -32,7 +31,7 @@ export const formatDeposited = (value: number): string => {
   );
 };
 
-export default ({ formatted = false, title, value }: MetricProps) => {
+export default ({ formatted = false, value }: MetricProps) => {
   const [open, setOpen] = useState<boolean>(false);
 
   const onClose = () => {
@@ -46,7 +45,6 @@ export default ({ formatted = false, title, value }: MetricProps) => {
   return (
     <Box>
       <Styled.Metric>
-        <Styled.FundMetricName>{title}</Styled.FundMetricName>
         <ClickAwayListener onClickAway={onClose}>
           <Tooltip
             arrow

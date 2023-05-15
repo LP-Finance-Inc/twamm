@@ -195,7 +195,7 @@ export default ({
           tokenPair={selectedPair.data?.exchangePair[0]}
         />
       </Styled.Swap>
-      <Box p={2}>
+      <Box px={0} py={1}>
         <PriceInfo
           a={a}
           b={b}

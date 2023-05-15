@@ -4,15 +4,12 @@ import { styled } from "@mui/material/styles";
 
 const styledButton = styled(ToggleButton);
 
-const BORDER_RADIUS = "20px";
-const BORDER = "1px solid rgba(255, 255, 255, 0.1)";
-
 export const ModeButtonGroup = styled(ToggleButtonGroup)`
   border-radius: 50px;
   padding: 0.4rem 0.8rem;
   background: #161724;
-  box-shadow: 4px 4px 7px rgba(9, 9, 14, 0.5),
-    -4px -4px 7px rgba(87, 87, 87, 0.1);
+  box-shadow: 4px 4px 6px rgba(9, 9, 14, 0.4),
+    -4px -4px 6px rgba(87, 87, 87, 0.1);
 
   & .MuiToggleButton-root:hover {
     background-color: transparent;
@@ -33,12 +30,6 @@ export const ModeButton = styledButton`
     p?.selected
       ? `
     background-color: #161724 !important;
-    // border: ${BORDER};
-    // border-bottom-left-radius: ${BORDER_RADIUS} !important;
-    // border-bottom-right-radius: ${BORDER_RADIUS} !important;
-    // border-left: ${BORDER} !important;
-    // border-top-left-radius: ${BORDER_RADIUS} !important;
-    // border-top-right-radius: ${BORDER_RADIUS} !important;
     color: #0f0 !important;
     `
       : undefined}

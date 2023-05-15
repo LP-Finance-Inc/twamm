@@ -15,6 +15,8 @@ export const TokenField = styled(Stack)`
   align-items: center;
   justify-content: center;
   flex-grow: 0;
+  box-shadow: 2px 2px 3px rgba(9, 9, 14, 0.2),
+    -2px -2px 3px rgba(87, 87, 87, 0.1);
   cursor: pointer;
   background-color: rgba(255, 255, 255, 0.04);
   ${(p: DisabledBoxProps) => (p.disabled ? `cursor: not-allowed;` : undefined)}

@@ -1,17 +1,21 @@
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import Link from "next/link";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import SyncAltIcon from "@mui/icons-material/SyncAlt";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import M from "easy-maybe/lib";
 import Typography from "@mui/material/Typography";
+
 import * as Styled from "./exchange-pair-form.styled";
 import AmountField from "../atoms/amount-field";
 import i18n from "../i18n";
-import InTokenField from "../molecules/in-token-field";
 import TokenSelect from "../atoms/token-select";
 import TradeIntervals from "../molecules/trade-intervals";
 import type { IntervalVariant } from "../domain/interval.d";
 import useIndexedTIFs from "../contexts/tif-context";
 import usePrice from "../hooks/use-price";
+import useBalance from "../hooks/use-balance";
+import { add, keepPrevious, refreshEach } from "../swr-options";
 
 export default ({
   amount,
@@ -39,9 +43,28 @@ export default ({
   const [a, b] = [primary, secondary];
   const outRef = useRef<number>(0);
   const outValueRef = useRef<number>(0);
+  const [pairAmount, setPairAmount] = useState<number>(0);
   const [isPending, setPending] = useState<boolean>(false);
-
+  const balance = useBalance(a?.address, add([keepPrevious(), refreshEach()]));
   const { tifs: intervalTifs, selected } = useIndexedTIFs();
+  const pairPrice: any = usePrice(a?.address ? { id: a?.address } : undefined);
+
+  const onChange = useCallback(
+    (next: number) => {
+      setPairAmount(next);
+      onChangeAmount(next);
+    },
+    [onChangeAmount, setPairAmount]
+  );
+
+  const onMaxClick = useCallback(() => {
+    M.andMap(onChange, M.of(balance.data));
+  }, [onChange, balance.data]);
+
+  const displayBalance = M.withDefault<string | number>(
+    "0",
+    M.of(balance.data)
+  );
 
   const sellRate = useMemo(() => {
     try {
@@ -58,9 +81,6 @@ export default ({
     }
   }, [amount, selected]);
 
-  const handleChangeAmount = (value: number) => {
-    onChangeAmount(value);
-  };
   const handleSwap = () => {
     onABSwap();
   };
@@ -106,7 +126,7 @@ export default ({
         epochs = tifPeriod / crankInterval;
         tifAccountedTokenAFormattedAmount = (
           tokenAFormattedAmount / epochs
-        ).toFixed(0); // order per crank epoch
+        ).toFixed(0);
       } else {
         tifPeriod = 1;
         epochs = 1;
@@ -154,36 +174,58 @@ export default ({
 
   return (
     <form onSubmit={onSubmit} id="exchange-form">
-      <Styled.TokenLabelBox>{i18n.TradeOrderYouPay}</Styled.TokenLabelBox>
-      <InTokenField
-        address={a?.address}
-        name={a?.symbol}
-        onChange={handleChangeAmount}
-        onSelect={handleInputSelect}
-        src={a?.logoURI}
-      />
+      <Styled.TokenLabelBox>
+        {i18n.TradeOrderYouPay}
+        <Styled.TokenTotal>
+          {i18n.TokenUserBalance}: {displayBalance} {a?.symbol}
+          <Styled.TokenAmountMaxButton
+            onClick={onMaxClick}
+            size="small"
+            disabled={!balance.data || false}
+          >
+            max
+          </Styled.TokenAmountMaxButton>
+        </Styled.TokenTotal>
+      </Styled.TokenLabelBox>
+      <Styled.TokenField>
+        <Grid container direction="row" alignItems="center">
+          <Grid item xs={12} sm={3}>
+            <TokenSelect
+              alt={a?.symbol}
+              disabled={!a}
+              image={a?.logoURI}
+              label={a?.symbol}
+              onClick={handleInputSelect}
+            />
+          </Grid>
+          <Grid item xs={12} sm={9}>
+            <AmountField
+              amount={pairAmount}
+              disabled={false}
+              onChange={onChange}
+              price={pairPrice.data}
+              isPending={false}
+            />
+          </Grid>
+        </Grid>
+      </Styled.TokenField>
       <Styled.OperationImage>
         <Styled.OperationButton disabled={!a || !b} onClick={handleSwap}>
           <SyncAltIcon />
         </Styled.OperationButton>
       </Styled.OperationImage>
-      <Styled.TokenLabelBox>
+      <Styled.TokenLabel>
         {i18n.TradeOrderYouReceive}{" "}
         {selected?.tif ? (
-          <>
-            {" "}
-            (
-            <a
-              href="http://docs.lp.finance/twamm/order-receive-amount-calculation"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <u>Simulated</u>
-            </a>
-            )
-          </>
+          <Link
+            href="http://docs.lp.finance/twamm/order-receive-amount-calculation"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            ( Simulated )
+          </Link>
         ) : null}
-      </Styled.TokenLabelBox>
+      </Styled.TokenLabel>
       <Styled.TokenField>
         <Grid container direction="row" alignItems="center">
           <Grid item xs={12} sm={3}>
@@ -229,17 +271,6 @@ export default ({
           selected={selected}
         />
       </Box>
-      {/* <div style={{ textAlign: "center", marginBottom: "20px" }}>
-        <Typography variant="overline">
-          <Link
-            href="https://docs.lp.finance/twamm/order-receive-amount-calculation"
-            target="_blank"
-            style={{ color: "#00FF00", textDecoration: "underline" }}
-          >
-            {i18n.TwapCalculationDocs}
-          </Link>
-        </Typography>
-      </div> */}
     </form>
   );
 };

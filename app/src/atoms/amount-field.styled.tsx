@@ -1,19 +1,12 @@
 import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import Stack from "@mui/material/Stack";
 import { NumericFormat } from "react-number-format";
 import { styled } from "@mui/material/styles";
+import Skeleton from "@mui/material/Skeleton";
 
 export const TokenIcon = styled(Avatar)`
   width: 60px;
   height: 60px;
-`;
-
-export const SecondaryControls = styled(Stack)`
-  justify-content: space-between;
-  align-items: center;
-  margin: 0px 5px 0px 0px;
 `;
 
 export const TokenAmountTextField = styled(NumericFormat)`
@@ -35,17 +28,12 @@ export const TokenAmountTextField = styled(NumericFormat)`
 `;
 
 export const InputRoot = styled(Box)`
-  position: relative;
-`;
+  margin-top: 0px;
 
-export const TokenAmountMaxButton = styled(Button)`
-  border-radius: ${(p) => p.theme.shape.borderRadius};
-  color: #0c0;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  margin-right: 10px;
+  @media (max-width: 600px) {
+    margin-top: 10px;
+  }
 `;
-
-export const TokenName = styled("span")``;
 
 export const TokenAmountInUSD = styled(Box)`
   text-align: right;
@@ -54,8 +42,19 @@ export const TokenAmountInUSD = styled(Box)`
   font-weight: 500;
 `;
 
-export const SkeletonBox = styled(Box)`
+export const LoaderBox = styled(Box)`
+  position: relative;
+  right: 0;
+  width: 100%;
   display: flex;
-  justify-content: center;
-  text-align: right;
+  align-items: flex-end;
+  justify-content: flex-end;
+  flex-direction: column;
+  gap: 2px;
+`;
+
+export const SkeletonBox = styled(Skeleton)`
+  width: 100px !important;
+  display: flex;
+  justify-content: flex-end;
 `;

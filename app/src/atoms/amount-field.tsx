@@ -1,7 +1,6 @@
 import M from "easy-maybe/lib";
 import type { ChangeEvent } from "react";
 import { useCallback } from "react";
-import Skeleton from "@mui/material/Skeleton";
 
 import * as Styled from "./amount-field.styled";
 import { formatPrice } from "../domain/index";
@@ -9,7 +8,6 @@ import { formatPrice } from "../domain/index";
 export default ({
   amount,
   disabled,
-  maxAmount,
   onChange: handleChange = () => {},
   price,
   isPending,
@@ -17,16 +15,11 @@ export default ({
 }: {
   amount: number;
   disabled: boolean;
-  maxAmount?: number;
   onChange?: (arg0: number) => void;
   price?: number;
   isPending?: boolean;
   outValue?: number;
 }) => {
-  const onMaxClick = useCallback(() => {
-    M.andMap(handleChange, M.of(maxAmount));
-  }, [handleChange, maxAmount]);
-
   const onChange = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
       const next = Number(e.target.value);
@@ -51,14 +44,29 @@ export default ({
 
   return (
     <Styled.InputRoot>
-      <Styled.TokenAmountTextField
-        allowNegative={false}
-        disabled={disabled}
-        value={amount}
-        onChange={onChange}
-      />
-      <Styled.TokenAmountInUSD>{displayAmount}</Styled.TokenAmountInUSD>
       {isPending ? (
+        <Styled.LoaderBox>
+          <Styled.SkeletonBox variant="rounded" animation="wave" />
+          <Styled.SkeletonBox variant="rounded" animation="wave" />
+        </Styled.LoaderBox>
+      ) : (
+        <>
+          <Styled.TokenAmountTextField
+            allowNegative={false}
+            disabled={disabled}
+            value={amount}
+            onChange={onChange}
+          />
+          <Styled.TokenAmountInUSD>{displayAmount}</Styled.TokenAmountInUSD>
+          {!outValue ? null : (
+            <Styled.TokenAmountInUSD>
+              ~{formatPrice(outValue)}
+            </Styled.TokenAmountInUSD>
+          )}
+        </>
+      )}
+
+      {/* {isPending ? (
         <Styled.SkeletonBox>
           <Skeleton variant="rounded" animation="wave" height={20} width={50} />
         </Styled.SkeletonBox>
@@ -71,17 +79,7 @@ export default ({
             </Styled.TokenAmountInUSD>
           )}
         </>
-      )}
+      )} */}
     </Styled.InputRoot>
   );
 };
-
-// {
-//   /* <Styled.SecondaryControls direction="row" spacing={1}>
-//             {!maxAmount ? null : (
-//               <Styled.TokenAmountMaxButton onClick={onMaxClick} size="small">
-//                 max
-//               </Styled.TokenAmountMaxButton>
-//             )}
-//           </Styled.SecondaryControls> */
-// }

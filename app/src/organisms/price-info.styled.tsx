@@ -15,6 +15,7 @@ export const DetailsItem = styled(ListItem)`
   justify-content: space-between;
   padding-left: 0;
   padding-right: 0;
+  font-size: 0.8rem;
   overflow-wrap: anywhere;
 `;
 

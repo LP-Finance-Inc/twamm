@@ -2,8 +2,9 @@ import Button from "@mui/material/Button";
 import { styled } from "@mui/material/styles";
 
 export const ScheduleButton = styled(Button)`
-  padding: 3px 10px;
+  padding: 3px 0px;
   text-transform: capitalize;
+  font-size: 0.9rem;
 
   &.Mui {
     min-width: 10px;
@@ -24,6 +25,8 @@ export const ScheduleButton = styled(Button)`
 export const SelectedScheduleButton = styled(Button)`
   padding: 0 4px;
   text-transform: capitalize;
+  font-size: 0.9rem;
+  white-space: nowrap;
 
   &.Mui-disabled {
     color: ${(p) => p.theme.palette.success.dark};
@@ -39,18 +42,13 @@ export const SelectedScheduleButton = styled(Button)`
 
 export const MobileScheduleButton = styled(ScheduleButton)`
   padding: 0 2px;
-  font-size: 12px;
+  font-size: 0.8rem;
   text-transform: capitalize;
-
-  @media (max-width: 600) {
-    padding: 0px 0px;
-    font-size: 8px;
-  }
 `;
 
 export const MobileSelectedScheduleButton = styled(SelectedScheduleButton)`
   padding: 0 2px;
-  font-size: 12px;
+  font-size: 0.8rem;
   text-transform: capitalize;
 
   @media (max-width: 600) {

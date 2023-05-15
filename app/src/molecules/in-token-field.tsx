@@ -1,7 +1,6 @@
 import Grid from "@mui/material/Grid";
 import M from "easy-maybe/lib";
 import * as Styled from "./in-token-field.styled";
-import i18n from "../i18n";
 import TokenField from "../atoms/token-field";
 import TokenSelect from "../atoms/token-select";
 import useBalance from "../hooks/use-balance";
@@ -16,14 +15,6 @@ export interface Props {
 }
 
 export default ({ address, name, onChange, onSelect, src }: Props) => {
-  const balance = useBalance(address, add([keepPrevious(), refreshEach()]));
-
-  const displayName = M.withDefault("", M.of(name));
-  const displayBalance = M.withDefault<string | number>(
-    "...",
-    M.of(balance.data)
-  );
-
   return (
     <Styled.TokenField>
       <Grid container direction="row" alignItems="center">
