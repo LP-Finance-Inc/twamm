@@ -1,13 +1,7 @@
 import type { TokenPair } from "@twamm/types";
 import Alert from "@mui/material/Alert";
 import { useMemo } from "react";
-import Box from "@mui/material/Box";
 import useSWR from "swr";
-import Table from "@mui/material/Table";
-// import TableCell from "@mui/material/TableCell";
-// import TableContainer from "@mui/material/TableContainer";
-import TableRow from "@mui/material/TableRow";
-import TableBody from "@mui/material/TableBody";
 
 import PairCard from "../atoms/pair-card";
 import api from "../api";
@@ -91,38 +85,35 @@ export default ({ info }: { info?: TokenPair[] }) => {
     return <Alert severity="info">No Pairs Present</Alert>;
 
   return (
-    <Box mt={2}>
-      <Styled.TableRoot>
-        <Table sx={{ minWidth: 600 }} size="small" aria-label="a dense table">
-          {/* <Styled.HeaderCover> */}
-          <Styled.TableHeadBox>
-            <TableRow>
-              {Headers.map((item) => (
-                <Styled.TableCellBox key={item.id} align="left">
-                  {item.head}
-                </Styled.TableCellBox>
-              ))}
-            </TableRow>
-          </Styled.TableHeadBox>
-          {/* </Styled.HeaderCover> */}
-          <TableBody>
-            {tokenPairs
-              .sort((a, b) => b.orderVolume - a.orderVolume)
-              .map((tokenPair, index) => (
-                <PairCard
-                  key={tokenPair.id}
-                  list={data}
-                  itemNum={index}
-                  aMint={tokenPair.aMint}
-                  bMint={tokenPair.bMint}
-                  orderVolume={tokenPair.orderVolume}
-                  routedVolume={tokenPair.routedVolume}
-                  settledVolume={tokenPair.settledVolume}
-                />
-              ))}
-          </TableBody>
-        </Table>
-      </Styled.TableRoot>
-    </Box>
+    <Styled.TableRoot>
+      <Styled.TableBodyMain size="small" aria-label="customized table">
+        <Styled.TableHeadBox>
+          <Styled.TableRowBox>
+            {Headers.map((item) => (
+              <Styled.TableCellBox key={item.id} align="left">
+                {item.head}
+              </Styled.TableCellBox>
+            ))}
+          </Styled.TableRowBox>
+        </Styled.TableHeadBox>
+
+        <Styled.TableBodyCover>
+          {tokenPairs
+            .sort((a, b) => b.orderVolume - a.orderVolume)
+            .map((tokenPair, index) => (
+              <PairCard
+                key={tokenPair.id}
+                list={data}
+                itemNum={index}
+                aMint={tokenPair.aMint}
+                bMint={tokenPair.bMint}
+                orderVolume={tokenPair.orderVolume}
+                routedVolume={tokenPair.routedVolume}
+                settledVolume={tokenPair.settledVolume}
+              />
+            ))}
+        </Styled.TableBodyCover>
+      </Styled.TableBodyMain>
+    </Styled.TableRoot>
   );
 };

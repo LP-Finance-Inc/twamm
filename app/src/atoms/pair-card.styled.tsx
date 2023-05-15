@@ -16,14 +16,12 @@ export const FundSkeleton = styledSkeleton`
 `;
 
 export const TableRowBox = styled(TableRow)`
-  border: none;
-  padding: 1rem;
-  // box-shadow: 3px 3px 5px rgba(9, 9, 14, 0.4),
-  //   -3px -3px 5px rgba(87, 87, 87, 0.1);
+  box-shadow: 3px 3px 5px rgba(9, 9, 14, 0.4),
+    -3px -3px 5px rgba(87, 87, 87, 0.1);
   border-radius: 0.8rem;
 `;
 
 export const TableCellBox = styled(TableCell)`
   border: none;
-  margin: 0.5rem 0rem;
+  padding: 0.8rem 1rem;
 `;
