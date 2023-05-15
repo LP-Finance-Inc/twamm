@@ -134,7 +134,7 @@ export default ({
       }
 
       fetch(
-        `https://quote-api.jup.ag/v4/quote?inputMint=${tokenA}&outputMint=${tokenB}&amount=${tifAccountedTokenAFormattedAmount}`
+        `https://quote-api.jup.ag/v4/quote?inputMint=${tokenA}&outputMint=${tokenB}&amount=${tifAccountedTokenAFormattedAmount}&onlyDirectRoutes=true`
       )
         .then((res) => res.json())
         .then((data) => {
@@ -222,7 +222,7 @@ export default ({
             target="_blank"
             rel="noopener noreferrer"
           >
-            ( Simulated )
+            <u>(Simulated)</u>
           </Link>
         ) : null}
       </Styled.TokenLabel>
