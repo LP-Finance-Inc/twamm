@@ -23,3 +23,6 @@ export const programId: string | undefined =
 export const FeeAccount = "9pvCGNF2aw43Smb4J1pdyobq6PnjwkhXkuFov8P42S5w";
 
 export const feeBps = 30;
+
+export const platformFeeAccount: string =
+  "9pvCGNF2aw43Smb4J1pdyobq6PnjwkhXkuFov8P42S5w"; // set as "" if none

@@ -22,7 +22,7 @@ solana_security_txt::security_txt! {
 declare_id!("TWAPzC9xaeBpgDNF26z5VAcmxBowVz5uqmTx47LkWUy");
 
 pub mod jupiter {
-    solana_program::declare_id!("JUP3c2Uh3WA4Ng34tw6kPd2G4C5BB21Xo36Je1s32Ph");
+    solana_program::declare_id!("JUP4Fb2cqiRUcaTHdrPC8h2gNsA2ETXiPDD33WcGuJB");
 }
 
 #[derive(Clone)]

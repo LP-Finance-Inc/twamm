@@ -2,7 +2,6 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import SyncAltIcon from "@mui/icons-material/SyncAlt";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
 import * as Styled from "./exchange-pair-form.styled";
 import AmountField from "../atoms/amount-field";
@@ -94,7 +93,9 @@ export default ({
       const tokenA = a?.address;
       const tokenB = b?.address;
       const tokenBDecimals = b?.decimals;
-      const tokenAFormattedAmount = (amount ?? 0) * 10 ** (a?.decimals ?? 0);
+      const tokenAFormattedAmount = Math.floor(
+        (amount ?? 0) * 10 ** (a?.decimals ?? 0)
+      );
       // Calculate with TIF intervals
       let tifPeriod;
       let epochs: number;
@@ -166,7 +167,23 @@ export default ({
           <SyncAltIcon />
         </Styled.OperationButton>
       </Styled.OperationImage>
-      <Styled.TokenLabelBox>{i18n.TradeOrderYouReceive}</Styled.TokenLabelBox>
+      <Styled.TokenLabelBox>
+        {i18n.TradeOrderYouReceive}{" "}
+        {selected?.tif ? (
+          <>
+            {" "}
+            (
+            <a
+              href="http://docs.lp.finance/twamm/order-receive-amount-calculation"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <u>Simulated</u>
+            </a>
+            )
+          </>
+        ) : null}
+      </Styled.TokenLabelBox>
       <Styled.TokenField>
         <Grid container direction="row" alignItems="center">
           <Grid item xs={12} sm={3}>
@@ -212,7 +229,7 @@ export default ({
           selected={selected}
         />
       </Box>
-      <div style={{ textAlign: "center", marginBottom: "20px" }}>
+      {/* <div style={{ textAlign: "center", marginBottom: "20px" }}>
         <Typography variant="overline">
           <Link
             href="https://docs.lp.finance/twamm/order-receive-amount-calculation"
@@ -222,7 +239,7 @@ export default ({
             {i18n.TwapCalculationDocs}
           </Link>
         </Typography>
-      </div>
+      </div> */}
     </form>
   );
 };

@@ -10,7 +10,6 @@ import {
   XAxis,
   YAxis,
   Tooltip,
-  CartesianGrid,
 } from "recharts";
 
 import i18n from "../i18n";
@@ -69,7 +68,6 @@ export default ({ data, isLoading }: { data?: any; isLoading: boolean }) => {
                         </linearGradient>
                       ))}
                     </defs>
-                    <CartesianGrid strokeDasharray="3 3" />
                     <XAxis
                       dataKey="timestamp"
                       tickFormatter={getDate}
