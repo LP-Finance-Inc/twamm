@@ -60,10 +60,10 @@ export default () => {
       <Box pt={2} px={{ xs: 0, sm: 2, md: 4 }}>
         <Box className={styles.titleControls}>
           <Typography pb={1} variant="h4">
-            TWAMM
+            LP Finance TWAMM
           </Typography>
           <Typography variant="subtitle1" gutterBottom>
-            Time-Weighted Average Market Maker
+            TWAP tokens over a determined time period
           </Typography>
         </Box>
         <Box className={styles.controls} py={1}>

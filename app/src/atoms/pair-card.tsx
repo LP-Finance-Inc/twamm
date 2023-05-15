@@ -12,21 +12,11 @@ export interface Props {
   aMint: PublicKey;
   bMint: PublicKey;
   orderVolume: number;
-  settledVolume: number;
-  routedVolume: number;
   list: any;
   itemNum: number;
 }
 
-export default ({
-  aMint,
-  bMint,
-  orderVolume,
-  settledVolume,
-  routedVolume,
-  list,
-  itemNum,
-}: Props) => {
+export default ({ aMint, bMint, orderVolume, list, itemNum }: Props) => {
   const tokens = useMemo(() => {
     const infoA = list[aMint.toString()];
     const infoB = list[bMint.toString()];
@@ -68,18 +58,12 @@ export default ({
 
   return (
     <Styled.TableRowBox>
-      <Styled.TableCellBox align="left">{itemNum}</Styled.TableCellBox>
+      <Styled.TableCellBox align="left">{itemNum + 1}</Styled.TableCellBox>
       <Styled.TableCellBox component="th" scope="row">
         <PairCardSymbols data={tokens} />
       </Styled.TableCellBox>
       <Styled.TableCellBox align="left">
         <Metric formatted value={orderVolume} />
-      </Styled.TableCellBox>
-      <Styled.TableCellBox align="left">
-        <Metric formatted value={routedVolume} />
-      </Styled.TableCellBox>
-      <Styled.TableCellBox align="left">
-        <Metric formatted value={settledVolume} />
       </Styled.TableCellBox>
       <Styled.TableCellBox align="left">
         {swapFee ? `${swapFee}%` : formatPrice(0)}

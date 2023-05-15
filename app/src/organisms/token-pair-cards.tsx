@@ -23,14 +23,6 @@ const Headers = [
   },
   {
     id: 4,
-    head: i18n.StatsPairsPairRoutedVolume,
-  },
-  {
-    id: 5,
-    head: i18n.StatsPairsPairSettledVolume,
-  },
-  {
-    id: 6,
     head: i18n.TwammFee,
   },
 ];
@@ -108,8 +100,6 @@ export default ({ info }: { info?: TokenPair[] }) => {
                 aMint={tokenPair.aMint}
                 bMint={tokenPair.bMint}
                 orderVolume={tokenPair.orderVolume}
-                routedVolume={tokenPair.routedVolume}
-                settledVolume={tokenPair.settledVolume}
               />
             ))}
         </Styled.TableBodyCover>

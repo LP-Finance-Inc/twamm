@@ -71,7 +71,7 @@ export default {
   SpacesTabsTrade: "Trade",
   StatsPairs: "Live Pairs",
   StatsPairsPairVolume: "Volume",
-  StatsPairsPairOrderVolume: "Order",
+  StatsPairsPairOrderVolume: "Order Volume",
   StatsPairsPairRoutedVolume: "Routed",
   StatsPairsPairSettledVolume: "Settled",
   StatsPairsPairProtocolFee: "Protocol Fee",

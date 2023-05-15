@@ -177,7 +177,7 @@ export default (props: {
                 </Typography>
               </Link>
             </Styled.DetailsItem>
-            <Styled.DetailsItem>
+            {/* <Styled.DetailsItem>
               <Typography variant="h6">
                 {checkSymbol(props.tokenPair?.configA.mint.toString())} oracle
               </Typography>
@@ -210,7 +210,7 @@ export default (props: {
                   {props.tokenPair?.configB.oracleAccount.toString()}
                 </Typography>
               </Link>
-            </Styled.DetailsItem>
+            </Styled.DetailsItem> */}
           </List>
         </Box>
       )}
