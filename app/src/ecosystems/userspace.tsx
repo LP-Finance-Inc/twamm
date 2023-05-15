@@ -63,7 +63,7 @@ export default () => {
             LP Finance TWAMM
           </Typography>
           <Typography variant="subtitle1" gutterBottom>
-            TWAP tokens over a determined time period
+            Permissionless TWAP Order Execution
           </Typography>
         </Box>
         <Box className={styles.controls} py={1}>

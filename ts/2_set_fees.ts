@@ -16,7 +16,7 @@ const setFees = async() => {
       );
 
 
-    let tokenAMint = new PublicKey("7dHbWXmci3dT8UFYWYZweBLXgycu7Y3iL6trKn1Y7ARj"); // stSOL
+    let tokenAMint = new PublicKey("7i5KKsX2weiTkry7jA4ZwSuXGhs5eJBEjY8vVxR4pfRx"); // GMT
     let tokenBMint = new PublicKey("EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"); // USDC
 
     let [tokenPairKey, tokenPairBump] =
@@ -33,7 +33,7 @@ const setFees = async() => {
     let tx = await program.methods
         .setFees({
             feeNumerator: new anchor.BN(1),
-            feeDenominator: new anchor.BN(2000), // 0.05%
+            feeDenominator: new anchor.BN(1000), // 0.1%
             settleFeeNumerator: new anchor.BN(0),
             settleFeeDenominator: new anchor.BN(1), // 0%
             crankRewardTokenA: new anchor.BN(0),
