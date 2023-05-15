@@ -6,5 +6,5 @@ export const Metric = div``;
 
 export const FundMetricValue = div`
   cursor: pointer;
-  color: #0c0;
+  color: #0c0 !important;
 `;

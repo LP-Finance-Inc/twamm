@@ -1,7 +1,9 @@
-import Box from "@mui/material/Box";
-import ClickAwayListener from "@mui/material/ClickAwayListener";
-import Tooltip from "@mui/material/Tooltip";
 import { useState } from "react";
+import Box from "@mui/material/Box";
+import { styled } from "@mui/material/styles";
+import Tooltip, { TooltipProps, tooltipClasses } from "@mui/material/Tooltip";
+import ClickAwayListener from "@mui/material/ClickAwayListener";
+
 import * as Styled from "./pair-card-metrics.styled";
 import { formatPrice } from "../domain/index";
 
@@ -9,6 +11,24 @@ export interface MetricProps {
   value: number;
   formatted?: boolean;
 }
+
+export const BootstrapTooltip = styled(
+  ({ className, ...props }: TooltipProps) => (
+    // eslint-disable-next-line react/jsx-props-no-spreading
+    <Tooltip {...props} classes={{ popper: className }} />
+  )
+)(() => ({
+  [`& .${tooltipClasses.arrow}`]: {
+    color: "#0f0",
+  },
+  [`& .${tooltipClasses.tooltip}`]: {
+    backgroundColor: "#161724",
+    color: "#0f0",
+    padding: "0.3rem 0.2rem",
+    boxShadow:
+      "4px 4px 6px rgba(9, 9, 14, 0.4), -4px -4px 6px rgba(87, 87, 87, 0.1)",
+  },
+}));
 
 export const formatDeposited = (value: number): string => {
   const RANKS = ["K", "M", "B", "T"];
@@ -46,7 +66,7 @@ export default ({ formatted = false, value }: MetricProps) => {
     <Box>
       <Styled.Metric>
         <ClickAwayListener onClickAway={onClose}>
-          <Tooltip
+          <BootstrapTooltip
             arrow
             PopperProps={{ disablePortal: true }}
             open={open}
@@ -57,7 +77,7 @@ export default ({ formatted = false, value }: MetricProps) => {
             <Styled.FundMetricValue>
               {formatted ? `$${formatDeposited(value)}` : formatPrice(value)}
             </Styled.FundMetricValue>
-          </Tooltip>
+          </BootstrapTooltip>
         </ClickAwayListener>
       </Styled.Metric>
     </Box>
