@@ -76,13 +76,17 @@
   margin: 0;
   list-style: none;
   text-align: center;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 10px;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  background: #161724;
+  border-radius: 12px;
+  box-shadow: 4px 4px 6px rgba(9, 9, 14, 0.4),
+    -4px -4px 6px rgba(87, 87, 87, 0.1);
   opacity: 0;
   visibility: hidden;
   transition: opacity 200ms ease, transform 200ms ease, visibility 200ms;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
 }
 
 .wallet-adapter-dropdown-list-active {
@@ -115,7 +119,7 @@
 }
 
 .wallet-adapter-dropdown-list-item:not([disabled]):hover {
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 255, 255, 0.05);
 }
 
 .wallet-adapter-modal-collapse-button svg {
@@ -200,10 +204,9 @@
   box-sizing: border-box;
   padding: 2.1rem 1rem 0rem 1rem;
   border-radius: 20px;
-  background: #181f2b;
-  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.6);
-  flex: 1;
-  border: 0.5px solid rgba(255, 255, 255, 0.16);
+  background: #161724;
+  box-shadow: 4px 4px 6px rgba(9, 9, 14, 0.4),
+    -4px -4px 6px rgba(87, 87, 87, 0.1) !important;
 }
 
 .wallet-adapter-modal-wrapper .wallet-adapter-button {
@@ -218,7 +221,6 @@
   font-size: 1.3rem;
   line-height: 0px;
   margin: 0;
-  /* padding: 0px 140px 0px 8px !important; */
   text-align: left;
   color: #0c0;
   letter-spacing: inherit !important;

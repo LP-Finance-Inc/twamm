@@ -8,8 +8,8 @@ export const HeaderRow = styled(ListItem)`
   border-radius: ${(p) => 2 * p.theme.shape.borderRadius}px;
   padding: ${(p) => p.theme.spacing(2)};
   padding-top: 24px;
-  box-shadow: 7px 7px 10px rgba(9, 9, 14, 0.5),
-    -7px -7px 10px rgba(87, 87, 87, 0.2);
+  box-shadow: 6px 6px 8px rgba(9, 9, 14, 0.4),
+    -6px -6px 8px rgba(87, 87, 87, 0.1);
 `;
 
 export const Columns = styled(Grid)`
@@ -35,8 +35,8 @@ export const Row = styled(ListItem)`
   cursor: pointer;
   font-size: 15px;
   padding: ${(p) => p.theme.spacing(2)};
-  box-shadow: 5px 5px 8px rgba(9, 9, 14, 0.5),
-    -5px -5px 8px rgba(87, 87, 87, 0.2);
+  box-shadow: 4px 4px 6px rgba(9, 9, 14, 0.4),
+    -4px -4px 6px rgba(87, 87, 87, 0.1);
 
   & + & {
     margin-top: ${(p) => p.theme.spacing(2)};

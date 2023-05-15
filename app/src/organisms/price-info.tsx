@@ -128,7 +128,7 @@ export default (props: {
             <Styled.DetailsGridItem item>
               <Styled.DetailsPair direction="row" spacing={2}>
                 <PairCardSymbols data={mints} />
-                <Typography variant="h6">
+                <Typography variant="body2">
                   {!price
                     ? "-"
                     : `${
@@ -140,11 +140,11 @@ export default (props: {
           </Grid>
           <List>
             <Styled.DetailsItem>
-              <Typography variant="body2">TWAMM Fee</Typography>
-              <Typography variant="body2">{getSwapFee}%</Typography>
+              <Typography variant="h6">TWAMM Fee</Typography>
+              <Typography variant="h6">{getSwapFee}%</Typography>
             </Styled.DetailsItem>
             <Styled.DetailsItem>
-              <Typography variant="body2">
+              <Typography variant="h6">
                 {checkSymbol(props.tokenPair?.configA.mint.toString())} address
               </Typography>
               <Link
@@ -155,13 +155,13 @@ export default (props: {
                 rel="noreferrer"
                 underline="hover"
               >
-                <Typography variant="body2">
+                <Typography variant="h6">
                   {props.tokenPair?.configA.mint.toString()}
                 </Typography>
               </Link>
             </Styled.DetailsItem>
             <Styled.DetailsItem>
-              <Typography variant="body2">
+              <Typography variant="h6">
                 {checkSymbol(props.tokenPair?.configB.mint.toString())} address
               </Typography>
               <Link
@@ -172,13 +172,13 @@ export default (props: {
                 rel="noreferrer"
                 underline="hover"
               >
-                <Typography variant="body2">
+                <Typography variant="h6">
                   {props.tokenPair?.configB.mint.toString()}
                 </Typography>
               </Link>
             </Styled.DetailsItem>
             <Styled.DetailsItem>
-              <Typography variant="body2">
+              <Typography variant="h6">
                 {checkSymbol(props.tokenPair?.configA.mint.toString())} oracle
               </Typography>
               <Link
@@ -189,13 +189,13 @@ export default (props: {
                 rel="noreferrer"
                 underline="hover"
               >
-                <Typography variant="body2">
+                <Typography variant="h6">
                   {props.tokenPair?.configA.oracleAccount.toString()}
                 </Typography>
               </Link>
             </Styled.DetailsItem>
             <Styled.DetailsItem>
-              <Typography variant="body2">
+              <Typography variant="h6">
                 {checkSymbol(props.tokenPair?.configB.mint.toString())} oracle
               </Typography>
               <Link
@@ -206,7 +206,7 @@ export default (props: {
                 rel="noreferrer"
                 underline="hover"
               >
-                <Typography variant="body2">
+                <Typography variant="h6">
                   {props.tokenPair?.configB.oracleAccount.toString()}
                 </Typography>
               </Link>

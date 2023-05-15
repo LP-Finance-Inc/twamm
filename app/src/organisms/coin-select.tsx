@@ -1,7 +1,4 @@
-import Box from "@mui/material/Box";
-import Divider from "@mui/material/Divider";
-import SearchIcon from "@mui/icons-material/Search";
-import TextField from "@mui/material/TextField";
+// import TextField from "@mui/material/TextField";
 import type { ChangeEvent, MouseEvent } from "react";
 import type { PublicKey } from "@solana/web3.js";
 import Typography from "@mui/material/Typography";
@@ -89,18 +86,15 @@ export default ({
   return (
     <Styled.Container>
       {isLoading && <Loading />}
-      <Box p={2}>
-        <TextField
-          fullWidth
-          label={i18n.CoinSelectorSearch}
+      <Styled.SearchBox>
+        <Styled.InputField
+          type="text"
+          placeholder={i18n.CoinSelectorSearch}
           onChange={onSearch}
-          variant="standard"
-          InputProps={{
-            endAdornment: <SearchIcon sx={searchIconSx} />,
-          }}
         />
-      </Box>
-      <Typography id={id} px={2} py={1} variant="h6">
+        <Styled.SearchIconBox sx={searchIconSx} />
+      </Styled.SearchBox>
+      <Typography id={id} px={2} pt={2} variant="h6">
         {i18n.CoinSelectorStarred}
       </Typography>
       <Styled.Tags px={2} pb={1}>
@@ -111,7 +105,7 @@ export default ({
         />
         <TokenTags coins={starredTokens} onClick={onCoinSelect} />
       </Styled.Tags>
-      <Divider />
+      <Styled.Line />
       <Typography id={id} p={2} variant="h6">
         {i18n.CoinSelector}
       </Typography>

@@ -51,4 +51,3 @@ const setFees = async() => {
     
 }
 setFees();
-

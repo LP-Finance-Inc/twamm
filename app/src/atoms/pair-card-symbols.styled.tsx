@@ -10,14 +10,14 @@ const styledAvatarGroup = styled(AvatarGroup);
 
 export const Root = div`
   display: flex;
-  flex-wrap: wrap;
+  white-space: nowrap;
   align-items: center;
   flex-direction: row;
 `;
 
 export const TokenAvatar = styledAvatar`
-  width: 24px;
-  height: 24px;
+  width: 27px;
+  height: 27px;
 `;
 
 export const TokenAvatarGroup = styledAvatarGroup`

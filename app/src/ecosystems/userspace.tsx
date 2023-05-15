@@ -1,7 +1,6 @@
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
-import Link from "@mui/material/Link";
 import { address } from "@twamm/client.js";
 import { ErrorBoundary } from "react-error-boundary";
 import { OrderSide } from "@twamm/types/lib";
@@ -58,27 +57,16 @@ export default () => {
 
   return (
     <Container maxWidth={maxWidth}>
-      <Box pt={2}>
-        <Box className={styles.titleControls} p={1}>
-          <Typography pb={2} variant="h4">
+      <Box pt={2} px={{ xs: 0, sm: 2, md: 4 }}>
+        <Box className={styles.titleControls}>
+          <Typography pb={1} variant="h4">
             TWAMM
           </Typography>
           <Typography variant="subtitle1" gutterBottom>
             Time-Weighted Average Market Maker
           </Typography>
         </Box>
-        <Box className={styles.titleControls}>
-          <Link
-            href="https://docs.lp.finance/twamm/time-weighted-average-market-maker"
-            underline="none"
-            target="_blank"
-            rel="noopener"
-            className={styles.infoLink}
-          >
-            Learn more
-          </Link>
-        </Box>
-        <Box className={styles.controls} p={2}>
+        <Box className={styles.controls} py={1}>
           <ModeToggle mode={mode} onChange={onModeChange} />
         </Box>
         <ErrorBoundary FallbackComponent={ErrorFallback}>

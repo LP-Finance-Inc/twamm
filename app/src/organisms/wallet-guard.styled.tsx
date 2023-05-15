@@ -26,21 +26,19 @@ export const ConnectButton = styled(WalletMultiButton)`
   color: #0c0;
   display: flex;
   justify-content: center;
-  box-shadow: 4px 4px 6px rgba(9, 9, 14, 0.5),
-    -4px -4px 6px rgba(87, 87, 87, 0.2);
   transition: all 0.3s;
 
   &.wallet-adapter-button {
     background: #161724;
     white-space: nowrap;
     height: 48px;
-    box-shadow: 4px 4px 6px rgba(9, 9, 14, 0.5),
-      -4px -4px 6px rgba(87, 87, 87, 0.2);
+    box-shadow: 4px 4px 6px rgba(9, 9, 14, 0.4),
+      -4px -4px 6px rgba(87, 87, 87, 0.1);
   }
 
   &.wallet-adapter-button:focus {
-    box-shadow: inset -4px -4px 5px rgba(87, 87, 87, 0.2),
-      inset 4px 4px 5px rgba(9, 9, 14, 0.5);
+    box-shadow: inset -4px -4px 6px rgba(87, 87, 87, 0.2),
+      inset 4px 4px 6px rgba(9, 9, 14, 0.4);
   }
 
   &.wallet-adapter-button:not([disabled]):hover,

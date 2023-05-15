@@ -1,10 +1,7 @@
-import type { PublicKey } from "@solana/web3.js";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
 import { useMemo } from "react";
+import type { PublicKey } from "@solana/web3.js";
 
 import * as Styled from "./pair-card.styled";
-import i18n from "../i18n";
 import Metric from "./pair-card-metrics";
 import PairCardSymbols from "./pair-card-symbols";
 import { formatPrice } from "../domain/index";
@@ -18,6 +15,7 @@ export interface Props {
   settledVolume: number;
   routedVolume: number;
   list: any;
+  itemNum: number;
 }
 
 export default ({
@@ -27,6 +25,7 @@ export default ({
   settledVolume,
   routedVolume,
   list,
+  itemNum,
 }: Props) => {
   const tokens = useMemo(() => {
     const infoA = list[aMint.toString()];
@@ -68,40 +67,24 @@ export default ({
   });
 
   return (
-    <Styled.Root>
-      <Styled.Card>
-        <Styled.Fund>
-          <Styled.FundName>
-            <PairCardSymbols data={tokens} />
-          </Styled.FundName>
-        </Styled.Fund>
-        <Box pt={2}>
-          <Typography variant="h6">{i18n.StatsPairsPairVolume}</Typography>
-        </Box>
-        <Box pt={1}>
-          <Styled.FundMetrics>
-            <Metric
-              formatted
-              title={i18n.StatsPairsPairOrderVolume}
-              value={orderVolume}
-            />
-            <Metric
-              formatted
-              title={i18n.StatsPairsPairRoutedVolume}
-              value={routedVolume}
-            />
-            <Metric
-              formatted
-              title={i18n.StatsPairsPairSettledVolume}
-              value={settledVolume}
-            />
-          </Styled.FundMetrics>
-        </Box>
-        <Box pt={2}>
-          {i18n.TwammFee}: {swapFee ? `${swapFee}%` : formatPrice(0)}
-        </Box>
-      </Styled.Card>
-    </Styled.Root>
+    <Styled.TableRowBox>
+      <Styled.TableCellBox align="left">{itemNum}</Styled.TableCellBox>
+      <Styled.TableCellBox component="th" scope="row">
+        <PairCardSymbols data={tokens} />
+      </Styled.TableCellBox>
+      <Styled.TableCellBox align="left">
+        <Metric formatted value={orderVolume} />
+      </Styled.TableCellBox>
+      <Styled.TableCellBox align="left">
+        <Metric formatted value={routedVolume} />
+      </Styled.TableCellBox>
+      <Styled.TableCellBox align="left">
+        <Metric formatted value={settledVolume} />
+      </Styled.TableCellBox>
+      <Styled.TableCellBox align="left">
+        {swapFee ? `${swapFee}%` : formatPrice(0)}
+      </Styled.TableCellBox>
+    </Styled.TableRowBox>
   );
 };
 

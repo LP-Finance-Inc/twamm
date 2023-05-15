@@ -1,5 +1,5 @@
 import type { MouseEvent } from "react";
-import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import KeyboardArrowDownTwoToneIcon from "@mui/icons-material/KeyboardArrowDownTwoTone";
 import Box from "@mui/material/Box";
 import CancelIcon from "@mui/icons-material/Cancel";
 import QuestionMarkIcon from "@mui/icons-material/QuestionMark";
@@ -42,7 +42,6 @@ export default ({
         direction="row"
         onClick={disabled ? handlePopoverOpen : handleClick}
         disabled={disabled}
-        sx={isMobile ? {} : { minHeight: 79 }}
       >
         {isMobile ? (
           <Styled.MobileTokenIcon alt={alt} src={image}>
@@ -55,7 +54,7 @@ export default ({
         )}
         <Styled.TokenName>{label ?? "-"}</Styled.TokenName>
         <Styled.TokenControl>
-          <ArrowDropDownIcon />
+          <KeyboardArrowDownTwoToneIcon />
         </Styled.TokenControl>
       </Styled.TokenField>
       {disabled && <Tooltip ref={tooltipRef} text={i18n.TokenSelectTooltip} />}

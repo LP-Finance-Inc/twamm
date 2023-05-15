@@ -76,7 +76,7 @@ export default {
   StatsPairsPairSettledVolume: "Settled",
   StatsPairsPairProtocolFee: "Protocol Fee",
   StatsChartPairs: "Cumulative Volume",
-  TokenUserBalance: "Your balance",
+  TokenUserBalance: "Bal",
   TokenSelectTooltip: "Choose another token first",
   TradeOrderYouPay: "You pay",
   TradeOrderYouReceive: "You receive",

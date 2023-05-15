@@ -1,29 +1,45 @@
 import type { TokenPair } from "@twamm/types";
 import Alert from "@mui/material/Alert";
 import { useMemo } from "react";
-import Grid from "@mui/material/Grid";
-import Box from "@mui/material/Box";
 import useSWR from "swr";
 
 import PairCard from "../atoms/pair-card";
 import api from "../api";
+import i18n from "../i18n";
+import * as Styled from "./token-pair-cards.styled";
+
+const Headers = [
+  {
+    id: 1,
+    head: "#",
+  },
+  {
+    id: 2,
+    head: "Name",
+  },
+  {
+    id: 3,
+    head: i18n.StatsPairsPairOrderVolume,
+  },
+  {
+    id: 4,
+    head: i18n.StatsPairsPairRoutedVolume,
+  },
+  {
+    id: 5,
+    head: i18n.StatsPairsPairSettledVolume,
+  },
+  {
+    id: 6,
+    head: i18n.TwammFee,
+  },
+];
 
 const fetcher = async (url: string) => fetch(url).then((res) => res.json());
 
 export default ({ info }: { info?: TokenPair[] }) => {
   const { data, isLoading } = useSWR(api.tokenList, fetcher);
 
-  // const tokenPairs = useMemo(
-  //   () =>
-  //     M.withDefault(
-  //       [],
-  //       M.andMap<TokenPair[], ReturnType<typeof populate>[]>(
-  //         (pairs) => pairs.map(populate),
-  //         M.of(info)
-  //       )
-  //     ),
-  //   [info]
-  // );
   const tokenPairs = useMemo(() => {
     const processedInfo = [];
     if (info) {
@@ -69,23 +85,35 @@ export default ({ info }: { info?: TokenPair[] }) => {
     return <Alert severity="info">No Pairs Present</Alert>;
 
   return (
-    <Box mt={2}>
-      <Grid container spacing={3}>
-        {tokenPairs
-          .sort((a, b) => b.orderVolume - a.orderVolume)
-          .map((tokenPair) => (
-            <Grid item xs={12} sm={6} md={4} key={tokenPair.id}>
+    <Styled.TableRoot>
+      <Styled.TableBodyMain size="small" aria-label="customized table">
+        <Styled.TableHeadBox>
+          <Styled.TableRowBox>
+            {Headers.map((item) => (
+              <Styled.TableCellBox key={item.id} align="left">
+                {item.head}
+              </Styled.TableCellBox>
+            ))}
+          </Styled.TableRowBox>
+        </Styled.TableHeadBox>
+
+        <Styled.TableBodyCover>
+          {tokenPairs
+            .sort((a, b) => b.orderVolume - a.orderVolume)
+            .map((tokenPair, index) => (
               <PairCard
+                key={tokenPair.id}
                 list={data}
+                itemNum={index}
                 aMint={tokenPair.aMint}
                 bMint={tokenPair.bMint}
                 orderVolume={tokenPair.orderVolume}
                 routedVolume={tokenPair.routedVolume}
                 settledVolume={tokenPair.settledVolume}
               />
-            </Grid>
-          ))}
-      </Grid>
-    </Box>
+            ))}
+        </Styled.TableBodyCover>
+      </Styled.TableBodyMain>
+    </Styled.TableRoot>
   );
 };

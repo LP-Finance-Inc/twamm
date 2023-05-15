@@ -47,7 +47,7 @@ export const FooterRegistry = [
 
 export default () => (
   <>
-    <Styled.PowerBox>
+    {/* <Styled.PowerBox>
       <Link href="https://jup.ag" target="_blank" rel="noreferrer">
         <Styled.JupiterLogo>
           <Image
@@ -61,7 +61,7 @@ export default () => (
           />
         </Styled.JupiterLogo>
       </Link>
-    </Styled.PowerBox>
+    </Styled.PowerBox> */}
     <Styled.PaperFooter>
       <Container maxWidth="lg">
         <Styled.BorderBox>

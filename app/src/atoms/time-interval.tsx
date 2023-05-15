@@ -66,11 +66,15 @@ export default ({
           isMobile
             ? {
                 "& .MuiButtonGroup-grouped": {
-                  padding: "3px 3px",
-                  minWidth: 3,
+                  padding: "3px 2px",
+                  minWidth: 2,
                 },
               }
-            : null
+            : {
+                "& .MuiButtonGroup-grouped": {
+                  minWidth: 38,
+                },
+              }
         }
       >
         <Intervals
