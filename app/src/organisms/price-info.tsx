@@ -1,6 +1,5 @@
 import type { TokenPair } from "@twamm/types";
 import Box from "@mui/material/Box";
-import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import List from "@mui/material/List";
 import M, { Extra } from "easy-maybe/lib";
@@ -147,7 +146,7 @@ export default (props: {
               <Typography variant="h6">
                 {checkSymbol(props.tokenPair?.configA.mint.toString())} address
               </Typography>
-              <Link
+              <Styled.LinkOverflow
                 href={`${
                   props.url
                 }/${props.tokenPair?.configA.mint.toString()}`}
@@ -158,13 +157,13 @@ export default (props: {
                 <Typography variant="h6">
                   {props.tokenPair?.configA.mint.toString()}
                 </Typography>
-              </Link>
+              </Styled.LinkOverflow>
             </Styled.DetailsItem>
             <Styled.DetailsItem>
               <Typography variant="h6">
                 {checkSymbol(props.tokenPair?.configB.mint.toString())} address
               </Typography>
-              <Link
+              <Styled.LinkOverflow
                 href={`${
                   props.url
                 }/${props.tokenPair?.configB.mint.toString()}`}
@@ -175,7 +174,7 @@ export default (props: {
                 <Typography variant="h6">
                   {props.tokenPair?.configB.mint.toString()}
                 </Typography>
-              </Link>
+              </Styled.LinkOverflow>
             </Styled.DetailsItem>
             {/* <Styled.DetailsItem>
               <Typography variant="h6">

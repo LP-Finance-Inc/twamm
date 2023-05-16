@@ -189,7 +189,7 @@ export default ({
       </Styled.TokenLabelBox>
       <Styled.TokenField>
         <Grid container direction="row" alignItems="center">
-          <Grid item xs={12} sm={4}>
+          <Grid item xs={5} sm={4} md={4}>
             <TokenSelect
               alt={a?.symbol}
               disabled={!a}
@@ -198,7 +198,7 @@ export default ({
               onClick={handleInputSelect}
             />
           </Grid>
-          <Grid item xs={12} sm={8}>
+          <Grid item xs={7} sm={8} md={8}>
             <AmountField
               amount={pairAmount}
               disabled={false}
@@ -228,7 +228,7 @@ export default ({
       </Styled.TokenLabel>
       <Styled.TokenField>
         <Grid container direction="row" alignItems="center">
-          <Grid item xs={12} sm={4}>
+          <Grid item xs={5} sm={4} md={4}>
             <TokenSelect
               alt={b?.symbol}
               disabled={!a}
@@ -237,7 +237,7 @@ export default ({
               onClick={handleOutputSelect}
             />
           </Grid>
-          <Grid item xs={12} sm={8}>
+          <Grid item xs={7} sm={8} md={8}>
             <AmountField
               disabled
               amount={amount ? outRef.current : 0}

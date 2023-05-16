@@ -4,9 +4,31 @@ import Toolbar from "@mui/material/Toolbar";
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 import { styled } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
+import MenuIcon from "@mui/icons-material/Menu";
+import Container from "@mui/material/Container";
+import Link from "@mui/material/Link";
+import Box from "@mui/material/Box";
+import Divider from "@mui/material/Divider";
+
+export const MainContainer = styled(Container)`
+  @media (max-width: 600px) {
+    padding-left: 6px !important;
+    padding-right: 6px !important;
+  }
+`;
 
 export const Root = styled(AppBar)`
   background: #161724 !important;
+`;
+
+export const DrawerCard = styled(Box)`
+  background: #161724 !important;
+  height: 100%;
+  width: 100%;
+`;
+export const DividerLine = styled(Divider)`
+  border: 1px solid #0c0;
+  margin-top: 8px;
 `;
 
 export const Header = styled(Toolbar)`
@@ -20,12 +42,28 @@ export const Header = styled(Toolbar)`
 `;
 
 export const Logo = styled(Stack)`
+  display: flex;
+  gap: 0 2px;
   align-items: center;
+`;
+
+export const DrawerLogo = styled(Stack)`
+  margin-left: 10px;
+  margin-top: 5px;
 `;
 
 export const Controls = styled(Stack)`
   flex-grow: 0;
   align-items: center;
+`;
+
+export const DrawerIcon = styled(MenuIcon)`
+  color: #0f0 !important;
+`;
+
+export const InfoLink = styled(Link)`
+  color: #0c0;
+  margin: 0 0.6rem;
 `;
 
 export const UtilsControl = styled(Card)`

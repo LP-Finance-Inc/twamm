@@ -54,6 +54,7 @@ export default ({
           <Styled.TokenAmountTextField
             allowNegative={false}
             disabled={disabled}
+            inputMode="numeric"
             value={amount}
             onChange={onChange}
           />

@@ -199,7 +199,7 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  z-index: 1050;
+  z-index: 1300;
   max-width: 390px;
   box-sizing: border-box;
   padding: 2.1rem 1rem 0rem 1rem;
@@ -308,22 +308,30 @@
 }
 
 .wallet-adapter-modal-middle-button {
+  border: none;
+  outline: none;
   display: block;
   cursor: pointer;
   margin-top: 30px;
   width: 100%;
-  background: rgba(255, 255, 255, 0.04);
   padding: 12px;
   font-size: 18px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 8px;
   color: #0c0;
+  background: #161724;
+  box-shadow: 4px 4px 6px rgba(9, 9, 14, 0.4),
+    -4px -4px 6px rgba(87, 87, 87, 0.1) !important;
+}
+
+wallet-adapter-modal-middle-button:focus {
+  box-shadow: inset -4px -4px 5px rgba(87, 87, 87, 0.2),
+    inset 4px 4px 5px rgba(9, 9, 14, 0.5);
 }
 
 @media (max-width: 600px) {
   .wallet-adapter-button {
     font-size: 0.9rem;
-    padding: 0.5rem 0.9rem;
+    padding: 0.5rem 0.5rem;
   }
 
   .wallet-adapter-modal-list .wallet-adapter-button {
@@ -345,7 +353,6 @@
 
 @media (max-width: 480px) {
   .wallet-adapter-modal-container {
-    /* margin: 2rem 0.5rem; */
     min-height: calc(100vh - 2rem);
   }
 }

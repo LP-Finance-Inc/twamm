@@ -29,10 +29,6 @@ export const TokenAmountTextField = styled(NumericFormat)`
 
 export const InputRoot = styled(Box)`
   margin-top: 0px;
-
-  @media (max-width: 600px) {
-    margin-top: 10px;
-  }
 `;
 
 export const TokenAmountInUSD = styled(Box)`
