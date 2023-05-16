@@ -1,14 +1,13 @@
 import Box from "@mui/material/Box";
-import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import { address } from "@twamm/client.js";
 import { ErrorBoundary } from "react-error-boundary";
 import { OrderSide } from "@twamm/types/lib";
 import { useCallback, useMemo, useState } from "react";
 
+import * as Styled from "./userspace.styled";
 import ErrorFallback from "../atoms/error-fallback";
 import ModeToggle, { modes } from "../atoms/mode-toggle";
-import styles from "./userspace.module.css";
 import TokenPairs from "../organisms/token-pairs";
 import AccountOrders from "../organisms/account-orders";
 import TokenExchange, { TradeStruct } from "../organisms/token-exchange";
@@ -56,23 +55,23 @@ export default () => {
   );
 
   return (
-    <Container maxWidth={maxWidth}>
-      <Box pt={2} px={{ xs: 0, sm: 2, md: 4 }}>
-        <Box className={styles.titleControls}>
+    <Styled.MainContainer maxWidth={maxWidth}>
+      <Box pt={4} px={{ xs: 0, sm: 2, md: 4 }}>
+        <Styled.TitleControls>
           <Typography pb={1} variant="h4">
             LP Finance TWAMM
           </Typography>
           <Typography variant="subtitle1" gutterBottom>
             Permissionless TWAP Order Execution
           </Typography>
-        </Box>
-        <Box className={styles.controls} py={1}>
+        </Styled.TitleControls>
+        <Styled.Controls py={1}>
           <ModeToggle mode={mode} onChange={onModeChange} />
-        </Box>
+        </Styled.Controls>
         <ErrorBoundary FallbackComponent={ErrorFallback}>
           {component}
         </ErrorBoundary>
       </Box>
-    </Container>
+    </Styled.MainContainer>
   );
 };

@@ -1,9 +1,13 @@
-import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import M, { Extra } from "easy-maybe/lib";
 import TuneIcon from "@mui/icons-material/Tune";
-import { useCallback, useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import IconButton from "@mui/material/IconButton";
+import Drawer from "@mui/material/Drawer";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemButton from "@mui/material/ListItemButton";
 
 import * as Styled from "./header.styled";
 import i18n from "../i18n";
@@ -13,10 +17,23 @@ import TransactionProgress from "./transaction-progress";
 import UniversalPopover, { Ref } from "../molecules/universal-popover";
 import useBreakpoints from "../hooks/use-breakpoints";
 import useTxRunner from "../contexts/transaction-runner-context";
+import DesktopLogo from "../../public/images/lp-logo.png";
+import MobileLogo from "../../public/images/lp-logo-mobile.png";
 
-export default () => {
+interface Props {
+  window?: () => Window;
+}
+
+const drawerWidth = 240;
+const navItems = ["Document"];
+
+export default (props: Props) => {
+  const { window } = props;
+
   const { isDesktop, isMobile } = useBreakpoints();
   const { active } = useTxRunner();
+
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   const runnerRef = useRef<Ref>();
   const settingsRef = useRef<Ref>();
@@ -39,6 +56,46 @@ export default () => {
     else runnerRef.current?.close();
   }, []);
 
+  const handleDrawerToggle = () => {
+    setMobileOpen((prevState) => !prevState);
+  };
+
+  const drawer = (
+    <Styled.DrawerCard onClick={handleDrawerToggle}>
+      <Styled.DrawerLogo direction="row">
+        <Image
+          src={DesktopLogo}
+          alt="logo"
+          width={90}
+          height={50}
+          object-fit="cover"
+          priority
+        />
+      </Styled.DrawerLogo>
+      <Styled.DividerLine />
+      <List>
+        {navItems.map((item) => (
+          <ListItem key={item} disablePadding>
+            <ListItemButton sx={{ textAlign: "center" }}>
+              <Styled.InfoLink
+                key={item}
+                href="https://docs.lp.finance/twamm/time-weighted-average-market-maker"
+                underline="none"
+                target="_blank"
+                rel="noopener"
+              >
+                {item}
+              </Styled.InfoLink>
+            </ListItemButton>
+          </ListItem>
+        ))}
+      </List>
+    </Styled.DrawerCard>
+  );
+
+  const container =
+    window !== undefined ? () => window().document.body : undefined;
+
   return (
     <>
       <UniversalPopover ariaLabelledBy="tx-runner-modal-title" ref={runnerRef}>
@@ -50,30 +107,52 @@ export default () => {
       </UniversalPopover>
 
       <Styled.Root aria-label={i18n.AriaLabelHeader} position="sticky">
-        <Container maxWidth="lg">
+        <Styled.MainContainer maxWidth="lg">
           <Styled.Header variant={isDesktop ? "dense" : undefined}>
             <Styled.Logo direction="row">
+              <IconButton
+                color="inherit"
+                aria-label="open drawer"
+                edge="start"
+                onClick={handleDrawerToggle}
+                sx={{ m: 0, p: 0, px: 0.5, display: { sm: "none" } }}
+              >
+                <Styled.DrawerIcon />
+              </IconButton>
               <Image
-                src={
-                  isMobile
-                    ? "/images/lp-logo-mobile.png"
-                    : "/images/lp-logo.png"
-                }
+                src={isMobile ? MobileLogo : DesktopLogo}
                 alt="logo"
-                width={isMobile ? 60 : 117}
-                height={isMobile ? 60 : 65}
+                width={isMobile ? 56 : 117}
+                height={isMobile ? 56 : 65}
                 object-fit="cover"
                 priority
               />
             </Styled.Logo>
-
             <Styled.Controls direction="row">
-              <Box px={2}>
+              <Box
+                sx={{
+                  mr: 0.5,
+                  display: { xs: "none", sm: "block" },
+                }}
+              >
+                {navItems.map((item) => (
+                  <Styled.InfoLink
+                    key={item}
+                    href="https://docs.lp.finance/twamm/time-weighted-average-market-maker"
+                    underline="none"
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    {item}
+                  </Styled.InfoLink>
+                ))}
+              </Box>
+              <Box px={isMobile ? 1 : 2}>
                 <Styled.UtilsControl onClick={() => onSettingsToggle(true)}>
                   <TuneIcon />
                 </Styled.UtilsControl>
               </Box>
-              <Box pr={2}>
+              <Box pr={isMobile ? 1 : 2}>
                 <TransactionProgress setOpen={() => onTxStatusToggle(true)} />
               </Box>
               <Box py={isDesktop ? 1 : 0}>
@@ -81,8 +160,28 @@ export default () => {
               </Box>
             </Styled.Controls>
           </Styled.Header>
-        </Container>
+        </Styled.MainContainer>
       </Styled.Root>
+      <Box component="nav">
+        <Drawer
+          container={container}
+          variant="temporary"
+          open={mobileOpen}
+          onClose={handleDrawerToggle}
+          ModalProps={{
+            keepMounted: true,
+          }}
+          sx={{
+            display: { xs: "block", sm: "none" },
+            "& .MuiDrawer-paper": {
+              boxSizing: "border-box",
+              width: drawerWidth,
+            },
+          }}
+        >
+          {drawer}
+        </Drawer>
+      </Box>
     </>
   );
 };
