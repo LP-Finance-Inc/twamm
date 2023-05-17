@@ -7,6 +7,7 @@ import PairCard from "../atoms/pair-card";
 import api from "../api";
 import i18n from "../i18n";
 import * as Styled from "./token-pair-cards.styled";
+import { dec } from "ramda";
 
 const Headers = [
   {
@@ -44,21 +45,20 @@ export default ({ info }: { info?: TokenPair[] }) => {
         const bMint = info[i].configB.mint;
 
         const orderVolume =
-          Number(statsA.orderVolumeUsd) / decimalA +
+          Number(statsA.orderVolumeUsd) / decimalB +
           Number(statsB.orderVolumeUsd) / decimalB;
 
         const routedVolume =
-          Number(statsA.routedVolumeUsd) / decimalA +
+          Number(statsA.routedVolumeUsd) / decimalB +
           Number(statsB.routedVolumeUsd) / decimalB;
 
         const settledVolume =
-          Number(statsA.settledVolumeUsd) / decimalA +
+          Number(statsA.settledVolumeUsd) / decimalB +
           Number(statsB.settledVolumeUsd) / decimalB;
 
         const fee =
-          Number(statsA.feesCollected) / decimalA +
+          Number(statsA.feesCollected) / decimalB +
           Number(statsB.feesCollected) / decimalB;
-
         processedInfo.push({
           aMint,
           bMint,
