@@ -7,7 +7,7 @@ import PairCard from "../atoms/pair-card";
 import api from "../api";
 import i18n from "../i18n";
 import * as Styled from "./token-pair-cards.styled";
-import { dec } from "ramda";
+// import { dec } from "ramda";
 
 const Headers = [
   {
@@ -39,7 +39,7 @@ export default ({ info }: { info?: TokenPair[] }) => {
       for (let i = 0; i < (info?.length ?? 0); i += 1) {
         const { statsA } = info[i];
         const { statsB } = info[i];
-        const decimalA = 10 ** info[i].configA.decimals;
+        // const decimalA = 10 ** info[i].configA.decimals;
         const decimalB = 10 ** info[i].configB.decimals;
         const aMint = info[i].configA.mint;
         const bMint = info[i].configB.mint;
