@@ -7,7 +7,6 @@ import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import { OrderSide } from "@twamm/types/lib";
 import { useState, useMemo } from "react";
-import Link from "@mui/material/Link";
 
 import * as Styled from "./price-info.styled";
 import i18n from "../i18n";
@@ -181,7 +180,7 @@ export default (props: {
               <Typography variant="h6">
                 {checkSymbol(props.tokenPair?.configA.mint.toString())} oracle
               </Typography>
-              <Link
+              <Styled.LinkOverflow
                 href={`${
                   props.url
                 }/${props.tokenPair?.configA.oracleAccount.toString()}`}
@@ -192,13 +191,13 @@ export default (props: {
                 <Typography variant="h6">
                   {props.tokenPair?.configA.oracleAccount.toString()}
                 </Typography>
-              </Link>
+              </Styled.LinkOverflow>
             </Styled.DetailsItem>
             <Styled.DetailsItem>
               <Typography variant="h6">
                 {checkSymbol(props.tokenPair?.configB.mint.toString())} oracle
               </Typography>
-              <Link
+              <Styled.LinkOverflow
                 href={`${
                   props.url
                 }/${props.tokenPair?.configB.oracleAccount.toString()}`}
@@ -209,7 +208,7 @@ export default (props: {
                 <Typography variant="h6">
                   {props.tokenPair?.configB.oracleAccount.toString()}
                 </Typography>
-              </Link>
+              </Styled.LinkOverflow>
             </Styled.DetailsItem>
           </List>
         </Box>
