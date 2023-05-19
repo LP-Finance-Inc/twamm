@@ -116,6 +116,7 @@ main([
   "7i5KKsX2weiTkry7jA4ZwSuXGhs5eJBEjY8vVxR4pfRx", // GMT
   "AUrMpCDYYcPuHhyNX8gEEqbmDPFUpBpHrNW3vPeCFn5Z", // AVAX
   "9gP2kCy3wA1ctvYWQk75guqXuHfrEomqydHLtcTCqiLa", // BNB
+  "7xKXtg2CW87d97TXJSDpbD5jBkheTqA83TZRuJosgAsU", // SAMO
 ]);
 
 /*
