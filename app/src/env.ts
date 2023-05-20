@@ -20,9 +20,12 @@ export const ClusterApiUrl = process.env.NEXT_PUBLIC_CLUSTER_API_URL;
 export const programId: string | undefined =
   process.env.NEXT_PUBLIC_PROGRAM_ADDRESS;
 
-export const FeeAccount = "9pvCGNF2aw43Smb4J1pdyobq6PnjwkhXkuFov8P42S5w";
+export const FEE_ACCOUNT: string = process.env.NEXT_PUBLIC_FEE_ACCOUNT || "";
 
-export const feeBps = 30;
+export const feeBps: number = Number(process.env.NEXT_PUBLIC_FEE_BPS) || 0;
 
 export const platformFeeAccount: string =
-  "9pvCGNF2aw43Smb4J1pdyobq6PnjwkhXkuFov8P42S5w"; // set as "" if none
+  process.env.NEXT_PUBLIC_PLATFORM_FEE_ACCOUNT || "";
+
+export const STARRED_COINS =
+  process.env.NEXT_PUBLIC_STARRED_COINS?.split(",") || [];
