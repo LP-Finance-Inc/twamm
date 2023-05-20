@@ -13,7 +13,7 @@ import useBlockchain from "../contexts/solana-connection-context";
 // import useJupiterContext from "../contexts/jupiter-connection-context";
 import useTxRunner from "../contexts/transaction-runner-context";
 import useJupiterV4Api from "../contexts/jupiter-v4-api-context";
-import { JUPITER_CONFIG_URI, ClusterApiUrl, FeeAccount } from "../env";
+import { JUPITER_CONFIG_URI, ClusterApiUrl, FEE_ACCOUNT } from "../env";
 
 const predictBestRoute = (routes: Route[]) => {
   const bestRoute = routes[0];
@@ -89,7 +89,7 @@ async function runVersionedTransaction(
 
 async function getFeeAccountAta(outputMint: string) {
   const connection = new Connection(ClusterApiUrl as string);
-  const feeAccountOwner = new PublicKey(FeeAccount);
+  const feeAccountOwner = new PublicKey(FEE_ACCOUNT);
   const outputMintPubkey = new PublicKey(outputMint);
   const ata = await connection.getTokenAccountsByOwner(feeAccountOwner, {
     mint: outputMintPubkey,
