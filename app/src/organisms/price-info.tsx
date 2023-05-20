@@ -177,7 +177,7 @@ export default (props: {
               </Styled.LinkOverflow>
             </Styled.DetailsItem>
             <Styled.DetailsItem>
-              <Typography variant="h6">
+              <Typography variant="h6" sx={{ color: "#BA55D3" }}>
                 {checkSymbol(props.tokenPair?.configA.mint.toString())} oracle
               </Typography>
               <Styled.LinkOverflow
@@ -188,13 +188,13 @@ export default (props: {
                 rel="noreferrer"
                 underline="hover"
               >
-                <Typography variant="h6">
+                <Typography variant="h6" sx={{ color: "#BA55D3" }}>
                   {props.tokenPair?.configA.oracleAccount.toString()}
                 </Typography>
               </Styled.LinkOverflow>
             </Styled.DetailsItem>
             <Styled.DetailsItem>
-              <Typography variant="h6">
+              <Typography variant="h6" sx={{ color: "#BA55D3" }}>
                 {checkSymbol(props.tokenPair?.configB.mint.toString())} oracle
               </Typography>
               <Styled.LinkOverflow
@@ -205,7 +205,7 @@ export default (props: {
                 rel="noreferrer"
                 underline="hover"
               >
-                <Typography variant="h6">
+                <Typography variant="h6" sx={{ color: "#BA55D3" }}>
                   {props.tokenPair?.configB.oracleAccount.toString()}
                 </Typography>
               </Styled.LinkOverflow>
