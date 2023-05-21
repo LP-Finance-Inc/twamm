@@ -7,6 +7,7 @@ import PairCard from "../atoms/pair-card";
 import api from "../api";
 import i18n from "../i18n";
 import * as Styled from "./token-pair-cards.styled";
+import { lpfinanceOracleTokens } from "../oracle-type";
 // import { dec } from "ramda";
 
 const Headers = [
@@ -25,6 +26,10 @@ const Headers = [
   {
     id: 4,
     head: i18n.TwammFee,
+  },
+  {
+    id: 5,
+    head: i18n.OracleType,
   },
 ];
 
@@ -59,6 +64,13 @@ export default ({ info }: { info?: TokenPair[] }) => {
         const fee =
           Number(statsA.feesCollected) / decimalB +
           Number(statsB.feesCollected) / decimalB;
+
+        const oracleType = lpfinanceOracleTokens.includes(
+          info[i].configA.mint.toString()
+        )
+          ? "LP Finance"
+          : "Pyth";
+        console.log(oracleType);
         processedInfo.push({
           aMint,
           bMint,
@@ -67,6 +79,7 @@ export default ({ info }: { info?: TokenPair[] }) => {
           orderVolume,
           routedVolume,
           settledVolume,
+          oracleType,
         });
       }
     }
@@ -100,6 +113,7 @@ export default ({ info }: { info?: TokenPair[] }) => {
                 aMint={tokenPair.aMint}
                 bMint={tokenPair.bMint}
                 orderVolume={tokenPair.orderVolume}
+                oracleType={tokenPair.oracleType}
               />
             ))}
         </Styled.TableBodyCover>

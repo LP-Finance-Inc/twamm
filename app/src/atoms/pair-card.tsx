@@ -12,11 +12,19 @@ export interface Props {
   aMint: PublicKey;
   bMint: PublicKey;
   orderVolume: number;
+  oracleType: string;
   list: any;
   itemNum: number;
 }
 
-export default ({ aMint, bMint, orderVolume, list, itemNum }: Props) => {
+export default ({
+  aMint,
+  bMint,
+  orderVolume,
+  oracleType,
+  list,
+  itemNum,
+}: Props) => {
   const tokens = useMemo(() => {
     const infoA = list[aMint.toString()];
     const infoB = list[bMint.toString()];
@@ -56,6 +64,9 @@ export default ({ aMint, bMint, orderVolume, list, itemNum }: Props) => {
     return null;
   });
 
+  const OracleComponent =
+    oracleType === "Pyth" ? Styled.TableCellBoxPyth : Styled.TableCellBox;
+
   return (
     <Styled.TableRowBox>
       <Styled.TableCellBox align="left">{itemNum + 1}</Styled.TableCellBox>
@@ -68,6 +79,7 @@ export default ({ aMint, bMint, orderVolume, list, itemNum }: Props) => {
       <Styled.TableCellBox align="left">
         {swapFee ? `${swapFee}%` : formatPrice(0)}
       </Styled.TableCellBox>
+      <OracleComponent align="left">{oracleType}</OracleComponent>
     </Styled.TableRowBox>
   );
 };
