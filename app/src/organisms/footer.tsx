@@ -96,7 +96,7 @@ export default () => (
         </Styled.BorderBox>
         <Styled.CopyRight>
           <Typography variant="subtitle2" gutterBottom>
-            2023 by LP Finance Inc.
+            2023 by LP Finance Labs Inc.
           </Typography>
         </Styled.CopyRight>
       </Container>
