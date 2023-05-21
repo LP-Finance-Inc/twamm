@@ -22,7 +22,7 @@ const initTokenPair = async() => {
         new PublicKey("TWAPzC9xaeBpgDNF26z5VAcmxBowVz5uqmTx47LkWUy")
       );
       
-    let tokenAMint = new PublicKey("AZsHEMXd36Bj1EMNXhowJajpUXzrKcK57wW4ZGXVa7yR"); // GUAC 
+    let tokenAMint = new PublicKey("LFNTYraetVioAPnGJht4yNg2aUZFXR776cMeN9VMjXp"); // LFNTY 
     let tokenBMint = new PublicKey("EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"); // USDC
 
     let tokenACustodyKey = await spl.getAssociatedTokenAddress(
@@ -75,7 +75,7 @@ const initTokenPair = async() => {
             allowWithdrawals: true,
             allowCranks: true,
             allowSettlements: false, // block settlements
-            feeNumerator: new anchor.BN(1),
+            feeNumerator: new anchor.BN(2),
             feeDenominator: new anchor.BN(1000),
             settleFeeNumerator: new anchor.BN(0),
             settleFeeDenominator: new anchor.BN(1),
