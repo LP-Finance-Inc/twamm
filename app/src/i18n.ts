@@ -99,4 +99,5 @@ export default {
   Warning: "Warning",
   TwapCalculationDocs: "How is receive amount calulated for TWAP?",
   TwammFee: "TWAMM Fee",
+  OracleType: "Oracle",
 };

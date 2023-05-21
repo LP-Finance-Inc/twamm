@@ -25,3 +25,9 @@ export const TableCellBox = styled(TableCell)`
   border: none;
   padding: 0.8rem 1rem;
 `;
+
+export const TableCellBoxPyth = styled(TableCell)`
+  border: none;
+  padding: 0.8rem 1rem;
+  color: #bf00ff;
+`;
