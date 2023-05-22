@@ -9,17 +9,32 @@ const Home: NextPage = () => (
         name="viewport"
         content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width"
       />
+
+      {/* <!-- Open Graph / Facebook --> */}
       <meta property="og:type" content="website" />
+      <meta property="og:url" content="https://www.twap.so/" />
       <meta property="og:title" content="LP Finance | TWAMM" />
       <meta
         property="og:description"
-        content="Permissionless TWAP Order Execution"
+        content="Permissionless TWAP order execution protocol on Solana."
       />
       <meta
         property="og:image"
-        content="https://lptokenbucket.s3.amazonaws.com/Screenshot+2023-05-21+at+11.08.54+PM.png"
+        content="https://lptokenbucket.s3.amazonaws.com/bg.png"
       />
-      <meta property="og:url" content="https://twap.lp.finance" />
+
+      {/* <!-- Twitter --> */}
+      <meta property="twitter:card" content="summary_large_image" />
+      <meta property="twitter:url" content="https://www.twap.so/" />
+      <meta property="twitter:title" content="LP Finance | TWAMM" />
+      <meta
+        property="twitter:description"
+        content="Permissionless TWAP order execution protocol on Solana."
+      />
+      <meta
+        property="twitter:image"
+        content="https://lptokenbucket.s3.amazonaws.com/bg.png"
+      />
       <title>LP Finance | TWAMM</title>
     </Head>
     <IndexPage />
