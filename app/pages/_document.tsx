@@ -16,6 +16,15 @@ export default class PageDocument extends Document {
           <link rel="apple-touch-icon" href="/static/favicon-32x32.png" />
           <meta name="apple-mobile-web-app-status-bar" content={main} />
           <link rel="icon" href="/static/favicon.ico" />
+          <meta
+            name="keywords"
+            content="
+            Crypto TWAP, TWAMM, Time-weighted Average Market Maker,
+            Solana TWAP, Solana TWAMM,  Solana Time-weighted Average Market Maker,
+            LP Finance, LP Finance DeFi, Solana DeFi, LP Finance Inc.,
+            Paradigm TWAMM, Solana protocol, Solana ecosystem
+          "
+          />
           {/* <!-- Open Graph / Facebook --> */}
           <meta property="og:type" content="website" />
           <meta property="og:url" content="https://www.twap.so/" />
