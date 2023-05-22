@@ -5,4 +5,5 @@ export const lpfinanceOracleTokens = [
   "RLBxxFkseAZ4RgJH3Sqn8jXxhmGoz9jWxDNJMh8pL7a", // RLB
   "FoRGERiW7odcCBGU1bztZi16osPBHjxharvDathL5eds", // FORGE
   "LFNTYraetVioAPnGJht4yNg2aUZFXR776cMeN9VMjXp", // LFNTY
+  "MNDEFzGvMt87ueuHvVU9VcTqsAP5b3fTGPsHuuPA5ey", // MNDE
 ];

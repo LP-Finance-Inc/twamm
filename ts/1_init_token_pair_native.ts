@@ -22,7 +22,7 @@ const initTokenPair = async() => {
         new PublicKey("TWAPzC9xaeBpgDNF26z5VAcmxBowVz5uqmTx47LkWUy")
       );
       
-    let tokenAMint = new PublicKey("LFNTYraetVioAPnGJht4yNg2aUZFXR776cMeN9VMjXp"); // LFNTY 
+    let tokenAMint = new PublicKey("MNDEFzGvMt87ueuHvVU9VcTqsAP5b3fTGPsHuuPA5ey"); // MNDE 
     let tokenBMint = new PublicKey("EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"); // USDC
 
     let tokenACustodyKey = await spl.getAssociatedTokenAddress(
