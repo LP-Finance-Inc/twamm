@@ -22,8 +22,8 @@ const initTokenPair = async() => {
         new PublicKey("TWAPzC9xaeBpgDNF26z5VAcmxBowVz5uqmTx47LkWUy")
       );
       
-    let tokenAMint = new PublicKey("MNDEFzGvMt87ueuHvVU9VcTqsAP5b3fTGPsHuuPA5ey"); // MNDE 
-    let tokenBMint = new PublicKey("EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"); // USDC
+    let tokenAMint = new PublicKey("BWXrrYFhT7bMHmNBFoQFWdsSgA3yXoAnMhDK6Fn1eSEn"); // HADES 
+    let tokenBMint = new PublicKey("9TVjnzpF3X8DHsfVqYWoCGphJxtGYh1PDCFN5QmsHW5t"); // USDC
 
     let tokenACustodyKey = await spl.getAssociatedTokenAddress(
         tokenAMint,

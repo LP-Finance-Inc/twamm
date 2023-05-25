@@ -25,7 +25,7 @@ interface Props {
 }
 
 const drawerWidth = 240;
-const navItems = ["Document"];
+const navItems = ["Document", "Listing"];
 
 export default (props: Props) => {
   const { window } = props;
@@ -79,7 +79,11 @@ export default (props: Props) => {
             <ListItemButton sx={{ textAlign: "center" }}>
               <Styled.InfoLink
                 key={item}
-                href="https://docs.lp.finance/twamm/time-weighted-average-market-maker"
+                href={
+                  item === "Document"
+                    ? "https://docs.lp.finance"
+                    : "https://lp.finance"
+                }
                 underline="none"
                 target="_blank"
                 rel="noopener"
@@ -138,7 +142,11 @@ export default (props: Props) => {
                 {navItems.map((item) => (
                   <Styled.InfoLink
                     key={item}
-                    href="https://docs.lp.finance/twamm/time-weighted-average-market-maker"
+                    href={
+                      item === "Document"
+                        ? "https://docs.lp.finance/twamm/time-weighted-average-market-maker"
+                        : "https://docs.lp.finance/twamm-as-a-service/token-listing"
+                    }
                     underline="none"
                     target="_blank"
                     rel="noopener"

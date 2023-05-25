@@ -521,9 +521,13 @@ export class CrankClient {
       ];
     } catch (err) {
       if (err && err.error && err.error.errorMessage) {
+        console.error(err);
+        console.log(err.error);
+        console.log(err.error.errorMessage);
         return [false, err.error.errorMessage];
       }
       console.error(err);
+      console.log(err.error);
       return [false, "Unknown error"];
     }
   };
