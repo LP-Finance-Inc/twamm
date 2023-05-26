@@ -189,12 +189,16 @@ pub fn crank(ctx: Context<Crank>, params: &CrankParams) -> Result<i64> {
         msg!("oracle_price.price {}", oracle_price.price.to_string());
         msg!("oracle_price.expo {}", oracle_price.exponent.to_string());
 
-        swap_price = OraclePrice::new_from_token(math::checked_token_div(
-            token_b_change,
-            token_pair.config_b.decimals,
-            token_a_change,
-            token_pair.config_a.decimals,
-        )?);
+        swap_price = OraclePrice::new(
+            math::checked_decimal_div(
+                token_b_change,
+                -(token_pair.config_b.decimals as i32),
+                token_a_change,
+                -(token_pair.config_a.decimals as i32),
+                oracle_price.exponent,
+            )?,
+            oracle_price.exponent,
+        );
         require_gt!(swap_price.price, 0, TwammError::SettlementAmountTooSmall);
         let swap_price_f64 = swap_price.checked_as_f64()?;
         let oracle_price_f64 = oracle_price.checked_as_f64()?;
