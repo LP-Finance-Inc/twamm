@@ -86,6 +86,13 @@ pub fn checked_decimal_div(
     exponent2: i32,
     target_exponent: i32,
 ) -> Result<u64> {
+    msg!("checked_decimal_div params");
+    msg!("coefficient1 {}", coefficient1);
+    msg!("exponent1 {}", exponent1);
+    msg!("coefficient2 {}", coefficient2);
+    msg!("exponent2 {}", exponent2);
+    msg!("target_exponent {}", target_exponent);
+
     // compute scale factor for the dividend
     let mut scale_factor = 0;
     let mut target_power = checked_sub(checked_sub(exponent1, exponent2)?, target_exponent)?;
@@ -110,11 +117,18 @@ pub fn checked_decimal_div(
     };
 
     if target_power >= 0 {
+        msg!("checked_decimal_div1");
+        msg!("scaled_coeff1 {}", scaled_coeff1.to_string());
+        msg!("coefficient2 {}", coefficient2.to_string());
         checked_as_u64(checked_mul(
             checked_div(scaled_coeff1, coefficient2 as u128)?,
             checked_pow(10u128, target_power as usize)?,
         )?)
     } else {
+        msg!("checked_decimal_div2");
+        msg!("scaled_coeff1 {}", scaled_coeff1.to_string());
+        msg!("coefficient2 {}", coefficient2.to_string());
+        msg!("arg2 {}", checked_pow(10u128, (-target_power) as usize)?.to_string());
         checked_as_u64(checked_div(
             checked_div(scaled_coeff1, coefficient2 as u128)?,
             checked_pow(10u128, (-target_power) as usize)?,

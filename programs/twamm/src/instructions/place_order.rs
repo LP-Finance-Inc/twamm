@@ -270,6 +270,7 @@ pub fn place_order(ctx: Context<PlaceOrder>, params: &PlaceOrderParams) -> Resul
     pool_side.source_balance = math::checked_add(pool_side.source_balance, params.amount)?;
     pool_side.lp_supply = math::checked_add(pool_side.lp_supply, lp_amount)?;
     pool_side.token_debt_total = math::checked_add(pool_side.token_debt_total, debt_amount)?;
+    msg!("processed source_balance {}", pool_side.source_balance.to_string());
     if order.lp_balance == 0 {
         pool_side.num_traders = math::checked_add(pool_side.num_traders, 1)?;
     }

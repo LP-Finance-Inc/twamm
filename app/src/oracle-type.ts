@@ -6,4 +6,6 @@ export const lpfinanceOracleTokens = [
   "FoRGERiW7odcCBGU1bztZi16osPBHjxharvDathL5eds", // FORGE
   "LFNTYraetVioAPnGJht4yNg2aUZFXR776cMeN9VMjXp", // LFNTY
   "MNDEFzGvMt87ueuHvVU9VcTqsAP5b3fTGPsHuuPA5ey", // MNDE
+  "HBB111SCo9jkCejsZfz8Ec8nH7T6THF8KEKSnvwT6XK6", // HBB
+  "Fishy64jCaa3ooqXw7BHtKvYD8BTkSyAPh6RNE3xZpcN", // FISHY
 ];

@@ -22,7 +22,7 @@ impl Default for OracleType {
     }
 }
 
-#[derive(Copy, Clone, AnchorSerialize, AnchorDeserialize, Debug)]
+#[derive(Copy, Clone, PartialEq, AnchorSerialize, AnchorDeserialize, Debug)]
 pub struct OraclePrice {
     pub price: u64,
     pub exponent: i32,
@@ -136,6 +136,10 @@ pub fn get_pyth_price(
         msg!("Error: Pyth oracle price is stale");
         return err!(TwammError::StaleOraclePrice);
     }
+    msg!("Get Pyth Price");
+    msg!("max_price_error {}", max_price_error.to_string());
+    msg!("pyth_price.price {}", pyth_price.price.to_string());
+    msg!("pyth_price.expo {}", pyth_price.expo.to_string());
 
     if pyth_price.price <= 0
         || math::checked_float_div(pyth_price.conf as f64, pyth_price.price as f64)?
