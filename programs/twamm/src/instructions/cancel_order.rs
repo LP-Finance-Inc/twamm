@@ -20,7 +20,7 @@ pub struct CancelOrder<'info> {
     pub payer: Signer<'info>,
 
     /// CHECK: user's wallet
-    #[account()]
+    #[account(constraint = owner.key() == payer.key())]
     pub owner: AccountInfo<'info>,
 
     #[account(

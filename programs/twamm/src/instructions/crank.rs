@@ -182,12 +182,6 @@ pub fn crank(ctx: Context<Crank>, params: &CrankParams) -> Result<i64> {
 
         // verify swap price against oracle
         msg!("Validate swap price");
-        msg!("token_b_change {}", token_b_change.to_string());
-        msg!("token_pair.config_b.decimals {}", token_pair.config_b.decimals.to_string());
-        msg!("token_a_change {}", token_a_change.to_string());
-        msg!("token_pair.config_a.decimals {}", token_pair.config_a.decimals.to_string());
-        msg!("oracle_price.price {}", oracle_price.price.to_string());
-        msg!("oracle_price.expo {}", oracle_price.exponent.to_string());
 
         swap_price = OraclePrice::new(
             math::checked_decimal_div(
