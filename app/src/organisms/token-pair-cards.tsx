@@ -70,7 +70,6 @@ export default ({ info }: { info?: TokenPair[] }) => {
         )
           ? "LP Finance"
           : "Pyth";
-        console.log(oracleType);
         processedInfo.push({
           aMint,
           bMint,
