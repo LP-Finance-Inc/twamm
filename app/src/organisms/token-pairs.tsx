@@ -37,8 +37,12 @@ export default () => {
     const fullPair = tokenPairs.data;
     let pairs = [];
 
+    // Both configA and configB should be in ADDRESS
     for (let i = 0; i < fullPair.length; i += 1) {
-      if (ADDRESSES.includes(fullPair[i]?.configA.mint.toString())) {
+      if (
+        ADDRESSES.includes(fullPair[i]?.configA.mint.toString()) &&
+        ADDRESSES.includes(fullPair[i]?.configB.mint.toString())
+      ) {
         pairs.push(fullPair[i]);
       }
     }

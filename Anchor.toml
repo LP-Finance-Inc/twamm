@@ -7,6 +7,8 @@ twamm = "TWAPzC9xaeBpgDNF26z5VAcmxBowVz5uqmTx47LkWUy"
 twamm = "TWAPzC9xaeBpgDNF26z5VAcmxBowVz5uqmTx47LkWUy"
 [programs.devnet]
 twamm = "TWAPzC9xaeBpgDNF26z5VAcmxBowVz5uqmTx47LkWUy"
+[programs.mainnet]
+twamm = "TWAPzC9xaeBpgDNF26z5VAcmxBowVz5uqmTx47LkWUy"
 
 [registry]
 url = "https://api.apr.dev"
