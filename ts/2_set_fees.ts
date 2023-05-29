@@ -16,7 +16,7 @@ const setFees = async() => {
       );
 
 
-    let tokenAMint = new PublicKey("HxRELUQfvvjToVbacjr9YECdfQMUqGgPYB68jVDYxkbr"); // GMT
+    let tokenAMint = new PublicKey("7xKXtg2CW87d97TXJSDpbD5jBkheTqA83TZRuJosgAsU"); // SAMO
     let tokenBMint = new PublicKey("EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"); // USDC
 
     let [tokenPairKey, tokenPairBump] =
@@ -32,7 +32,7 @@ const setFees = async() => {
 
     let tx = await program.methods
         .setFees({
-            feeNumerator: new anchor.BN(2),
+            feeNumerator: new anchor.BN(1),
             feeDenominator: new anchor.BN(1000), // 0.1%
             settleFeeNumerator: new anchor.BN(0),
             settleFeeDenominator: new anchor.BN(1), // 0%

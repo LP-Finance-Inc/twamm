@@ -3,11 +3,13 @@ import useSWR from "swr";
 import { TOKEN_LIST_URL } from "@jup-ag/core";
 import { SplToken } from "@twamm/client.js/lib/spl-token";
 import useBlockchain from "../contexts/solana-connection-context";
-import { NEXT_PUBLIC_SUPPORTED_TOKEN } from "../env";
+import { tokenPairRegistry, tokenBRegistry } from "../token-pair-registry";
 
 let ADDRESSES: string[];
 try {
-  ADDRESSES = NEXT_PUBLIC_SUPPORTED_TOKEN.split(",");
+  ADDRESSES = Array.from(
+    new Set(Object.keys(tokenPairRegistry).concat(tokenBRegistry))
+  );
 } catch (e) {
   ADDRESSES = ["EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"];
 }
