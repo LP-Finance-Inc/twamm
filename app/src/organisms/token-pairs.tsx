@@ -9,9 +9,9 @@ import i18n from "../i18n";
 import TokenPairCards from "./token-pair-cards";
 import useTokenPairs from "../hooks/use-token-pairs";
 import { refreshEach } from "../swr-options";
-import { NEXT_PUBLIC_SUPPORTED_TOKEN } from "../env";
 import useBreakpoints from "../hooks/use-breakpoints";
 import api from "../api";
+import { tokenPairRegistry } from "../token-pair-registry";
 
 const fetcher = async (url: string) => fetch(url).then((res) => res.json());
 
@@ -33,7 +33,7 @@ export default () => {
       return t !== null;
     }
 
-    const ADDRESSES = NEXT_PUBLIC_SUPPORTED_TOKEN.split(",");
+    const ADDRESSES = Object.keys(tokenPairRegistry);
     const fullPair = tokenPairs.data;
     let pairs = [];
 
@@ -41,7 +41,9 @@ export default () => {
     for (let i = 0; i < fullPair.length; i += 1) {
       if (
         ADDRESSES.includes(fullPair[i]?.configA.mint.toString()) &&
-        ADDRESSES.includes(fullPair[i]?.configB.mint.toString())
+        tokenPairRegistry[fullPair[i]?.configA.mint.toString()].includes(
+          fullPair[i]?.configB.mint.toString()
+        )
       ) {
         pairs.push(fullPair[i]);
       }
