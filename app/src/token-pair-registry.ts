@@ -20,6 +20,10 @@ export const tokenPairRegistry: Registry = {
   "MangoCzJ36AjZyKwVj3VnYU4GTonjfVEnJmvvWaxLac": [
     "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
   ],
+  // HNT
+  "hntyVP6YFm1Hg25TN9WGLqM12b8TQmcknKrdu1oxWux": [
+    "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+  ],
   // // RLB
   // "RLBxxFkseAZ4RgJH3Sqn8jXxhmGoz9jWxDNJMh8pL7a": [
   //   "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
