@@ -20,10 +20,10 @@ export const tokenPairRegistry: Registry = {
   "MangoCzJ36AjZyKwVj3VnYU4GTonjfVEnJmvvWaxLac": [
     "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
   ],
-  // RLB
-  "RLBxxFkseAZ4RgJH3Sqn8jXxhmGoz9jWxDNJMh8pL7a": [
-    "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
-  ],
+  // // RLB
+  // "RLBxxFkseAZ4RgJH3Sqn8jXxhmGoz9jWxDNJMh8pL7a": [
+  //   "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+  // ],
   // SAMO
   "7xKXtg2CW87d97TXJSDpbD5jBkheTqA83TZRuJosgAsU": [
     "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
@@ -40,14 +40,14 @@ export const tokenPairRegistry: Registry = {
   "4k3Dyjzvzp8eMZWUXbBCjEvwSkkk59S5iCNLY3QrkX6R": [
     "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
   ],
-  // MNDE
-  "MNDEFzGvMt87ueuHvVU9VcTqsAP5b3fTGPsHuuPA5ey": [
-    "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
-  ],
-  // LFNTY
-  "LFNTYraetVioAPnGJht4yNg2aUZFXR776cMeN9VMjXp": [
-    "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
-  ],
+  // // MNDE
+  // "MNDEFzGvMt87ueuHvVU9VcTqsAP5b3fTGPsHuuPA5ey": [
+  //   "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+  // ],
+  // // LFNTY
+  // "LFNTYraetVioAPnGJht4yNg2aUZFXR776cMeN9VMjXp": [
+  //   "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+  // ],
   // BONK
   "DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263": [
     "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
