@@ -22,7 +22,7 @@ const initTokenPair = async() => {
         new PublicKey("TWAPzC9xaeBpgDNF26z5VAcmxBowVz5uqmTx47LkWUy")
       );
       
-    let tokenAMint = new PublicKey("Fishy64jCaa3ooqXw7BHtKvYD8BTkSyAPh6RNE3xZpcN"); // FISHY 
+    let tokenAMint = new PublicKey("9tzZzEHsKnwFL1A3DyFJwj36KnZj3gZ7g4srWp9YTEoh"); // SRB 
     let tokenBMint = new PublicKey("EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"); // USDC
 
     let tokenACustodyKey = await spl.getAssociatedTokenAddress(
@@ -95,7 +95,7 @@ const initTokenPair = async() => {
             oracleAccountTokenA: oracleTokenAKey,
             oracleAccountTokenB: oracleTokenBKey,
             crankAuthority: PublicKey.default,
-            timeInForceIntervals: [300, 900, 1800, 3600, 7200, 14400, 28800, 86400, 172800, 345600], // 5min ,15min, 30min, 1h, 2h, 4h, 8h, 24h, 48h, 96h
+            timeInForceIntervals: [900, 1800, 3600, 7200, 14400, 28800, 86400, 172800, 345600, 604800], // 15min, 30min, 1h, 2h, 4h, 8h, 24h, 48h, 96h, 7d
         })
         .accounts({
             admin: signer.publicKey,
