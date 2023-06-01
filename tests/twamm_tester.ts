@@ -491,6 +491,11 @@ export class TwammTester {
   };
 
   reset = async (tifs: number[], fees: number[]) => {
+    const minPlaceOrderToken = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    let minPlaceOrderTokenBn = [];
+    for (let i=0; i<minPlaceOrderToken.length; i++) {
+      minPlaceOrderTokenBn.push(new anchor.BN(minPlaceOrderToken[i]));
+    }
     await this.deleteTestPair(0);
     await this.program.methods
       .initTokenPair({
@@ -519,6 +524,69 @@ export class TwammTester {
         oracleAccountTokenB: this.oracleTokenBKey,
         crankAuthority: PublicKey.default,
         timeInForceIntervals: tifs,
+        minPlaceOrderTokenA: minPlaceOrderTokenBn,
+        minPlaceOrderTokenB: minPlaceOrderTokenBn,
+      })
+      .accounts({
+        admin: this.admin1.publicKey,
+        multisig: this.multisigKey,
+        tokenPair: this.tokenPairKey,
+        transferAuthority: this.authorityKey,
+        mintTokenA: this.tokenAMint,
+        mintTokenB: this.tokenBMint,
+        custodyTokenA: this.tokenACustodyKey,
+        custodyTokenB: this.tokenBCustodyKey,
+        systemProgram: SystemProgram.programId,
+        rent: SYSVAR_RENT_PUBKEY,
+        tokenProgram: spl.TOKEN_PROGRAM_ID,
+      })
+      .signers([this.admin1])
+      .rpc()
+      .catch((err) => {
+        if (this.printErrors) {
+          console.error(err);
+        }
+        throw err;
+      });
+
+    await this.initPoolMetas(tifs);
+  };
+
+  resetWithMinOrder = async (tifs: number[], fees: number[], minPlaceOrderToken: number[]) => {
+    let minPlaceOrderTokenBn = [];
+    for (let i=0; i<minPlaceOrderToken.length; i++) {
+      minPlaceOrderTokenBn.push(new anchor.BN(minPlaceOrderToken[i]));
+    }
+    await this.deleteTestPair(0);
+    await this.program.methods
+      .initTokenPair({
+        allowDeposits: true,
+        allowWithdrawals: true,
+        allowCranks: false,
+        allowSettlements: true,
+        feeNumerator: new anchor.BN(fees[0]),
+        feeDenominator: new anchor.BN(fees[1]),
+        settleFeeNumerator: new anchor.BN(0),
+        settleFeeDenominator: new anchor.BN(1),
+        crankRewardTokenA: new anchor.BN(0),
+        crankRewardTokenB: new anchor.BN(0),
+        minSwapAmountTokenA: new anchor.BN(0),
+        minSwapAmountTokenB: new anchor.BN(0),
+        maxSwapPriceDiff: 0.0,
+        maxUnsettledAmount: 0.0,
+        minTimeTillExpiration: 0.3,
+        maxOraclePriceErrorTokenA: 0.0,
+        maxOraclePriceErrorTokenB: 0.0,
+        maxOraclePriceAgeSecTokenA: 9000,
+        maxOraclePriceAgeSecTokenB: 9000,
+        oracleTypeTokenA: { test: {} },
+        oracleTypeTokenB: { test: {} },
+        oracleAccountTokenA: this.oracleTokenAKey,
+        oracleAccountTokenB: this.oracleTokenBKey,
+        crankAuthority: PublicKey.default,
+        timeInForceIntervals: tifs,
+        minPlaceOrderTokenA: minPlaceOrderTokenBn,
+        minPlaceOrderTokenB: minPlaceOrderTokenBn,
       })
       .accounts({
         admin: this.admin1.publicKey,

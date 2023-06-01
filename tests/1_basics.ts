@@ -72,6 +72,11 @@ describe("basics", () => {
   });
 
   it("initTokenPair", async () => {
+    const minPlaceOrderToken = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    let minPlaceOrderTokenBn = [];
+    for (let i=0; i<minPlaceOrderToken.length; i++) {
+      minPlaceOrderTokenBn.push(new anchor.BN(minPlaceOrderToken[i]));
+    }
     await twamm.program.methods
       .initTokenPair({
         allowDeposits: false,
@@ -99,6 +104,8 @@ describe("basics", () => {
         oracleAccountTokenB: PublicKey.default,
         crankAuthority: crankAuthority,
         timeInForceIntervals: [0, 2, 3, 0, 0, 0, 0, 0, 0, 10],
+        minPlaceOrderTokenA: minPlaceOrderTokenBn,
+        minPlaceOrderTokenB: minPlaceOrderTokenBn,
       })
       .accounts({
         admin: twamm.admin1.publicKey,
@@ -153,6 +160,8 @@ describe("basics", () => {
         oracleAccountTokenB: PublicKey.default,
         crankAuthority: crankAuthority,
         timeInForceIntervals: [0, 2, 3, 0, 0, 0, 0, 0, 0, 10],
+        minPlaceOrderTokenA: minPlaceOrderTokenBn,
+        minPlaceOrderTokenB: minPlaceOrderTokenBn,
       })
       .accounts({
         admin: twamm.admin2.publicKey,
@@ -225,6 +234,8 @@ describe("basics", () => {
         settledVolumeUsd: new anchor.BN(0),
       },
       tifs: [0, 2, 3, 0, 0, 0, 0, 0, 0, 10],
+      minPlaceOrderTokenA:["0","0","0","0","0","0","0","0","0","0"],
+      minPlaceOrderTokenB:["0","0","0","0","0","0","0","0","0","0"],
       poolCounters: Array(10).fill(new anchor.BN(0)),
       currentPoolPresent: Array(10).fill(false),
       futurePoolPresent: Array(10).fill(false),
@@ -376,6 +387,11 @@ describe("basics", () => {
   });
 
   it("setLimits", async () => {
+    const minPlaceOrderToken = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    let minPlaceOrderTokenBn = [];
+    for (let i=0; i<minPlaceOrderToken.length; i++) {
+      minPlaceOrderTokenBn.push(new anchor.BN(minPlaceOrderToken[i]));
+    }
     await twamm.program.methods
       .setLimits({
         minSwapAmountTokenA: new anchor.BN(44),
@@ -383,6 +399,8 @@ describe("basics", () => {
         maxSwapPriceDiff: 0.11,
         maxUnsettledAmount: 0.22,
         minTimeTillExpiration: 0.33,
+        minPlaceOrderTokenA: minPlaceOrderTokenBn,
+        minPlaceOrderTokenB: minPlaceOrderTokenBn,
       })
       .accounts({
         admin: twamm.admin2.publicKey,
