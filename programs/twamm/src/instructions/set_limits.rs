@@ -40,6 +40,8 @@ pub struct SetLimitsParams {
     pub max_swap_price_diff: f64,
     pub max_unsettled_amount: f64,
     pub min_time_till_expiration: f64,
+    pub min_place_order_token_a: [u64; 10],
+    pub min_place_order_token_b: [u64; 10],
 }
 
 pub fn set_limits<'info>(
@@ -69,7 +71,8 @@ pub fn set_limits<'info>(
     token_pair.max_swap_price_diff = params.max_swap_price_diff;
     token_pair.max_unsettled_amount = params.max_unsettled_amount;
     token_pair.min_time_till_expiration = params.min_time_till_expiration;
-
+    token_pair.min_place_order_token_a = params.min_place_order_token_a;
+    token_pair.min_place_order_token_b = params.min_place_order_token_b;
     if !token_pair.validate() {
         err!(TwammError::InvalidTokenPairConfig)
     } else {

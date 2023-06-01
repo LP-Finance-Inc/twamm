@@ -103,6 +103,19 @@ pub fn place_order(ctx: Context<PlaceOrder>, params: &PlaceOrderParams) -> Resul
 
     let tif_index = token_pair.get_tif_index(params.time_in_force)?;
 
+    // Assert min place order amount for order
+    let min_place_order_token = if params.side == OrderSide::Buy {
+        token_pair.min_place_order_token_b[tif_index]
+    } else {
+        token_pair.min_place_order_token_a[tif_index]
+    };
+    msg!("Min place order amount: {}", min_place_order_token);
+    msg!("Order amount: {}", params.amount);
+    assert!(
+        params.amount >= min_place_order_token,
+        "Amount smaller than minimum place order amount"
+    );
+
     // create a new user order PDA or check that it matches given side and pool if order already exists
     let target_pool = &ctx.accounts.target_pool;
     let order = ctx.accounts.order.as_mut();

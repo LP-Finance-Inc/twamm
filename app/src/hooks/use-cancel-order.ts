@@ -92,6 +92,7 @@ export default () => {
             mint: secondary,
           }
         );
+
       platformAccountTokenA = platformAccountTokenARaw.value[0].pubkey;
       platformAccountTokenB = platformAccountTokenBRaw.value[0].pubkey;
     }

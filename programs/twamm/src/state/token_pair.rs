@@ -111,6 +111,12 @@ pub struct TokenPair {
     // supported time in force intervals
     pub tifs: [u32; 10], // TokenPair::MAX_POOLS
 
+    // min place order amount for token a regarding tifs
+    pub min_place_order_token_a: [u64; 10],
+
+    // min place order amount for token b regarding tifs
+    pub min_place_order_token_b: [u64; 10],
+
     // counters to keep track of pool seeds
     pub pool_counters: [u64; 10], // TokenPair::MAX_POOLS
 

@@ -107,6 +107,8 @@ pub struct InitTokenPairParams {
     pub oracle_account_token_b: Pubkey,
     pub crank_authority: Pubkey,
     pub time_in_force_intervals: [u32; 10], // TokenPair::MAX_POOLS
+    pub min_place_order_token_a: [u64; 10],
+    pub min_place_order_token_b: [u64; 10],
 }
 
 pub fn init_token_pair<'info>(
@@ -187,6 +189,8 @@ pub fn init_token_pair<'info>(
     token_pair
         .tifs
         .copy_from_slice(params.time_in_force_intervals.as_slice());
+    token_pair.min_place_order_token_a = params.min_place_order_token_a;
+    token_pair.min_place_order_token_b = params.min_place_order_token_b;
     token_pair.pool_counters.fill(0);
     token_pair.current_pool_present.fill(false);
     token_pair.future_pool_present.fill(false);
