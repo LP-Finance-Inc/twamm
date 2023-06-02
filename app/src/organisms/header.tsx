@@ -81,8 +81,8 @@ export default (props: Props) => {
                 key={item}
                 href={
                   item === "Document"
-                    ? "https://docs.lp.finance"
-                    : "https://lp.finance"
+                    ? "https://docs.lp.finance/twamm/time-weighted-average-market-maker"
+                    : "https://docs.lp.finance/twamm-as-a-service/token-listing"
                 }
                 underline="none"
                 target="_blank"
