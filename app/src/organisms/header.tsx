@@ -25,7 +25,7 @@ interface Props {
 }
 
 const drawerWidth = 240;
-const navItems = ["Document", "Listing"];
+const navItems = ["Document", "Listing", "Custom Order"];
 
 export default (props: Props) => {
   const { window } = props;
@@ -80,9 +80,12 @@ export default (props: Props) => {
               <Styled.InfoLink
                 key={item}
                 href={
+                  // eslint-disable-next-line no-nested-ternary
                   item === "Document"
-                    ? "https://docs.lp.finance"
-                    : "https://lp.finance"
+                    ? "https://docs.lp.finance/twamm/time-weighted-average-market-maker"
+                    : item === "Listing"
+                    ? "https://docs.lp.finance/twamm-as-a-service/token-listing"
+                    : "https://docs.lp.finance/twamm-as-a-service/custom-orders-and-otc"
                 }
                 underline="none"
                 target="_blank"
@@ -143,9 +146,12 @@ export default (props: Props) => {
                   <Styled.InfoLink
                     key={item}
                     href={
+                      // eslint-disable-next-line no-nested-ternary
                       item === "Document"
                         ? "https://docs.lp.finance/twamm/time-weighted-average-market-maker"
-                        : "https://docs.lp.finance/twamm-as-a-service/token-listing"
+                        : item === "Listing"
+                        ? "https://docs.lp.finance/twamm-as-a-service/token-listing"
+                        : "https://docs.lp.finance/twamm-as-a-service/custom-orders-and-otc"
                     }
                     underline="none"
                     target="_blank"

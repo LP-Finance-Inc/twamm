@@ -63,7 +63,7 @@ export const DrawerIcon = styled(MenuIcon)`
 
 export const InfoLink = styled(Link)`
   color: #0c0;
-  margin: 0 0.6rem;
+  margin: 0 1rem;
 `;
 
 export const UtilsControl = styled(Card)`
