@@ -42,7 +42,7 @@ export default ({ onToggle }: { onToggle: (arg: boolean) => void }) => {
           <Grid item xs={9}>
             <Styled.DetailsControls>
               <Typography pb={1} variant="subtitle1">
-                Trade onLimit Order with 0% fees
+                Trade on Limit Order with 0% fees
               </Typography>
               <Typography variant="subtitle2" gutterBottom>
                 Trading Limit Orders are now free for a limited time only. Also
