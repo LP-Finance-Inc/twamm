@@ -99,7 +99,6 @@ export default (props: {
       <NotificationPopover ref={notifyRef}>
         <NotificationModel onToggle={onNotifyToggle} />
       </NotificationPopover>
-
       <OrderEditor
         a={state.data?.a}
         all={state.data?.all}
