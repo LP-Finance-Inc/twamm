@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo } from "react";
+import { useCallback, useEffect, useMemo, useRef } from "react";
 import { OrderSide } from "@twamm/types/lib";
 
 import M, { Extra } from "easy-maybe/lib";
@@ -8,12 +8,20 @@ import useJupTokensByMint from "../hooks/use-jup-tokens-by-mint";
 import useTokenExchange, { action as A } from "../hooks/use-token-exchange";
 import { Provider as TIFProvider } from "../contexts/tif-context";
 import useTxRunner from "../contexts/transaction-runner-context";
+import NotificationModel from "../molecules/notification-model";
+import NotificationPopover from "../molecules/notification-popover";
 
 export type TradeStruct = {
   amount: number;
   pair: AddressPair;
   type: OrderSide;
 };
+
+export interface NotifyRef {
+  open: () => void;
+  close: () => void;
+  isOpened: boolean;
+}
 
 export default (props: {
   onTradeChange: (arg0: TradeStruct) => void;
@@ -23,6 +31,7 @@ export default (props: {
   const tokenPairs = useAddressPairs();
   const tokenPair = useJupTokensByMint(props.trade.pair);
   const [state, dispatch] = useTokenExchange();
+  const notifyRef = useRef<NotifyRef>();
 
   useEffect(() => {
     M.andMap(([pairs, pair, type]) => {
@@ -51,6 +60,11 @@ export default (props: {
     },
     [dispatch]
   );
+
+  const onNotifyToggle = useCallback((flag: boolean) => {
+    if (flag) notifyRef.current?.open();
+    else notifyRef.current?.close();
+  }, []);
 
   const onTradeChange = useCallback(
     (next: TradeStruct) => {
@@ -82,6 +96,9 @@ export default (props: {
 
   return (
     <TIFProvider>
+      <NotificationPopover ref={notifyRef}>
+        <NotificationModel onToggle={onNotifyToggle} />
+      </NotificationPopover>
       <OrderEditor
         a={state.data?.a}
         all={state.data?.all}

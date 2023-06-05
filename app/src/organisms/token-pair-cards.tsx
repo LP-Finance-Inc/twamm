@@ -45,7 +45,7 @@ export default ({ info }: { info?: TokenPair[] }) => {
         const { statsA } = info[i];
         const { statsB } = info[i];
         // const decimalA = 10 ** info[i].configA.decimals;
-        const decimalB = 10 ** info[i].configB.decimals;
+        const decimalB = 1000000;
         const aMint = info[i].configA.mint;
         const bMint = info[i].configB.mint;
 

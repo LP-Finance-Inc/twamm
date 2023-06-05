@@ -9,4 +9,6 @@ export const lpfinanceOracleTokens = [
   "HBB111SCo9jkCejsZfz8Ec8nH7T6THF8KEKSnvwT6XK6", // HBB
   "Fishy64jCaa3ooqXw7BHtKvYD8BTkSyAPh6RNE3xZpcN", // FISHY
   "BWXrrYFhT7bMHmNBFoQFWdsSgA3yXoAnMhDK6Fn1eSEn", // HADES
+  "9tzZzEHsKnwFL1A3DyFJwj36KnZj3gZ7g4srWp9YTEoh", // ARB
+  "9TVjnzpF3X8DHsfVqYWoCGphJxtGYh1PDCFN5QmsHW5t", // MDS
 ];

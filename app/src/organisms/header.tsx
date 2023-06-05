@@ -25,7 +25,23 @@ interface Props {
 }
 
 const drawerWidth = 240;
-const navItems = ["Document", "Listing"];
+const navItems = [
+  {
+    id: 1,
+    title: "Document",
+    link: "https://docs.lp.finance/twamm/time-weighted-average-market-maker",
+  },
+  {
+    id: 2,
+    title: "Listing",
+    link: "https://docs.lp.finance/twamm-as-a-service/token-listing",
+  },
+  {
+    id: 3,
+    title: "Custom Order",
+    link: "https://docs.lp.finance/twamm-as-a-service/custom-orders-and-otc",
+  },
+];
 
 export default (props: Props) => {
   const { window } = props;
@@ -33,7 +49,7 @@ export default (props: Props) => {
   const { isDesktop, isMobile } = useBreakpoints();
   const { active } = useTxRunner();
 
-  const [mobileOpen, setMobileOpen] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState<boolean>(false);
 
   const runnerRef = useRef<Ref>();
   const settingsRef = useRef<Ref>();
@@ -75,20 +91,16 @@ export default (props: Props) => {
       <Styled.DividerLine />
       <List>
         {navItems.map((item) => (
-          <ListItem key={item} disablePadding>
+          <ListItem key={item.id} disablePadding>
             <ListItemButton sx={{ textAlign: "center" }}>
               <Styled.InfoLink
-                key={item}
-                href={
-                  item === "Document"
-                    ? "https://docs.lp.finance/twamm/time-weighted-average-market-maker"
-                    : "https://docs.lp.finance/twamm-as-a-service/token-listing"
-                }
+                key={item.id}
+                href={item.link}
                 underline="none"
                 target="_blank"
                 rel="noopener"
               >
-                {item}
+                {item.title}
               </Styled.InfoLink>
             </ListItemButton>
           </ListItem>
@@ -119,7 +131,7 @@ export default (props: Props) => {
                 aria-label="open drawer"
                 edge="start"
                 onClick={handleDrawerToggle}
-                sx={{ m: 0, p: 0, px: 0.5, display: { sm: "none" } }}
+                sx={{ m: 0, p: 0, px: 0.5, display: { md: "none" } }}
               >
                 <Styled.DrawerIcon />
               </IconButton>
@@ -136,22 +148,18 @@ export default (props: Props) => {
               <Box
                 sx={{
                   mr: 0.5,
-                  display: { xs: "none", sm: "block" },
+                  display: { xs: "none", sm: "none", md: "block" },
                 }}
               >
                 {navItems.map((item) => (
                   <Styled.InfoLink
-                    key={item}
-                    href={
-                      item === "Document"
-                        ? "https://docs.lp.finance/twamm/time-weighted-average-market-maker"
-                        : "https://docs.lp.finance/twamm-as-a-service/token-listing"
-                    }
+                    key={item.id}
+                    href={item.link}
                     underline="none"
                     target="_blank"
                     rel="noopener"
                   >
-                    {item}
+                    {item.title}
                   </Styled.InfoLink>
                 ))}
               </Box>
@@ -180,7 +188,7 @@ export default (props: Props) => {
             keepMounted: true,
           }}
           sx={{
-            display: { xs: "block", sm: "none" },
+            display: { xs: "block", sm: "block", md: "none" },
             "& .MuiDrawer-paper": {
               boxSizing: "border-box",
               width: drawerWidth,

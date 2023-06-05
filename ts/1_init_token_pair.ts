@@ -79,7 +79,7 @@ const initTokenPair = async() => {
             oracleAccountTokenA: oracleAccountTokenA,
             oracleAccountTokenB: oracleAccountTokenB,
             crankAuthority: PublicKey.default,
-            timeInForceIntervals: [300, 900, 1800, 3600, 7200, 14400, 28800, 86400, 172800, 345600], // 5min ,15min, 30min, 1h, 2h, 4h, 8h, 24h, 48h, 96h
+            timeInForceIntervals: [900, 1800, 3600, 7200, 14400, 28800, 86400, 172800, 345600, 604800], // 15min, 30min, 1h, 2h, 4h, 8h, 24h, 48h, 96h, 7d
         })
         .accounts({
             admin: signer.publicKey,

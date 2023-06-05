@@ -15,7 +15,7 @@ const setTimeInForce = async() => {
         new PublicKey("TWAPzC9xaeBpgDNF26z5VAcmxBowVz5uqmTx47LkWUy")
       );
     
-    let tokenAMint = new PublicKey("So11111111111111111111111111111111111111112"); // SOL
+    let tokenAMint = new PublicKey("7vfCXTUXx5WJV5JADk17DUJ4ksgau7utNKj4b963voxs"); // SOL
     let tokenBMint = new PublicKey("EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"); // USDC
 
     let [tokenPairKey, tokenPairBump] = await PublicKey.findProgramAddress(
@@ -28,7 +28,7 @@ const setTimeInForce = async() => {
     )
 
     let tx = await program.methods
-        .setTimeInForce({timeInForceIndex:9, newTimeInForce:604800})
+        .setTimeInForce({timeInForceIndex:0, newTimeInForce:900})
         .accounts({
             admin: signer.publicKey,
             multisig: multisigKey,

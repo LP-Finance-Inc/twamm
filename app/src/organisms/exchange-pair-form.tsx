@@ -16,6 +16,7 @@ import useIndexedTIFs from "../contexts/tif-context";
 import usePrice from "../hooks/use-price";
 import useBalance from "../hooks/use-balance";
 import { add, keepPrevious, refreshEach } from "../swr-options";
+import api from "../api";
 
 export default ({
   amount,
@@ -134,7 +135,7 @@ export default ({
       }
 
       fetch(
-        `https://quote-api.jup.ag/v4/quote?inputMint=${tokenA}&outputMint=${tokenB}&amount=${tifAccountedTokenAFormattedAmount}&onlyDirectRoutes=true`
+        `${api.quoteJup}?inputMint=${tokenA}&outputMint=${tokenB}&amount=${tifAccountedTokenAFormattedAmount}&onlyDirectRoutes=true`
       )
         .then((res) => res.json())
         .then((data) => {

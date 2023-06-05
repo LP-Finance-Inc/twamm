@@ -16,7 +16,7 @@ export const setTimeInForceMultiple = async(newTimeInForceArray) => {
         new PublicKey("TWAPzC9xaeBpgDNF26z5VAcmxBowVz5uqmTx47LkWUy")
       );
     
-    let tokenAMint = new PublicKey("So11111111111111111111111111111111111111112"); // USDCet
+    let tokenAMint = new PublicKey("9tzZzEHsKnwFL1A3DyFJwj36KnZj3gZ7g4srWp9YTEoh"); // USDCet
     let tokenBMint = new PublicKey("EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"); // USDC
 
     let [tokenPairKey, tokenPairBump] = await PublicKey.findProgramAddress(
@@ -29,10 +29,10 @@ export const setTimeInForceMultiple = async(newTimeInForceArray) => {
     )
     assert(newTimeInForceArray.length=10, "Array length should be 10")
     for (let i=0; i<newTimeInForceArray.length; i++) {
-        console.log(`Index ${i}`)
+        console.log(`Index ${9-i}`)
         try {
             let tx = await program.methods
-            .setTimeInForce({timeInForceIndex:i, newTimeInForce:newTimeInForceArray[i]})
+            .setTimeInForce({timeInForceIndex:9-i, newTimeInForce:newTimeInForceArray[9-i]})
             .accounts({
                 admin: signer.publicKey,
                 multisig: multisigKey,
@@ -45,6 +45,9 @@ export const setTimeInForceMultiple = async(newTimeInForceArray) => {
         }
     }
 }
+
+// const tifArray = [901, 1801, 3601, 7201, 14401, 28801, 86401, 172801, 345601, 604801]
+// setTimeInForceMultiple(tifArray)
 setTimeInForceMultiple(
-    [300, 900, 1800, 3600, 7200, 14400, 28800, 86400, 172800, 345600]
+    [900, 1800, 3600, 7200, 14400, 28800, 86400, 172800, 345600, 604800]
 );

@@ -287,7 +287,6 @@ export const theme = createTheme({
     subtitle2: {
       fontSize: "0.875rem",
       fontWeight: 500,
-      lineHeight: 1,
     },
     overline: {
       fontSize: "0.75rem",
@@ -327,8 +326,8 @@ export const theme = createTheme({
       lineHeight: 1.375,
     },
     h6: {
-      fontWeight: 500,
-      fontSize: "0.81rem",
+      fontWeight: 800,
+      fontSize: "0.83rem",
       lineHeight: 1.375,
     },
   },
