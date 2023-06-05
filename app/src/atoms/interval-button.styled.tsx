@@ -5,6 +5,7 @@ export const ScheduleButton = styled(Button)`
   padding: 3px 0px;
   text-transform: capitalize;
   font-size: 0.9rem;
+  white-space: nowrap;
 
   &.Mui {
     min-width: 10px;
@@ -35,24 +36,12 @@ export const SelectedScheduleButton = styled(Button)`
   &.Mui-disabled + * {
     border-left-color: ${(p) => p.theme.palette.success.dark};
   }
-  @media (max-width: 600) {
-    padding: 0px 0px;
-  }
 `;
 
 export const MobileScheduleButton = styled(ScheduleButton)`
-  padding: 0 2px;
   font-size: 0.8rem;
-  text-transform: capitalize;
 `;
 
 export const MobileSelectedScheduleButton = styled(SelectedScheduleButton)`
-  padding: 0 2px;
   font-size: 0.8rem;
-  text-transform: capitalize;
-
-  @media (max-width: 600) {
-    padding: 0px 0px;
-    font-size: 8px;
-  }
 `;
