@@ -48,6 +48,9 @@ export default ({ onToggle }: { onToggle: (arg: boolean) => void }) => {
                 Trading Limit Orders are now free for a limited time only. Also
                 stand a chance to win 100k $SAMO and 1M $KING weekly!
               </Typography>
+              <Link href="http://" target="_blank" rel="noopener noreferrer">
+                <Styled.PlaceOrder>Place an Order Now</Styled.PlaceOrder>
+              </Link>
             </Styled.DetailsControls>
           </Grid>
           <Grid item xs={1}>

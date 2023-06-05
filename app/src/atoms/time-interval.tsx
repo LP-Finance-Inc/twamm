@@ -72,7 +72,7 @@ export default ({
               }
             : {
                 "& .MuiButtonGroup-grouped": {
-                  minWidth: 38,
+                  minWidth: 35,
                 },
               }
         }

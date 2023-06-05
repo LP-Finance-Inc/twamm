@@ -2,6 +2,7 @@ import { styled } from "@mui/material/styles";
 import Card from "@mui/material/Card";
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
+import { Button } from "@mui/material";
 
 export const Root = styled(Card)`
   position: relative;
@@ -43,5 +44,9 @@ export const Close = styled(IconButton)`
 
 export const DetailsControls = styled(Box)`
   text-align: start;
-  padding: 1rem;
+  padding: 0.3rem 1rem;
+`;
+
+export const PlaceOrder = styled(Button)`
+  text-transform: capitalize;
 `;
