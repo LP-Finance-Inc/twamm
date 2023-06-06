@@ -75,10 +75,14 @@ export const ConnectButton = styled(Button)`
 export const TokenTotal = styled(Box)`
   display: flex;
   align-items: center;
-  gap: 0 0.5rem;
+  gap: 0 1rem;
   color: ${(p) => p.theme.palette.text.secondary};
   font-size: 13px;
   font-weight: 600;
+
+  @media (max-width: 600px) {
+    gap: 0 0.5rem;
+  }
 `;
 
 export const SecondaryControls = styled(Stack)`

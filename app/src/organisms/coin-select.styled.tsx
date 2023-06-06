@@ -31,6 +31,7 @@ export const InputField = styled("input")`
   outline: none;
   background: #161724;
   color: #0c0;
+  font-size: 1rem;
   padding: 1rem 0.8rem;
   border-radius: 0.75rem;
   box-shadow: inset -4px -4px 5px rgba(87, 87, 87, 0.1),
