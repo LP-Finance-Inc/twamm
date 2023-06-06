@@ -1,25 +1,86 @@
+import { useMemo } from "react";
+import M from "easy-maybe/lib";
 import Alert from "@mui/material/Alert";
 import Avatar from "@mui/material/Avatar";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+
 import type { ListChildComponentProps } from "react-window";
 import type { MouseEvent } from "react";
 import { FixedSizeList } from "react-window";
-import { useMemo } from "react";
+import { PublicKey } from "@solana/web3.js";
 
 import styles from "./coin-select.module.css";
 import useBreakpoints from "../hooks/use-breakpoints";
+import { add, keepPrevious, refreshEach } from "../swr-options";
+import useBalance from "../hooks/use-balance";
+import { formatNumber } from "../utils";
+
+export interface CoinBalanceProps {
+  address: string;
+  publicKey: PublicKey | null;
+  coin: string;
+}
+
+export const CoinBalance = ({ address, publicKey, coin }: CoinBalanceProps) => {
+  const balance = useBalance(address, add([keepPrevious(), refreshEach()]));
+
+  const displayBalance = M.withDefault<number>(0, M.of(balance.data));
+
+  if (!publicKey) {
+    return (
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "row",
+          gap: "0.4rem",
+        }}
+      >
+        <Typography variant="subtitle2" gutterBottom>
+          {formatNumber.format(0, 6)}
+        </Typography>
+        <Typography variant="subtitle2" gutterBottom>
+          {coin}
+        </Typography>
+      </Box>
+    );
+  }
+
+  return (
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "row",
+        gap: "0.4rem",
+      }}
+    >
+      <Typography variant="subtitle2" gutterBottom>
+        {formatNumber.format(displayBalance, 6)}
+      </Typography>
+      <Typography variant="subtitle2" gutterBottom>
+        {coin}
+      </Typography>
+    </Box>
+  );
+};
 
 export default ({
   data,
   filterValue,
   onClick = () => {},
+  publicKey,
 }: {
-  data: Record<string, { symbol: string; image: string; name: string }>;
+  data: Record<
+    string,
+    { symbol: string; image: string; name: string; address: string }
+  >;
   filterValue?: string;
   onClick: (arg0: MouseEvent, arg1: string) => void;
+  publicKey: PublicKey | null;
 }) => {
   const { isMobile } = useBreakpoints();
 
@@ -79,6 +140,11 @@ export default ({
               }}
               primary={coinRecords[index].symbol.toUpperCase()}
               secondary={coinRecords[index].name}
+            />
+            <CoinBalance
+              address={coinRecords[index].address}
+              publicKey={publicKey}
+              coin={coinRecords[index].symbol}
             />
           </ListItem>
         )}

@@ -9,7 +9,7 @@ interface DisabledBoxProps extends BoxProps {
 
 export const TokenField = styled(Stack)`
   border-radius: 0.75rem;
-  padding: 0.4rem 0.5rem;
+  padding: 0.7rem 0.5rem;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -20,11 +20,21 @@ export const TokenField = styled(Stack)`
   cursor: pointer;
   background-color: rgba(255, 255, 255, 0.04);
   ${(p: DisabledBoxProps) => (p.disabled ? `cursor: not-allowed;` : undefined)}
+  transition: all 0.3s;
+  transform: scale(1);
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.06);
+  }
+
+  &:active {
+    transform: scale(0.9);
+  }
 `;
 
 export const TokenIcon = styled(Avatar)`
-  width: 28px;
-  height: 28px;
+  width: 30px;
+  height: 30px;
   margin-right: 10px;
 `;
 
@@ -37,7 +47,7 @@ export const MobileTokenIcon = styled(Avatar)`
 export const TokenName = styled("span")`
   text-transform: uppercase;
   color: #0c0;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
 `;
 
 export const TokenControl = styled("div")`

@@ -3,6 +3,7 @@ import type { ChangeEvent, MouseEvent } from "react";
 import type { PublicKey } from "@solana/web3.js";
 import Typography from "@mui/material/Typography";
 import { useCallback, useMemo, useState } from "react";
+import { useWallet } from "@solana/wallet-adapter-react";
 
 import CoinSelect from "../molecules/coin-select";
 import i18n from "../i18n";
@@ -46,6 +47,7 @@ export default ({
 
   const { data, isLoading } = useJupTokensByMint(tokens);
   const { data: selectedData } = useJupTokensByMint(selected);
+  const { publicKey } = useWallet();
 
   const coinRecords = useMemo(() => populateTokenRecords(data), [data]);
   const selectedRecords = useMemo(
@@ -112,6 +114,7 @@ export default ({
         data={coinRecords}
         filterValue={search}
         onClick={onCoinSelect}
+        publicKey={publicKey}
       />
     </Styled.Container>
   );
