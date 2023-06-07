@@ -30,7 +30,7 @@ const Content = ({
     return <TxState.Error error={hasError} logs={hasError.logs} />;
   }
 
-  if (!isFinished)
+  if (isFinished)
     return (
       <TxState.Success signature={signature as string} view={viewExplorer} />
     );
