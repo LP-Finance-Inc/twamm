@@ -41,6 +41,11 @@ const navItems = [
     title: "Custom Order",
     link: "https://docs.lp.finance/twamm-as-a-service/custom-orders-and-otc",
   },
+  {
+    id: 4,
+    title: "Developers",
+    link: "https://lite.lp.finance/",
+  },
 ];
 
 export default (props: Props) => {
