@@ -64,10 +64,10 @@ export const tokenPairRegistry: Registry = {
   "HBB111SCo9jkCejsZfz8Ec8nH7T6THF8KEKSnvwT6XK6": [
     "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
   ],
-  // MPLX
-  "METAewgxyPbgwsseH8T16a39CQ5VyVxZi9zXiDPY18m": [
-    "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
-  ],
+  // // MPLX
+  // "METAewgxyPbgwsseH8T16a39CQ5VyVxZi9zXiDPY18m": [
+  //   "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+  // ],
   // TULIP
   "TuLipcqtGVXP9XR62wM8WWCm6a9vhLs7T1uoWBk6FDs": [
     "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
@@ -84,6 +84,14 @@ export const tokenPairRegistry: Registry = {
   // "9TVjnzpF3X8DHsfVqYWoCGphJxtGYh1PDCFN5QmsHW5t": [
   //   "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"
   // ]
+  // ATLAS
+  "ATLASXmbPQxBUYbxPsV97usA3fPQYEqzQBUHgiFCUsXx": [
+    "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"
+  ],
+  // DUST
+  "DUSTawucrTsGU8hcqRdHDCbuYhCPADMLM2VcCb8VnFnQ": [
+    "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"
+  ],
 };
 
 export const tokenBRegistry = [

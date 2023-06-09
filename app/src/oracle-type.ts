@@ -13,4 +13,5 @@ export const lpfinanceOracleTokens = [
   "9TVjnzpF3X8DHsfVqYWoCGphJxtGYh1PDCFN5QmsHW5t", // MDS
   "METAewgxyPbgwsseH8T16a39CQ5VyVxZi9zXiDPY18m", // MPLX
   "TuLipcqtGVXP9XR62wM8WWCm6a9vhLs7T1uoWBk6FDs", // TULIP
+  "DUSTawucrTsGU8hcqRdHDCbuYhCPADMLM2VcCb8VnFnQ", // DUST
 ];
