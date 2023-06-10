@@ -52,10 +52,6 @@ export const tokenPairRegistry: Registry = {
   "LFNTYraetVioAPnGJht4yNg2aUZFXR776cMeN9VMjXp": [
     "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
   ],
-  // // BONK
-  // "DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263": [
-  //   "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
-  // ], 
   // ARB
   "9tzZzEHsKnwFL1A3DyFJwj36KnZj3gZ7g4srWp9YTEoh": [
     "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
@@ -92,9 +88,27 @@ export const tokenPairRegistry: Registry = {
   "DUSTawucrTsGU8hcqRdHDCbuYhCPADMLM2VcCb8VnFnQ": [
     "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"
   ],
+  // BATCH 2
+  // PRNT
+  "4TUNzcgp2fPD48fcW4seRjyqyDZMrPj4ZubnXFEsKeYk": [
+    "So11111111111111111111111111111111111111112"
+  ],
+  // BONK
+  "DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263": [
+    "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+  ], 
+  // GUAC
+  "AZsHEMXd36Bj1EMNXhowJajpUXzrKcK57wW4ZGXVa7yR": [
+    "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+  ], 
+  // KING
+  "9noXzpXnkyEcKF3AeXqUHTdR59V5uvrRBUZ9bwfQwxeq": [
+    "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"
+  ],
 };
 
 export const tokenBRegistry = [
     "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
     "9TVjnzpF3X8DHsfVqYWoCGphJxtGYh1PDCFN5QmsHW5t",
+    // "So11111111111111111111111111111111111111112"
 ]
