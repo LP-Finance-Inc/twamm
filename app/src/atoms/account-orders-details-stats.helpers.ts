@@ -43,7 +43,7 @@ export const format = {
   // FEAT: rework splitting
   prices(data: PoolDetails) {
     const value = data.prices
-      .map((price) => (price < 0 ? "-" : price.toFixed(6)))
+      .map((price) => (price < 0 ? "-" : price.toFixed(9)))
       .join("|");
 
     return M.withDefault("-", M.of(value));
