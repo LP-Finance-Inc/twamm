@@ -44,6 +44,8 @@ export default ({
   const [a, b] = [primary, secondary];
   const outRef = useRef<number>(0);
   const outValueRef = useRef<number>(0);
+  const savedUsdRef = useRef<number>(0);
+  const savedPercentageRef = useRef<number>(0);
   const [pairAmount, setPairAmount] = useState<number>(0);
   const [isPending, setPending] = useState<boolean>(false);
   const balance = useBalance(a?.address, add([keepPrevious(), refreshEach()]));
@@ -133,19 +135,36 @@ export default ({
         epochs = 1;
         tifAccountedTokenAFormattedAmount = tokenAFormattedAmount;
       }
-
-      fetch(
-        `${api.quoteJup}?inputMint=${tokenA}&outputMint=${tokenB}&amount=${tifAccountedTokenAFormattedAmount}&onlyDirectRoutes=true`
-      )
-        .then((res) => res.json())
-        .then((data) => {
-          const bestRoute = data.data[0];
+      Promise.all([
+        fetch(
+          `${api.quoteJup}?inputMint=${tokenA}&outputMint=${tokenB}&amount=${tifAccountedTokenAFormattedAmount}&onlyDirectRoutes=true`
+        ),
+        fetch(
+          `${api.quoteJup}?inputMint=${tokenA}&outputMint=${tokenB}&amount=${tokenAFormattedAmount}&onlyDirectRoutes=true`
+        ),
+      ])
+        .then(([res1, res2]) => Promise.all([res1.json(), res2.json()]))
+        .then(([data1, data2]) => {
+          const bestRoute = data1.data[0];
           const { outAmount } = bestRoute;
-
           const tifAccountedAmount = outAmount * epochs;
+
+          const noTwapBestAmount = data2.data[0].outAmount;
+
           if (tokenBDecimals) {
             const OutAmount = tifAccountedAmount / 10 ** tokenBDecimals;
+            const savedUsd =
+              ((tifAccountedAmount - noTwapBestAmount) / 10 ** tokenBDecimals) *
+              price.data;
+            const savedPercentage =
+              ((tifAccountedAmount - noTwapBestAmount) / noTwapBestAmount) * 100;
 
+            savedUsdRef.current = Number(
+              savedUsd?.toFixed(10)?.match(/^-?\d*\.?0*\d{0,3}/)?.[0]
+            );
+            savedPercentageRef.current = Number(
+              savedPercentage?.toFixed(10)?.match(/^-?\d*\.?0*\d{0,3}/)?.[0]
+            );
             outRef.current = OutAmount;
             outValueRef.current = Number(
               (OutAmount * price.data)
@@ -154,12 +173,16 @@ export default ({
             );
             setPending(false);
           } else {
+            savedUsdRef.current = 0;
+            savedPercentageRef.current = 0;
             outRef.current = 0;
             outValueRef.current = 0;
             setPending(false);
           }
         })
         .catch(() => {
+          savedUsdRef.current = 0;
+          savedPercentageRef.current = 0;
           outRef.current = 0;
           outValueRef.current = 0;
           setPending(false);
@@ -168,7 +191,7 @@ export default ({
 
     const debounceTime = setTimeout(() => {
       getOutAmount();
-    }, 300);
+    }, 500);
 
     return () => clearTimeout(debounceTime);
   }, [amount, a, b, selected, price.data]);
@@ -255,12 +278,20 @@ export default ({
         sellRate && (
           <Box>
             <Typography
-              textAlign="left"
+              textAlign="center"
               variant="body2"
               sx={{ color: "#FF69B4" }}
             >
               Sell Rate: {sellRate} {a?.symbol} (≈$
               {(sellRate * priceA.data).toFixed(3)}) / minute
+            </Typography>
+            <Typography
+              textAlign="center"
+              variant="body2"
+              sx={{ color: "#00FF00" }}
+            >
+              Saving ${savedUsdRef.current} ({savedPercentageRef.current}%) from
+              price impact!
             </Typography>
           </Box>
         )}
