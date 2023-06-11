@@ -157,7 +157,8 @@ export default ({
               ((tifAccountedAmount - noTwapBestAmount) / 10 ** tokenBDecimals) *
               price.data;
             const savedPercentage =
-              ((tifAccountedAmount - noTwapBestAmount) / noTwapBestAmount) * 100;
+              ((tifAccountedAmount - noTwapBestAmount) / noTwapBestAmount) *
+              100;
 
             savedUsdRef.current = Number(
               savedUsd?.toFixed(10)?.match(/^-?\d*\.?0*\d{0,3}/)?.[0]
