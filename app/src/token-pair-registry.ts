@@ -110,5 +110,16 @@ export const tokenPairRegistry: Registry = {
 export const tokenBRegistry = [
     "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
     "9TVjnzpF3X8DHsfVqYWoCGphJxtGYh1PDCFN5QmsHW5t",
-    // "So11111111111111111111111111111111111111112"
+    "So11111111111111111111111111111111111111112"
 ]
+
+export const definedPairs: AddressPair[] = [];
+for (let i = 0; i < Object.keys(tokenPairRegistry).length; i += 1) {
+  const tokenA = Object.keys(tokenPairRegistry)[i];
+  const tokenPair = tokenPairRegistry[tokenA];
+  for (let j = 0; j < tokenPair.length; j += 1) {
+    definedPairs.push(
+        [tokenA, tokenPair[j]]
+      )
+  }
+}
