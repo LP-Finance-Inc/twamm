@@ -153,19 +153,22 @@ export default ({
 
           if (tokenBDecimals) {
             const OutAmount = tifAccountedAmount / 10 ** tokenBDecimals;
-            const savedUsd =
+            let savedUsd =
               ((tifAccountedAmount - noTwapBestAmount) / 10 ** tokenBDecimals) *
               price.data;
-            const savedPercentage =
+            let savedPercentage =
               ((tifAccountedAmount - noTwapBestAmount) / noTwapBestAmount) *
               100;
 
-            savedUsdRef.current = Number(
+            savedUsd = Number(
               savedUsd?.toFixed(10)?.match(/^-?\d*\.?0*\d{0,3}/)?.[0]
             );
-            savedPercentageRef.current = Number(
+            savedPercentage = Number(
               savedPercentage?.toFixed(10)?.match(/^-?\d*\.?0*\d{0,3}/)?.[0]
             );
+            savedUsdRef.current = savedUsd >= 0 ? savedUsd : 0;
+            savedPercentageRef.current =
+              savedPercentage >= 0 ? savedPercentage : 0;
             outRef.current = OutAmount;
             outValueRef.current = Number(
               (OutAmount * price.data)
