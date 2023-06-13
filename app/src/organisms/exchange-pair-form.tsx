@@ -289,14 +289,10 @@ export default ({
               Sell Rate: {sellRate} {a?.symbol} (≈$
               {(sellRate * priceA.data).toFixed(3)}) / minute
             </Typography>
-            <Typography
-              textAlign="center"
-              variant="body2"
-              sx={{ color: "#00FF00" }}
-            >
+            <Styled.PriceImpactText textAlign="center" variant="body2">
               Saving ${savedUsdRef.current} ({savedPercentageRef.current}%) from
               price impact!
-            </Typography>
+            </Styled.PriceImpactText>
           </Box>
         )}
       <Box py={2}>

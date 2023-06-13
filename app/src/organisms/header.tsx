@@ -8,6 +8,7 @@ import Drawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
+import FormControlLabel from "@mui/material/FormControlLabel";
 
 import * as Styled from "./header.styled";
 import i18n from "../i18n";
@@ -19,6 +20,9 @@ import useBreakpoints from "../hooks/use-breakpoints";
 import useTxRunner from "../contexts/transaction-runner-context";
 import DesktopLogo from "../../public/images/lp-logo.png";
 import MobileLogo from "../../public/images/lp-logo-mobile.png";
+import eDesktopLogo from "../../public/images/elp-logo.png";
+import eMobileLogo from "../../public/images/elp-logo-mobile.png";
+import useTheme from "../contexts/theme-context";
 
 interface Props {
   window?: () => Window;
@@ -53,6 +57,7 @@ export default (props: Props) => {
 
   const { isDesktop, isMobile } = useBreakpoints();
   const { active } = useTxRunner();
+  const { handleTheme, theme } = useTheme();
 
   const [mobileOpen, setMobileOpen] = useState<boolean>(false);
 
@@ -140,14 +145,25 @@ export default (props: Props) => {
               >
                 <Styled.DrawerIcon />
               </IconButton>
-              <Image
-                src={isMobile ? MobileLogo : DesktopLogo}
-                alt="logo"
-                width={isMobile ? 56 : 117}
-                height={isMobile ? 56 : 65}
-                object-fit="cover"
-                priority
-              />
+              {theme === "dark" ? (
+                <Image
+                  src={isMobile ? MobileLogo : DesktopLogo}
+                  alt="logo"
+                  width={isMobile ? 56 : 117}
+                  height={isMobile ? 56 : 65}
+                  object-fit="cover"
+                  priority
+                />
+              ) : (
+                <Image
+                  src={isMobile ? eMobileLogo : eDesktopLogo}
+                  alt="logo"
+                  width={isMobile ? 56 : 117}
+                  height={isMobile ? 56 : 65}
+                  object-fit="cover"
+                  priority
+                />
+              )}
             </Styled.Logo>
             <Styled.Controls direction="row">
               <Box
@@ -178,6 +194,13 @@ export default (props: Props) => {
               </Box>
               <Box py={isDesktop ? 1 : 0}>
                 <Styled.WalletButton />
+              </Box>
+              <Box pl={isMobile ? 1 : 2}>
+                <FormControlLabel
+                  control={<Styled.IOSSwitch sx={{ m: 1 }} defaultChecked />}
+                  onClick={handleTheme}
+                  label={null}
+                />
               </Box>
             </Styled.Controls>
           </Styled.Header>

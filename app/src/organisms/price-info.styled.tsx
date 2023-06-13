@@ -5,6 +5,7 @@ import ListItem from "@mui/material/ListItem";
 import Stack from "@mui/material/Stack";
 import { styled } from "@mui/material/styles";
 import Link from "@mui/material/Link";
+import Typography from "@mui/material/Typography";
 
 export const Info = styled(Box)`
   display: flex;
@@ -32,6 +33,10 @@ export const LinkOverflow = styled(Link)`
   }
 `;
 
+export const IntervalTitle = styled(Box)`
+  font-weight: 600;
+`;
+
 export const Toggle = styled(IconButton)`
   padding: 0 ${(p) => p.theme.spacing(1)};
   color: #0c0;
@@ -45,3 +50,7 @@ export const DetailsPair = styled(Stack)`
 export const DetailsGridItem = styled(Grid)`
   width: 100%;
 `;
+
+export const BoltText = styled(Typography)(({ theme }) => ({
+  color: theme.palette.mode === "dark" ? "#bf00ff" : "#7620E0",
+}));

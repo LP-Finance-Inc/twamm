@@ -4,7 +4,6 @@ import darkScrollbar from "@mui/material/darkScrollbar";
 import { grey } from "@mui/material/colors";
 import { lensPath, pipe, set } from "ramda";
 
-import { theme as kitTheme } from "./theme/external-theme";
 import { components, palette } from "./theme/index";
 
 const lensScrollbar = lensPath([
@@ -38,7 +37,3 @@ export const enhanceTheme = (theme: Theme) =>
     components,
     palette("text")
   )(getOverrides(theme, "dark"));
-
-export { kitTheme };
-
-export const darkTheme = enhanceTheme(kitTheme);

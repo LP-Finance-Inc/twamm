@@ -13,10 +13,9 @@ export const UtilsControl = styled(Card)`
   cursor: pointer;
   display: flex;
   padding: 4px;
-  color: #0c0;
-  background: #161724;
-  box-shadow: 4px 4px 6px rgba(9, 9, 14, 0.4),
-    -4px -4px 6px rgba(87, 87, 87, 0.1);
+  color: ${({ theme }) => theme.palette.text.secondary};
+  background: ${({ theme }) => theme.palette.background.default};
+  box-shadow: ${({ theme }) => theme.shadows[1]};
   border: none;
 
   ${(params: ActiveCardProps) =>

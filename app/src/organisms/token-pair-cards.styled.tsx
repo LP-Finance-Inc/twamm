@@ -9,7 +9,7 @@ import Table from "@mui/material/Table";
 export const TableRoot = styled(TableContainer)`
   border-collapse: separate;
   border-spacing: 0 1em;
-  padding: 0 0.3rem;
+  padding: 0 0.4rem;
 `;
 
 export const TableBodyMain = styled(Table)`
@@ -26,8 +26,7 @@ export const TableCellBox = styled(TableCell)`
 
 export const TableHeadBox = styled(TableHead)`
   max-width: 100vw;
-  box-shadow: 5px 5px 7px rgba(9, 9, 14, 0.3),
-    -5px -5px 7px rgba(87, 87, 87, 0.1);
+  box-shadow: ${({ theme }) => theme.shadows[1]};
   border-radius: 0.8rem;
   margin-bottom: 15px;
 `;

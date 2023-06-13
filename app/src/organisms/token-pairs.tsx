@@ -8,6 +8,7 @@ import TokenPairsChart from "./token-pairs-chart";
 import i18n from "../i18n";
 import TokenPairCards from "./token-pair-cards";
 import useTokenPairs from "../hooks/use-token-pairs";
+import useTheme from "../contexts/theme-context";
 import { refreshEach } from "../swr-options";
 import useBreakpoints from "../hooks/use-breakpoints";
 import api from "../api";
@@ -18,6 +19,7 @@ const fetcher = async (url: string) => fetch(url).then((res) => res.json());
 export default () => {
   const tokenPairs = useTokenPairs(undefined, refreshEach(5 * 60000));
   const { isMobile } = useBreakpoints();
+  const { theme } = useTheme();
 
   // Adjust this day param
   const { data, isLoading } = useSWR(`${api.volume}?day=10000`, fetcher);
@@ -60,7 +62,7 @@ export default () => {
         {i18n.StatsPairs}
       </Typography>
       {content}
-      <TokenPairsChart {...{ data, isLoading }} />
+      <TokenPairsChart {...{ data, isLoading, theme }} />
     </Box>
   );
 };

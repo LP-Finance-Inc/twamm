@@ -17,16 +17,16 @@ export const BootstrapTooltip = styled(
     // eslint-disable-next-line react/jsx-props-no-spreading
     <Tooltip {...props} classes={{ popper: className }} />
   )
-)(() => ({
+)(({ theme }) => ({
   [`& .${tooltipClasses.arrow}`]: {
-    color: "#0f0",
+    color: theme.palette.text.primary,
   },
   [`& .${tooltipClasses.tooltip}`]: {
-    backgroundColor: "#161724",
-    color: "#0f0",
+    backgroundColor: theme.palette.background.default,
+    color: theme.palette.text.primary,
     padding: "0.3rem 0.2rem",
-    boxShadow:
-      "4px 4px 6px rgba(9, 9, 14, 0.4), -4px -4px 6px rgba(87, 87, 87, 0.1)",
+    boxShadow: theme.shadows[1],
+    fontWeight: 600,
   },
 }));
 

@@ -1,14 +1,14 @@
 import type { TokenPair } from "@twamm/types";
 import Alert from "@mui/material/Alert";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import useSWR from "swr";
+import TablePagination from "@mui/material/TablePagination";
 
 import PairCard from "../atoms/pair-card";
 import api from "../api";
 import i18n from "../i18n";
 import * as Styled from "./token-pair-cards.styled";
 import { lpfinanceOracleTokens } from "../oracle-type";
-// import { dec } from "ramda";
 
 const Headers = [
   {
@@ -37,6 +37,20 @@ const fetcher = async (url: string) => fetch(url).then((res) => res.json());
 
 export default ({ info }: { info?: TokenPair[] }) => {
   const { data, isLoading } = useSWR(api.tokenList, fetcher);
+
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
+
+  const handleChangePage = (event: unknown, newPage: number) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setRowsPerPage(+event.target.value);
+    setPage(0);
+  };
 
   const tokenPairs = useMemo(() => {
     const processedInfo = [];
@@ -89,34 +103,46 @@ export default ({ info }: { info?: TokenPair[] }) => {
     return <Alert severity="info">No Pairs Present</Alert>;
 
   return (
-    <Styled.TableRoot>
-      <Styled.TableBodyMain size="small" aria-label="customized table">
-        <Styled.TableHeadBox>
-          <Styled.TableRowBox>
-            {Headers.map((item) => (
-              <Styled.TableCellBox key={item.id} align="left">
-                {item.head}
-              </Styled.TableCellBox>
-            ))}
-          </Styled.TableRowBox>
-        </Styled.TableHeadBox>
+    <>
+      <Styled.TableRoot>
+        <Styled.TableBodyMain size="small" aria-label="customized table">
+          <Styled.TableHeadBox>
+            <Styled.TableRowBox>
+              {Headers.map((item) => (
+                <Styled.TableCellBox key={item.id} align="left">
+                  {item.head}
+                </Styled.TableCellBox>
+              ))}
+            </Styled.TableRowBox>
+          </Styled.TableHeadBox>
 
-        <Styled.TableBodyCover>
-          {tokenPairs
-            .sort((a, b) => b.orderVolume - a.orderVolume)
-            .map((tokenPair, index) => (
-              <PairCard
-                key={tokenPair.id}
-                list={data}
-                itemNum={index}
-                aMint={tokenPair.aMint}
-                bMint={tokenPair.bMint}
-                orderVolume={tokenPair.orderVolume}
-                oracleType={tokenPair.oracleType}
-              />
-            ))}
-        </Styled.TableBodyCover>
-      </Styled.TableBodyMain>
-    </Styled.TableRoot>
+          <Styled.TableBodyCover>
+            {tokenPairs
+              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+              .sort((a, b) => b.orderVolume - a.orderVolume)
+              .map((tokenPair, index) => (
+                <PairCard
+                  key={tokenPair.id}
+                  list={data}
+                  itemNum={index}
+                  aMint={tokenPair.aMint}
+                  bMint={tokenPair.bMint}
+                  orderVolume={tokenPair.orderVolume}
+                  oracleType={tokenPair.oracleType}
+                />
+              ))}
+          </Styled.TableBodyCover>
+        </Styled.TableBodyMain>
+      </Styled.TableRoot>
+      <TablePagination
+        rowsPerPageOptions={[10, 25, 40]}
+        component="div"
+        count={tokenPairs.length}
+        rowsPerPage={rowsPerPage}
+        page={page}
+        onPageChange={handleChangePage}
+        onRowsPerPageChange={handleChangeRowsPerPage}
+      />
+    </>
   );
 };
