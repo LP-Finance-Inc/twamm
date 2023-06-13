@@ -5,7 +5,7 @@ import { muiPaperCustomVariant } from "../theme/overrides";
 
 export const Tooltip = styled(Popover)`
   & > .MuiPaper-root {
-    background-color: ${(p) => p.theme.palette.background.paper};
+    background-color: ${(p) => p.theme.palette.background.default};
     border-radius: ${muiPaperCustomVariant.borderRadius};
     box-shadow: ${muiPaperCustomVariant.boxShadow};
   }

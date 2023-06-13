@@ -9,6 +9,7 @@ import Container from "@mui/material/Container";
 import Link from "@mui/material/Link";
 import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
+import Switch, { SwitchProps } from "@mui/material/Switch";
 
 export const MainContainer = styled(Container)`
   @media (max-width: 600px) {
@@ -18,14 +19,15 @@ export const MainContainer = styled(Container)`
 `;
 
 export const Root = styled(AppBar)`
-  background: #161724 !important;
+  background: ${({ theme }) => theme.palette.background.default} !important;
 `;
 
 export const DrawerCard = styled(Box)`
-  background: #161724 !important;
+  background: ${({ theme }) => theme.palette.background.default} !important;
   height: 100%;
   width: 100%;
 `;
+
 export const DividerLine = styled(Divider)`
   border: 1px solid #0c0;
   margin-top: 8px;
@@ -33,7 +35,8 @@ export const DividerLine = styled(Divider)`
 
 export const Header = styled(Toolbar)`
   justify-content: space-between;
-  background-color: #161724 !important;
+  background-color: ${({ theme }) =>
+    theme.palette.background.default} !important;
   padding: 0.2rem 0rem !important;
 
   @media (max-width: 600px) {
@@ -62,18 +65,22 @@ export const DrawerIcon = styled(MenuIcon)`
 `;
 
 export const InfoLink = styled(Link)`
-  color: #0c0;
-  margin: 0 1rem;
+  color: ${({ theme }) => theme.palette.text.primary};
+  margin: 0 0.7rem;
+  font-weight: 600;
+
+  &:hover {
+    color: ${({ theme }) => theme.palette.text.secondary};
+  }
 `;
 
 export const UtilsControl = styled(Card)`
   cursor: pointer;
   display: flex;
   padding: 4px;
-  color: #0c0;
-  background: #161724;
-  box-shadow: 4px 4px 6px rgba(9, 9, 14, 0.4),
-    -4px -4px 6px rgba(87, 87, 87, 0.1);
+  color: ${({ theme }) => theme.palette.text.secondary};
+  background: ${({ theme }) => theme.palette.background.default};
+  box-shadow: ${({ theme }) => theme.shadows[1]};
   border: none;
 `;
 
@@ -86,22 +93,75 @@ export const WalletButton = styled(WalletMultiButton)`
 
   &.wallet-adapter-button {
     white-space: nowrap;
-    color: #0c0;
-    background: #161724;
+    color: ${({ theme }) => theme.palette.text.secondary};
+    background: ${({ theme }) => theme.palette.background.default};
     border-radius: 12px;
-    box-shadow: 4px 4px 6px rgba(9, 9, 14, 0.4),
-      -4px -4px 6px rgba(87, 87, 87, 0.1);
+    box-shadow: ${({ theme }) => theme.shadows[1]};
+    font-weight: 600;
   }
 
   &.wallet-adapter-button:active {
-    box-shadow: inset -4px -4px 5px rgba(87, 87, 87, 0.2),
-      inset 4px 4px 5px rgba(9, 9, 14, 0.5);
+    box-shadow: ${({ theme }) => theme.shadows[2]};
   }
 
   &.wallet-adapter-button:not([disabled]):hover,
   &.wallet-adapter-button:focus,
   &.wallet-adapter-button:active {
-    background-color: #161724;
-    color: #0c0;
+    background-color: ${({ theme }) => theme.palette.background.default};
+    color: ${({ theme }) => theme.palette.text.secondary};
   }
 `;
+
+export const IOSSwitch = styled((props: SwitchProps) => (
+  // eslint-disable-next-line react/jsx-props-no-spreading
+  <Switch focusVisibleClassName=".Mui-focusVisible" disableRipple {...props} />
+))(({ theme }) => ({
+  width: 50,
+  height: 26,
+  padding: 0,
+  boxShadow: theme.shadows[1],
+  borderRadius: 26,
+  "& .MuiSwitch-switchBase": {
+    padding: 0,
+    margin: 2,
+    transitionDuration: "300ms",
+    "&.Mui-checked": {
+      transform: "translateX(25px)",
+      color: "#fff",
+      "& + .MuiSwitch-track": {
+        backgroundColor: theme.palette.mode === "dark" ? "#2ECA45" : "#7620E0",
+        opacity: 1,
+        border: 0,
+      },
+      "&.Mui-disabled + .MuiSwitch-track": {
+        opacity: 0.5,
+      },
+    },
+    "&.Mui-focusVisible .MuiSwitch-thumb": {
+      color: "#33cf4d",
+      border: "6px solid #fff",
+    },
+    "&.Mui-disabled .MuiSwitch-thumb": {
+      color:
+        theme.palette.mode === "light"
+          ? theme.palette.grey[100]
+          : theme.palette.grey[600],
+    },
+    "&.Mui-disabled + .MuiSwitch-track": {
+      opacity: theme.palette.mode === "light" ? 0.7 : 0.3,
+    },
+  },
+  "& .MuiSwitch-thumb": {
+    boxSizing: "border-box",
+    width: 22,
+    height: 22,
+  },
+  "& .MuiSwitch-track": {
+    borderRadius: 26 / 2,
+    backgroundColor: theme.palette.mode === "light" ? "#7620E0" : "#39393D",
+    opacity: 1,
+    transition: theme.transitions.create(["background-color"], {
+      duration: 500,
+    }),
+  },
+}));

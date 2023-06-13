@@ -118,7 +118,7 @@ export default (props: {
               refresh={tokenPairPrice.isValidating}
             />
           </Box>
-          <Box>{i18n.TradeTokenInfo}</Box>
+          <Styled.IntervalTitle>{i18n.TradeTokenInfo}</Styled.IntervalTitle>
         </Stack>
       </Styled.Info>
       {!open ? null : (
@@ -177,9 +177,9 @@ export default (props: {
               </Styled.LinkOverflow>
             </Styled.DetailsItem>
             <Styled.DetailsItem>
-              <Typography variant="h6" sx={{ color: "#bf00ff" }}>
+              <Styled.BoltText variant="h6">
                 {checkSymbol(props.tokenPair?.configA.mint.toString())} oracle
-              </Typography>
+              </Styled.BoltText>
               <Styled.LinkOverflow
                 href={`${
                   props.url
@@ -188,15 +188,15 @@ export default (props: {
                 rel="noreferrer"
                 underline="hover"
               >
-                <Typography variant="h6" sx={{ color: "#bf00ff" }}>
+                <Styled.BoltText variant="h6">
                   {props.tokenPair?.configA.oracleAccount.toString()}
-                </Typography>
+                </Styled.BoltText>
               </Styled.LinkOverflow>
             </Styled.DetailsItem>
             <Styled.DetailsItem>
-              <Typography variant="h6" sx={{ color: "#bf00ff" }}>
+              <Styled.BoltText variant="h6">
                 {checkSymbol(props.tokenPair?.configB.mint.toString())} oracle
-              </Typography>
+              </Styled.BoltText>
               <Styled.LinkOverflow
                 href={`${
                   props.url
@@ -205,9 +205,9 @@ export default (props: {
                 rel="noreferrer"
                 underline="hover"
               >
-                <Typography variant="h6" sx={{ color: "#bf00ff" }}>
+                <Styled.BoltText variant="h6">
                   {props.tokenPair?.configB.oracleAccount.toString()}
-                </Typography>
+                </Styled.BoltText>
               </Styled.LinkOverflow>
             </Styled.DetailsItem>
           </List>

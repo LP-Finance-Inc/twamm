@@ -2,7 +2,7 @@ import Document, { Head, Html, Main, NextScript } from "next/document";
 import createEmotionServer from "@emotion/server/create-instance";
 
 import createEmotionCache from "../src/emotion-cache";
-import { darkTheme } from "../src/theme";
+import { darkTheme } from "../src/theme/external-theme";
 
 export default class PageDocument extends Document {
   render() {

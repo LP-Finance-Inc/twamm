@@ -1,6 +1,8 @@
 import type { Theme } from "@mui/material/styles";
 import { lensPath, view } from "ramda";
 
+import { darkPalette } from "./external-theme";
+
 export const lensMode = lensPath(["palette", "mode"]);
 
 export const muiPaperCustomVariant = {
@@ -11,96 +13,7 @@ export const muiPaperCustomVariant = {
   borderRadius: "8px",
 };
 
-const palette = {
-  neutral: {
-    100: "#F3F4F6",
-    200: "#E5E7EB",
-    300: "#D1D5DB",
-    400: "#9CA3AF",
-    500: "#6B7280",
-    600: "#4B5563",
-    700: "#374151",
-    800: "#1F2937",
-    900: "#111827",
-  },
-  action: {
-    active: "#6B7280",
-    focus: "rgba(55, 65, 81, 0.12)",
-    hover: "rgba(55, 65, 81, 0.04)",
-    selected: "rgba(55, 65, 81, 0.08)",
-    disabledBackground: "rgba(55, 65, 81, 0.12)",
-    disabled: "rgba(55, 65, 81, 0.26)",
-  },
-  background: {
-    default: "#F9FAFC",
-    paper: "#FFFFFF",
-  },
-  divider: "#E6E8F0",
-  primary: {
-    main: "#0c0",
-    light: "#828DF8",
-    dark: "#3832A0",
-    contrastText: "#FFFFFF",
-  },
-  secondary: {
-    main: "#10B981",
-    light: "#3FC79A",
-    dark: "#0B815A",
-    contrastText: "#FFFFFF",
-  },
-  success: {
-    main: "#14B8A6",
-    light: "#43C6B7",
-    dark: "#0E8074",
-    contrastText: "#FFFFFF",
-  },
-  info: {
-    main: "#2196F3",
-    light: "#64B6F7",
-    dark: "#0B79D0",
-    contrastText: "#FFFFFF",
-  },
-  warning: {
-    main: "#FFB020",
-    light: "#FFBF4C",
-    dark: "#B27B16",
-    contrastText: "#FFFFFF",
-  },
-  error: {
-    main: "#D14343",
-    light: "#DA6868",
-    dark: "#922E2E",
-    contrastText: "#FFFFFF",
-  },
-  text: {
-    primary: "#0c0",
-    secondary: "#0c0",
-    disabled: "rgba(55, 65, 81, 0.48)",
-  },
-};
-
-const lightPalette = {
-  ...palette,
-  text: {
-    primary: "#121828",
-    secondary: "#fff",
-    disabled: "#c6c6c6",
-  },
-};
-
-const darkPalette = {
-  ...palette,
-  text: {
-    ...palette.text,
-  },
-  background: {
-    default: "#161724",
-    paper: "#181f2b",
-  },
-};
-
 export const light = {
-  palette: lightPalette,
   components: {
     MuiCard: {
       styleOverrides: {
@@ -119,7 +32,6 @@ export const light = {
 };
 
 export const dark = {
-  palette: darkPalette,
   components: {
     MuiBackdrop: {
       styleOverrides: {
@@ -209,5 +121,5 @@ export const dark = {
 
 export default (theme: Theme) =>
   view(lensMode, theme) === "light"
-    ? { ...theme, ...dark }
+    ? { ...theme, ...light }
     : { ...theme, ...dark };

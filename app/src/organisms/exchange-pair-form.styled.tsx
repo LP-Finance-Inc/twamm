@@ -1,22 +1,21 @@
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
 import { styled } from "@mui/material/styles";
-import Stack from "@mui/material/Stack";
 
 export const TokenField = styled(Box)`
-  background: #161724;
+  background: ${({ theme }) => theme.palette.background.default};
   padding: 0.8rem 0.8rem;
   border-radius: 0.75rem;
-  box-shadow: inset -4px -4px 5px rgba(87, 87, 87, 0.1),
-    inset 4px 4px 5px rgba(9, 9, 14, 0.3);
+  box-shadow: ${({ theme }) => theme.shadows[6]};
 `;
 
 export const TokenLabelBox = styled(Box)`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: ${({ theme }) => theme.palette.text.secondary};
+  color: ${({ theme }) => theme.palette.text.primary};
   padding-bottom: ${({ theme }) => theme.spacing(1)};
   font-size: 0.9rem;
   font-weight: 600;
@@ -26,49 +25,28 @@ export const TokenLabel = styled(Box)`
   display: flex;
   gap: 3px;
   align-items: center;
-  color: ${({ theme }) => theme.palette.text.secondary};
+  color: ${({ theme }) => theme.palette.text.primary};
   padding-bottom: ${({ theme }) => theme.spacing(1)};
   font-size: 0.9rem;
   font-weight: 600;
 `;
 
 export const OperationImage = styled(Box)`
-  color: ${({ theme }) => theme.palette.text.secondary};
+  color: ${({ theme }) => theme.palette.text.primary};
   display: flex;
   justify-content: center;
   padding: ${({ theme }) => theme.spacing(1)};
 `;
 
 export const OperationButton = styled(IconButton)`
-  box-shadow: inset -4px -4px 5px rgba(87, 87, 87, 0.1),
-    inset 4px 4px 5px rgba(9, 9, 14, 0.3);
-  background: #161724;
+  box-shadow: ${({ theme }) => theme.shadows[6]};
+  background: ${({ theme }) => theme.palette.background.default};
 
   & > * {
     border-radius: 50px;
-    color: #0f0;
+    color: ${({ theme }) => theme.palette.text.secondary};
     transform: rotate(90deg);
     font-size: 1.5rem;
-  }
-`;
-
-export const ConnectBox = styled(Box)`
-  & .wallet-adapter-dropdown {
-    width: 100%;
-  }
-`;
-
-export const ConnectButton = styled(Button)`
-  background-color: #4bbeff;
-  border-radius: 40px;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  color: #000;
-  &:hover,
-  &:focus,
-  &:active {
-    color: #fff;
   }
 `;
 
@@ -76,7 +54,7 @@ export const TokenTotal = styled(Box)`
   display: flex;
   align-items: center;
   gap: 0 1rem;
-  color: ${(p) => p.theme.palette.text.secondary};
+  color: ${(p) => p.theme.palette.text.primary};
   font-size: 13px;
   font-weight: 600;
 
@@ -85,14 +63,12 @@ export const TokenTotal = styled(Box)`
   }
 `;
 
-export const SecondaryControls = styled(Stack)`
-  justify-content: space-between;
-  align-items: center;
-`;
-
 export const TokenAmountMaxButton = styled(Button)`
   border-radius: ${(p) => p.theme.shape.borderRadius};
-  color: #0c0 !important;
-  box-shadow: 4px 4px 6px rgba(9, 9, 14, 0.4),
-    -4px -4px 6px rgba(87, 87, 87, 0.1);
+  color: ${({ theme }) => theme.palette.text.secondary} !important;
+  box-shadow: ${({ theme }) => theme.shadows[1]};
+`;
+
+export const PriceImpactText = styled(Typography)`
+  color: ${({ theme }) => theme.palette.text.secondary};
 `;
