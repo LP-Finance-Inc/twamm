@@ -62,7 +62,11 @@ export const Controls = styled(Stack)`
 `;
 
 export const DrawerIcon = styled(MenuIcon)`
+<<<<<<< HEAD
   color: ${({ theme }) => theme.palette.text.secondary} !important;
+=======
+  color: ${({ theme }) => theme.palette.text.primary} !important;
+>>>>>>> eabad84e4524b749937aa96dd079956967a1a882
 `;
 
 export const InfoLink = styled(Link)`

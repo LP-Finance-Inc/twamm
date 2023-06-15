@@ -30,3 +30,9 @@ export const TableCellBoxPyth = styled(TableCell)(({ theme }) => ({
   padding: "0.8rem 1rem",
   color: theme.palette.mode === "dark" ? "#bf00ff" : "#7620E0",
 }));
+
+export const TableCellBoxLpfinance = styled(TableCell)(({ theme }) => ({
+  border: "none",
+  padding: "0.8rem 1rem",
+  color: theme.palette.mode === "dark" ? "#00ff00" : "#00BC00",
+}));
