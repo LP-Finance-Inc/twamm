@@ -2,8 +2,7 @@ import { useMemo } from "react";
 import M from "easy-maybe/lib";
 import Alert from "@mui/material/Alert";
 import Avatar from "@mui/material/Avatar";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
+
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import Box from "@mui/material/Box";
@@ -14,7 +13,7 @@ import type { MouseEvent } from "react";
 import { FixedSizeList } from "react-window";
 import { PublicKey } from "@solana/web3.js";
 
-import styles from "./coin-select.module.css";
+import * as Styled from "./coin-select.styled";
 import useBreakpoints from "../hooks/use-breakpoints";
 import { add, keepPrevious, refreshEach } from "../swr-options";
 import useBalance from "../hooks/use-balance";
@@ -103,11 +102,11 @@ export default ({
   }, [coins, filterValue]);
 
   return (
-    <List className={styles.coins} dense={isMobile}>
+    <Styled.RootList dense={isMobile}>
       {coinRecords.length === 0 && (
-        <ListItem className={styles.noCoinItem} component="div" disablePadding>
+        <Styled.ListItemStyle disablePadding>
           <Alert severity="info">No results</Alert>
-        </ListItem>
+        </Styled.ListItemStyle>
       )}
       <FixedSizeList
         height={200}
@@ -117,9 +116,7 @@ export default ({
         overscanCount={5}
       >
         {({ index, style }: ListChildComponentProps) => (
-          <ListItem
-            className={styles.coinItem}
-            component="div"
+          <Styled.CoinItem
             disablePadding
             key={index}
             onClick={(e: MouseEvent) => onClick(e, coinRecords[index].symbol)}
@@ -134,21 +131,26 @@ export default ({
               </Avatar>
             </ListItemIcon>
             <ListItemText
-              classes={{
-                primary: styles.coinItemTextPrimary,
-                secondary: styles.coinItemTextSecondary,
-              }}
-              primary={coinRecords[index].symbol.toUpperCase()}
-              secondary={coinRecords[index].name}
+              disableTypography
+              primary={
+                <Typography variant="body2">
+                  {coinRecords[index].symbol.toUpperCase()}
+                </Typography>
+              }
+              secondary={
+                <Typography variant="body2">
+                  {coinRecords[index].name}
+                </Typography>
+              }
             />
             <CoinBalance
               address={coinRecords[index].address}
               publicKey={publicKey}
               coin={coinRecords[index].symbol}
             />
-          </ListItem>
+          </Styled.CoinItem>
         )}
       </FixedSizeList>
-    </List>
+    </Styled.RootList>
   );
 };

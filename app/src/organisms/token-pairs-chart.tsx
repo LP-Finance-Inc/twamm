@@ -86,15 +86,21 @@ export default ({
                       tick={{
                         fill: theme === "dark" ? "#0c0" : "#7620E0",
                         fontSize: "0.95rem",
+                        fontWeight: 600,
                       }}
-                      tickLine={{ stroke: "#0c0" }}
+                      tickLine={{
+                        stroke: theme === "dark" ? "#0c0" : "#7620E0",
+                      }}
                     />
                     <YAxis
                       tick={{
                         fill: theme === "dark" ? "#0c0" : "#7620E0",
                         fontSize: "0.95rem",
+                        fontWeight: 600,
                       }}
-                      tickLine={{ stroke: "#d1d1d1" }}
+                      tickLine={{
+                        stroke: theme === "dark" ? "#0c0" : "#7620E0",
+                      }}
                       tickFormatter={(val: any) => DataFormatter(val)}
                     />
                     <Tooltip

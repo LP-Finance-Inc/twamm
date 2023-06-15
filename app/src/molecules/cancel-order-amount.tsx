@@ -1,5 +1,4 @@
 import Box from "@mui/material/Box";
-import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Chip from "@mui/material/Chip";
 import { memo, useCallback, useMemo } from "react";
@@ -19,11 +18,13 @@ export default memo(
     percentage,
     onChange,
     onToggleDetails,
+    theme,
   }: {
     isMobile: boolean;
     percentage: number;
     onChange: (amount: number) => void;
     onToggleDetails: () => void;
+    theme: string;
   }) => {
     const marks = useMemo(
       () => [
@@ -47,7 +48,7 @@ export default memo(
     );
 
     return (
-      <Card>
+      <Styled.Root>
         <Styled.Header>
           <Styled.Title variant="h6">
             {i18n.OrderFlowControlAmount}
@@ -74,7 +75,15 @@ export default memo(
           <Styled.Values direction="row" spacing={2}>
             {values.map((value) => (
               <Chip
-                color={percentage === value ? "secondary" : undefined}
+                sx={{
+                  color:
+                    // eslint-disable-next-line no-nested-ternary
+                    percentage === value
+                      ? theme === "dark"
+                        ? "#0f0"
+                        : "#7620E0"
+                      : undefined,
+                }}
                 key={`percentage-${value}`}
                 label={`${value}%`}
                 onClick={() => onChange(value)}
@@ -83,7 +92,7 @@ export default memo(
             ))}
           </Styled.Values>
         </CardContent>
-      </Card>
+      </Styled.Root>
     );
   }
 );

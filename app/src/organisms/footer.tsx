@@ -3,12 +3,61 @@ import Image from "next/image";
 import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 
+import { useMemo } from "react";
 import * as Styled from "./footer.styled";
 import useTheme from "../contexts/theme-context";
-import { FooterRegistry } from "../assets/registry";
+import GithubIcon from "../assets/icons/github-icon";
+import TelegramIcon from "../assets/icons/telegram-icon";
+import LinkedinIcon from "../assets/icons/linkedin-icon";
+import TwitterIcon from "../assets/icons/twitter-icon";
+import MediumIcon from "../assets/icons/medium-icon";
+import DiscordIcon from "../assets/icons/discord-icon";
 
 export default () => {
   const { theme } = useTheme();
+
+  const FooterRegistry = useMemo(() => {
+    const color = theme === "dark" ? "#0c0" : "#7620E0";
+    const registry = [
+      {
+        id: 1,
+        name: "twitter",
+        icon: <TwitterIcon color={color} />,
+        url: "https://twitter.com/LPFinance_",
+      },
+      {
+        id: 2,
+        name: "telegram",
+        icon: <TelegramIcon color={color} />,
+        url: "https://t.me/LP_Defi_Official_group",
+      },
+      {
+        id: 3,
+        name: "medium",
+        icon: <MediumIcon color={color} />,
+        url: "https://medium.com/@LP_Finance",
+      },
+      {
+        id: 4,
+        name: "linkedin",
+        icon: <LinkedinIcon color={color} />,
+        url: "https://www.linkedin.com/company/lpdefi/",
+      },
+      {
+        id: 5,
+        name: "github",
+        icon: <GithubIcon color={color} />,
+        url: "https://github.com/LP-Finance-Inc",
+      },
+      {
+        id: 6,
+        name: "discord",
+        icon: <DiscordIcon color={color} />,
+        url: "https://discord.gg/ug7mstrHNW",
+      },
+    ];
+    return registry;
+  }, [theme]);
 
   return (
     <>
@@ -55,15 +104,7 @@ export default () => {
                   {FooterRegistry.map((list) => (
                     <Styled.MediaItem key={list.id}>
                       <Link href={list.url} target="_blank" rel="noreferrer">
-                        <Image
-                          src={
-                            theme === "dark" ? list.darkIcon : list.lightIcon
-                          }
-                          alt="logo"
-                          width={30}
-                          height={30}
-                          priority
-                        />
+                        {list.icon}
                       </Link>
                     </Styled.MediaItem>
                   ))}

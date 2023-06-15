@@ -19,20 +19,20 @@ export const Control = styled(Stack)`
 `;
 
 export const UpIcon = styled(ArrowDropUpIcon)`
-  color: ${(p) => p.theme.palette.text.secondary};
+  color: ${(p) => p.theme.palette.text.primary};
 `;
 
 export const DownIcon = styled(ArrowDropDownIcon)`
-  color: ${(p) => p.theme.palette.text.secondary};
+  color: ${(p) => p.theme.palette.text.primary};
 `;
 
-export const ActiveUpIcon = styled(ArrowDropUpIcon)`
-  color: #fff;
-`;
+export const ActiveUpIcon = styled(ArrowDropUpIcon)(({ theme }) => ({
+  color: theme.palette.mode === "dark" ? "#fff" : "#7620E0",
+}));
 
-export const ActiveDownIcon = styled(ArrowDropDownIcon)`
-  color: #fff;
-`;
+export const ActiveDownIcon = styled(ArrowDropDownIcon)(({ theme }) => ({
+  color: theme.palette.mode === "dark" ? "#fff" : "#7620E0",
+}));
 
 export const Top = styled(IconButton)`
   top: -3px;

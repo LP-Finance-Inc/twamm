@@ -1,7 +1,13 @@
 import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
+import Card from "@mui/material/Card";
 import { styled } from "@mui/material/styles";
+
+export const Root = styled(Card)`
+  background: none;
+  box-shadow: none;
+`;
 
 export const LiquidityItem = styled(Box)`
   align-items: center;
@@ -11,7 +17,7 @@ export const LiquidityItem = styled(Box)`
 `;
 
 export const ItemAmount = styled(Typography)`
-  font-size: 1rem;
+  font-size: 1.2rem;
 `;
 
 export const ItemToken = styled(Box)`
@@ -30,7 +36,7 @@ export const TokenImage = styled(Avatar)`
 export const TokenName = styled(Box)`
   color: ${(p) => p.theme.palette.text.primary};
   font-weight: 600;
-  font-size: 1rem;
+  font-size: 1.2rem;
   padding-left: ${(p) => p.theme.spacing(1)};
 `;
 

@@ -20,6 +20,7 @@ import RowColumnList, {
 import UniversalPopover, { Ref } from "../molecules/universal-popover";
 import useBreakpoints from "../hooks/use-breakpoints";
 import useCancelOrder from "../hooks/use-cancel-order";
+import useTheme from "../contexts/theme-context";
 import {
   columns,
   populateDetails,
@@ -49,6 +50,7 @@ export default (props: {
 
   const { execute } = useCancelOrder();
   const { isMobile } = useBreakpoints();
+  const { theme } = useTheme();
 
   const cols = useMemo<ColDef[]>(() => columns({ isMobile }), [isMobile]);
   const rows = useMemo<OrderRecord[]>(() => data.map(populateRow), [data]);
@@ -114,6 +116,7 @@ export default (props: {
             data={accounts}
             detailsData={details}
             onApprove={onApproveCancel}
+            theme={theme}
           />
         )}
         {orderState === "details" && details && (

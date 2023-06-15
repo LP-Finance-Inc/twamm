@@ -4,6 +4,7 @@ import { styled } from "@mui/material/styles";
 
 export const Container = styled(Box)`
   width: 100%;
+  box-shadow: none;
 `;
 
 export const Tags = styled(Box)`

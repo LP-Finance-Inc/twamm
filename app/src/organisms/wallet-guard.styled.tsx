@@ -1,8 +1,9 @@
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 import { styled } from "@mui/material/styles";
+
+import { WalletMultiButton } from "../lib";
 
 export const Container = styled(Card)`
   background: transparent;

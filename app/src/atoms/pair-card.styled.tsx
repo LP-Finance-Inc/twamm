@@ -22,6 +22,7 @@ export const TableRowBox = styled(TableRow)`
 export const TableCellBox = styled(TableCell)`
   border: none;
   padding: 0.8rem 1rem;
+  font-weight: 500;
 `;
 
 export const TableCellBoxPyth = styled(TableCell)(({ theme }) => ({

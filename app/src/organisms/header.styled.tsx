@@ -1,7 +1,6 @@
 import Card from "@mui/material/Card";
 import Stack from "@mui/material/Stack";
 import Toolbar from "@mui/material/Toolbar";
-import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 import { styled } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -10,6 +9,8 @@ import Link from "@mui/material/Link";
 import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
 import Switch, { SwitchProps } from "@mui/material/Switch";
+
+import { WalletMultiButton } from "../lib";
 
 export const MainContainer = styled(Container)`
   @media (max-width: 600px) {
@@ -61,7 +62,7 @@ export const Controls = styled(Stack)`
 `;
 
 export const DrawerIcon = styled(MenuIcon)`
-  color: #0f0 !important;
+  color: ${({ theme }) => theme.palette.text.primary} !important;
 `;
 
 export const InfoLink = styled(Link)`

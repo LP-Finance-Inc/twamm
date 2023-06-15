@@ -1,8 +1,14 @@
 import Box from "@mui/material/Box";
 import Slider from "@mui/material/Slider";
 import Stack from "@mui/material/Stack";
+import Card from "@mui/material/Card";
 import Typography from "@mui/material/Typography";
 import { styled } from "@mui/material/styles";
+
+export const Root = styled(Card)`
+  background: none;
+  box-shadow: none;
+`;
 
 export const Header = styled(Box)`
   align-items: baseline;

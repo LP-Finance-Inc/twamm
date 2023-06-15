@@ -118,8 +118,8 @@ export default ({ info }: { info?: TokenPair[] }) => {
 
           <Styled.TableBodyCover>
             {tokenPairs
-              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .sort((a, b) => b.orderVolume - a.orderVolume)
+              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((tokenPair, index) => (
                 <PairCard
                   key={tokenPair.id}

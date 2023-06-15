@@ -24,28 +24,22 @@ export const ScheduleButton = styled(Button)`
   }
 `;
 
-export const SelectedScheduleButton = styled(Button)`
-  padding: 0 4px;
-  text-transform: capitalize;
-  font-size: 0.9rem;
-  white-space: nowrap;
-  animation: 0.5s rotate ease infinite;
-  color: ${(p) => p.theme.palette.text.secondary};
+export const SelectedScheduleButton = styled(Button)(({ theme }) => ({
+  padding: "0 4px",
+  textTransform: "capitalize",
+  fontSize: "0.9rem",
+  whiteSpace: "nowrap",
+  color: theme.palette.text.secondary,
+  boxShadow: theme.shadows[9],
 
-  @keyframes rotate {
-    to {
-      box-shadow: ${({ theme }) => theme.shadows[8]};
-    }
-  }
-
-  &.Mui-disabled {
-    color: ${(p) => p.theme.palette.text.secondary};
-    border-color: ${(p) => p.theme.palette.text.secondary};
-  }
-  &.Mui-disabled + * {
-    border-left-color: ${(p) => p.theme.palette.text.secondary};
-  }
-`;
+  "&.Mui-disabled": {
+    color: theme.palette.text.secondary,
+    borderColor: theme.palette.text.secondary,
+  },
+  "&.Mui-disabled + *": {
+    borderLeftColor: theme.palette.text.secondary,
+  },
+}));
 
 export const MobileScheduleButton = styled(ScheduleButton)`
   font-size: 0.8rem;
