@@ -35,7 +35,7 @@ export default class PageDocument extends Document {
           />
           <meta
             property="og:image"
-            content="https://lptokenbucket.s3.amazonaws.com/bg.png"
+            content="https://lptokenbucket.s3.amazonaws.com/lp-logo-light.png"
           />
 
           {/* <!-- Twitter --> */}
@@ -48,7 +48,7 @@ export default class PageDocument extends Document {
           />
           <meta
             property="twitter:image"
-            content="https://lptokenbucket.s3.amazonaws.com/bg.png"
+            content="https://lptokenbucket.s3.amazonaws.com/lp-logo-light.png"
           />
           {/* Inject MUI styles first to match with the prepend: true configuration. */}
           {(this.props as any).emotionStyleTags}
