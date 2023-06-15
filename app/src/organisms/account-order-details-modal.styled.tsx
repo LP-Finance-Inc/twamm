@@ -12,5 +12,5 @@ export const MobileContainer = styled(Box)`
 
 export const ContentHeader = styled(Box)`
   ${(p) => p.theme.typography.h5};
-  color: ${(p) => p.theme.palette.common.white};
+  color: ${(p) => p.theme.palette.text.primary};
 `;

@@ -1,6 +1,5 @@
 import Alert from "@mui/material/Alert";
 import Box from "@mui/material/Box";
-import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import M, { Extra } from "easy-maybe/lib";
 import { useMemo } from "react";
@@ -47,27 +46,19 @@ export default ({
 
   return (
     <>
-      <Card>
+      <Styled.Root>
         <CardContent>
           {pair.map(({ amount: amnt, image, symbol }) => (
             <Styled.LiquidityItem key={symbol}>
-              <Styled.ItemAmount
-                sx={{ fontSize: isMobile ? "1rem" : "1.5rem" }}
-              >
-                {amnt}
-              </Styled.ItemAmount>
+              <Styled.ItemAmount>{amnt}</Styled.ItemAmount>
               <Styled.ItemToken>
                 <Styled.TokenImage src={image}>{symbol[0]}</Styled.TokenImage>
-                <Styled.TokenName
-                  sx={{ fontSize: isMobile ? "1rem" : "1.3rem" }}
-                >
-                  {symbol.toUpperCase()}
-                </Styled.TokenName>
+                <Styled.TokenName>{symbol.toUpperCase()}</Styled.TokenName>
               </Styled.ItemToken>
             </Styled.LiquidityItem>
           ))}
         </CardContent>
-      </Card>
+      </Styled.Root>
       {Extra.isJust(error) && (
         <Box py={2}>
           <Alert severity="error">{M.unwrap(error)?.message}</Alert>

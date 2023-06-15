@@ -1,17 +1,21 @@
-.coins {
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import { styled } from "@mui/material/styles";
+
+export const RootList = styled(List)`
   padding-top: 0px;
   padding-bottom: 0px;
   position: relative;
-}
+`;
 
-.noCoinItem {
+export const ListItemStyle = styled(ListItem)`
   cursor: pointer;
   display: block;
   padding: 0 16px;
   position: absolute;
-}
+`;
 
-.coinItem {
+export const CoinItem = styled(ListItem)`
   cursor: pointer;
   padding: 0 16px;
   border-radius: 0.8rem;
@@ -24,22 +28,10 @@
   -moz-border-radius: 0.8rem;
   -ms-border-radius: 0.8rem;
   -o-border-radius: 0.8rem;
-}
 
-.coinItem:hover,
-.coinItem:active,
-.coinItem:focus {
-  background: rgba(255, 255, 255, 0.1);
-}
-
-.coinItem:hover .coinItemTextPrimary,
-.coinItem:active .coinItemTextPrimary,
-.coinItem:focus .coinItemTextPrimary {
-  color: #0c0;
-}
-
-.coinItem:hover .coinItemTextSecondary,
-.coinItem:active .coinItemTextSecondary,
-.coinItem:focus .coinItemTextSecondary {
-  color: #0c0;
-}
+  &:hover,
+  &:active,
+  &:focus {
+    background: ${({ theme }) => theme.palette.text.disabled};
+  }
+`;

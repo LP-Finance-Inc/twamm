@@ -29,9 +29,8 @@ export const Inner = styled(Box)`
   top: 50%;
   transform: translate(-50%, -50%);
   border-radius: 20px;
-  box-shadow: 4px 4px 6px rgba(255, 255, 255, 0.1),
-    -4px -4px 6px rgba(255, 255, 255, 0.1);
-  background: #161724;
+  box-shadow: ${({ theme }) => theme.shadows[5]};
+  background: ${({ theme }) => theme.palette.background.default};
 `;
 
 export const Close = styled(IconButton)`

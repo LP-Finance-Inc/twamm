@@ -18,10 +18,12 @@ export default ({
   data,
   detailsData,
   onApprove,
+  theme,
 }: {
   data?: CancelOrderData;
   detailsData: OrderDetails;
   onApprove: (arg0: CancelOrderData) => void;
+  theme: string;
 }) => {
   const { isMobile } = useBreakpoints();
 
@@ -78,6 +80,7 @@ export default ({
               percentage={percentage}
               onChange={onAmountChange}
               onToggleDetails={onToggleDetails}
+              theme={theme}
             />
           </Box>
           {detailsOpen && (
@@ -91,7 +94,7 @@ export default ({
           <Box p={2}>
             <Styled.Control
               disabled={!percentage}
-              variant="contained"
+              variant="outlined"
               fullWidth
               onClick={onCancel}
             >

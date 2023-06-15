@@ -23,34 +23,13 @@ import MobileLogo from "../../public/images/lp-logo-mobile.png";
 import eDesktopLogo from "../../public/images/elp-logo.png";
 import eMobileLogo from "../../public/images/elp-logo-mobile.png";
 import useTheme from "../contexts/theme-context";
+import { navItems } from "../assets/registry";
 
 interface Props {
   window?: () => Window;
 }
 
 const drawerWidth = 240;
-const navItems = [
-  {
-    id: 1,
-    title: "Document",
-    link: "https://docs.lp.finance/twamm/time-weighted-average-market-maker",
-  },
-  {
-    id: 2,
-    title: "Listing",
-    link: "https://docs.lp.finance/twamm-as-a-service/token-listing",
-  },
-  {
-    id: 3,
-    title: "Custom Order",
-    link: "https://docs.lp.finance/twamm-as-a-service/custom-orders-and-otc",
-  },
-  {
-    id: 4,
-    title: "Developers",
-    link: "https://lite.lp.finance/",
-  },
-];
 
 export default (props: Props) => {
   const { window } = props;
