@@ -14,8 +14,8 @@ import { WalletMultiButton } from "../lib";
 
 export const MainContainer = styled(Container)`
   @media (max-width: 600px) {
-    padding-left: 6px !important;
-    padding-right: 6px !important;
+    padding-left: 0px !important;
+    padding-right: 5px !important;
   }
 `;
 
@@ -30,7 +30,7 @@ export const DrawerCard = styled(Box)`
 `;
 
 export const DividerLine = styled(Divider)`
-  border: 1px solid #0c0;
+  border: 1px solid ${({ theme }) => theme.palette.text.secondary};
   margin-top: 8px;
 `;
 
@@ -52,8 +52,10 @@ export const Logo = styled(Stack)`
 `;
 
 export const DrawerLogo = styled(Stack)`
-  margin-left: 10px;
-  margin-top: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 10px 5px;
 `;
 
 export const Controls = styled(Stack)`
@@ -62,11 +64,7 @@ export const Controls = styled(Stack)`
 `;
 
 export const DrawerIcon = styled(MenuIcon)`
-<<<<<<< HEAD
   color: ${({ theme }) => theme.palette.text.secondary} !important;
-=======
-  color: ${({ theme }) => theme.palette.text.primary} !important;
->>>>>>> eabad84e4524b749937aa96dd079956967a1a882
 `;
 
 export const InfoLink = styled(Link)`

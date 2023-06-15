@@ -59,6 +59,7 @@ export default ({
         </Styled.Label>
         {!info?.length ? null : <Tooltip ref={tooltipRef} text={info} />}
       </Box>
+
       <ButtonGroup
         variant="outlined"
         aria-label={i18n.AriaLabelIntervals}

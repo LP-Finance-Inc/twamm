@@ -68,13 +68,19 @@ export default (props: Props) => {
     <Styled.DrawerCard onClick={handleDrawerToggle}>
       <Styled.DrawerLogo direction="row">
         <Image
-          src={DesktopLogo}
+          src={theme === "dark" ? DesktopLogo : eDesktopLogo}
           alt="logo"
           width={90}
           height={50}
           object-fit="cover"
           priority
         />
+        <Box pl={isMobile ? 1 : 2}>
+          <Styled.AntSwitch
+            inputProps={{ "aria-label": "ant design" }}
+            onClick={handleTheme}
+          />
+        </Box>
       </Styled.DrawerLogo>
       <Styled.DividerLine />
       <List>
@@ -173,7 +179,12 @@ export default (props: Props) => {
               <Box py={isDesktop ? 1 : 0}>
                 <Styled.WalletButton />
               </Box>
-              <Box pl={isMobile ? 1 : 2}>
+              <Box
+                pl={isMobile ? 1 : 2}
+                sx={{
+                  display: { xs: "none", sm: "none", md: "block" },
+                }}
+              >
                 <Styled.AntSwitch
                   inputProps={{ "aria-label": "ant design" }}
                   onClick={handleTheme}
