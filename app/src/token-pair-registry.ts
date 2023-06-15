@@ -105,6 +105,14 @@ export const tokenPairRegistry: Registry = {
   "9noXzpXnkyEcKF3AeXqUHTdR59V5uvrRBUZ9bwfQwxeq": [
     "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"
   ],
+  // FISHY
+  "Fishy64jCaa3ooqXw7BHtKvYD8BTkSyAPh6RNE3xZpcN": [
+    "So11111111111111111111111111111111111111112"
+  ],
+  // FORGE
+  "FoRGERiW7odcCBGU1bztZi16osPBHjxharvDathL5eds": [
+    "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"
+  ],
 };
 
 export const tokenBRegistry = [
