@@ -34,8 +34,12 @@
 
 .wallet-adapter-button[disabled] {
   background: transparent;
-  color: white;
+  color: #0c0;
   cursor: not-allowed;
+}
+
+.ewallet-adapter-button[disabled] {
+  color: #7620e0;
 }
 
 .wallet-adapter-button-end-icon,

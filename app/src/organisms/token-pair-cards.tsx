@@ -124,7 +124,7 @@ export default ({ info }: { info?: TokenPair[] }) => {
                 <PairCard
                   key={tokenPair.id}
                   list={data}
-                  itemNum={index}
+                  itemNum={index + rowsPerPage * page}
                   aMint={tokenPair.aMint}
                   bMint={tokenPair.bMint}
                   orderVolume={tokenPair.orderVolume}

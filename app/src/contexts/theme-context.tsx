@@ -34,7 +34,7 @@ export const ThemeContext = createContext<ThemeProviderProps | undefined>(
 );
 
 export const ThemeProvider = ({ children }: Props) => {
-  const [preferredMode, setPreferredMode] = useState(true);
+  const [preferredMode, setPreferredMode] = useState(false);
 
   const handleTheme = useCallback(() => {
     setPreferredMode(!preferredMode);

@@ -45,29 +45,30 @@ const App = ({
     };
   }, []);
 
-  if (loading) {
-    return <ScreenLoader />;
-  }
   return (
     <CacheProvider value={emotionCache}>
       <ThemeProvider>
         <StrictMode>
-          <NotificationProvider>
-            <CoingeckoApiProvider>
-              <JupiterV4ApiProvider config={{ basePath: JUPITER_CONFIG_URI }}>
-                <SolanaCtx.Provider>
-                  <WalletProvider>
-                    <SWRConfig value={swrConfig}>
-                      <TxProvider>
-                        {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-                        <Component {...pageProps} />
-                      </TxProvider>
-                    </SWRConfig>
-                  </WalletProvider>
-                </SolanaCtx.Provider>
-              </JupiterV4ApiProvider>
-            </CoingeckoApiProvider>
-          </NotificationProvider>
+          {loading ? (
+            <ScreenLoader />
+          ) : (
+            <NotificationProvider>
+              <CoingeckoApiProvider>
+                <JupiterV4ApiProvider config={{ basePath: JUPITER_CONFIG_URI }}>
+                  <SolanaCtx.Provider>
+                    <WalletProvider>
+                      <SWRConfig value={swrConfig}>
+                        <TxProvider>
+                          {/* eslint-disable-next-line react/jsx-props-no-spreading */}
+                          <Component {...pageProps} />
+                        </TxProvider>
+                      </SWRConfig>
+                    </WalletProvider>
+                  </SolanaCtx.Provider>
+                </JupiterV4ApiProvider>
+              </CoingeckoApiProvider>
+            </NotificationProvider>
+          )}
         </StrictMode>
       </ThemeProvider>
     </CacheProvider>

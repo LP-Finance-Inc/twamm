@@ -11,7 +11,7 @@ export const Container = styled(Box)`
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #161724;
+  background: ${({ theme }) => theme.palette.background.default};
 `;
 
 export const ImageWrapper = styled(Box)`

@@ -175,7 +175,6 @@ export default (props: Props) => {
               </Box>
               <Box pl={isMobile ? 1 : 2}>
                 <Styled.AntSwitch
-                  defaultChecked
                   inputProps={{ "aria-label": "ant design" }}
                   onClick={handleTheme}
                 />
