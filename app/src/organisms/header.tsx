@@ -8,7 +8,6 @@ import Drawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
-import FormControlLabel from "@mui/material/FormControlLabel";
 
 import * as Styled from "./header.styled";
 import i18n from "../i18n";
@@ -175,10 +174,10 @@ export default (props: Props) => {
                 <Styled.WalletButton />
               </Box>
               <Box pl={isMobile ? 1 : 2}>
-                <FormControlLabel
-                  control={<Styled.IOSSwitch sx={{ m: 1 }} defaultChecked />}
+                <Styled.AntSwitch
+                  defaultChecked
+                  inputProps={{ "aria-label": "ant design" }}
                   onClick={handleTheme}
-                  label={null}
                 />
               </Box>
             </Styled.Controls>

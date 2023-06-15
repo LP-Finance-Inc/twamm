@@ -8,7 +8,7 @@ import Container from "@mui/material/Container";
 import Link from "@mui/material/Link";
 import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
-import Switch, { SwitchProps } from "@mui/material/Switch";
+import Switch from "@mui/material/Switch";
 
 import { WalletMultiButton } from "../lib";
 
@@ -113,56 +113,44 @@ export const WalletButton = styled(WalletMultiButton)`
   }
 `;
 
-export const IOSSwitch = styled((props: SwitchProps) => (
-  // eslint-disable-next-line react/jsx-props-no-spreading
-  <Switch focusVisibleClassName=".Mui-focusVisible" disableRipple {...props} />
-))(({ theme }) => ({
+export const AntSwitch = styled(Switch)(({ theme }) => ({
   width: 50,
   height: 26,
   padding: 0,
-  boxShadow: theme.shadows[1],
-  borderRadius: 26,
+  display: "flex",
+  borderRadius: 16,
+  "&:active": {
+    "& .MuiSwitch-thumb": {
+      width: 22,
+    },
+    "& .MuiSwitch-switchBase.Mui-checked": {
+      transform: "translateX(10px)",
+    },
+  },
   "& .MuiSwitch-switchBase": {
-    padding: 0,
-    margin: 2,
-    transitionDuration: "300ms",
+    padding: 2,
     "&.Mui-checked": {
       transform: "translateX(25px)",
       color: "#fff",
       "& + .MuiSwitch-track": {
-        backgroundColor: theme.palette.mode === "dark" ? "#2ECA45" : "#7620E0",
         opacity: 1,
-        border: 0,
+        backgroundColor: theme.palette.mode === "light" ? "#7620E0" : "#0c0",
       },
-      "&.Mui-disabled + .MuiSwitch-track": {
-        opacity: 0.5,
-      },
-    },
-    "&.Mui-focusVisible .MuiSwitch-thumb": {
-      color: "#33cf4d",
-      border: "6px solid #fff",
-    },
-    "&.Mui-disabled .MuiSwitch-thumb": {
-      color:
-        theme.palette.mode === "light"
-          ? theme.palette.grey[100]
-          : theme.palette.grey[600],
-    },
-    "&.Mui-disabled + .MuiSwitch-track": {
-      opacity: theme.palette.mode === "light" ? 0.7 : 0.3,
     },
   },
   "& .MuiSwitch-thumb": {
-    boxSizing: "border-box",
+    boxShadow: "0 2px 4px 0 rgb(0 35 11 / 20%)",
     width: 22,
     height: 22,
+    borderRadius: 50,
+    transition: theme.transitions.create(["width"], {
+      duration: 200,
+    }),
   },
   "& .MuiSwitch-track": {
-    borderRadius: 26 / 2,
-    backgroundColor: theme.palette.mode === "light" ? "#7620E0" : "#39393D",
+    borderRadius: 16 / 2,
     opacity: 1,
-    transition: theme.transitions.create(["background-color"], {
-      duration: 500,
-    }),
+    backgroundColor: theme.palette.mode === "light" ? "#7620E0" : "#0c0",
+    boxSizing: "border-box",
   },
 }));
