@@ -17,7 +17,7 @@ export const Tags = styled(Box)`
 `;
 
 export const Line = styled(Divider)`
-  border: 1px solid #0c0;
+  border: 1px solid ${({ theme }) => theme.palette.text.primary};
 `;
 
 export const SearchBox = styled(Box)`
@@ -29,18 +29,18 @@ export const InputField = styled("input")`
   width: 100%;
   border: none;
   outline: none;
-  background: #161724;
-  color: #0c0;
+  background: ${({ theme }) => theme.palette.background.default};
+  color: ${({ theme }) => theme.palette.text.primary};
+  font-size: 1rem;
   padding: 1rem 0.8rem;
   border-radius: 0.75rem;
-  box-shadow: inset -4px -4px 5px rgba(87, 87, 87, 0.1),
-    inset 4px 4px 5px rgba(9, 9, 14, 0.3);
+  box-shadow: ${({ theme }) => theme.shadows[6]};
   text-align: left;
   direction: ltr;
 
   &::placeholder {
     opacity: 0.6;
-    color: #0c0;
+    color: ${({ theme }) => theme.palette.text.primary};
   }
 
   &::-webkit-outer-spin-button,

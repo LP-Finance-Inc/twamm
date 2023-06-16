@@ -11,4 +11,9 @@ export const lpfinanceOracleTokens = [
   "BWXrrYFhT7bMHmNBFoQFWdsSgA3yXoAnMhDK6Fn1eSEn", // HADES
   "9tzZzEHsKnwFL1A3DyFJwj36KnZj3gZ7g4srWp9YTEoh", // ARB
   "9TVjnzpF3X8DHsfVqYWoCGphJxtGYh1PDCFN5QmsHW5t", // MDS
+  "METAewgxyPbgwsseH8T16a39CQ5VyVxZi9zXiDPY18m", // MPLX
+  "TuLipcqtGVXP9XR62wM8WWCm6a9vhLs7T1uoWBk6FDs", // TULIP
+  "DUSTawucrTsGU8hcqRdHDCbuYhCPADMLM2VcCb8VnFnQ", // DUST
+  "4TUNzcgp2fPD48fcW4seRjyqyDZMrPj4ZubnXFEsKeYk", // PRNT
+  "AZsHEMXd36Bj1EMNXhowJajpUXzrKcK57wW4ZGXVa7yR", // GUAC
 ];

@@ -23,7 +23,7 @@ export const TokenAmountTextField = styled(NumericFormat)`
   color: ${(p) => p.theme.palette.text.primary};
 
   &:disabled {
-    color: ${(p) => p.theme.palette.text.secondary};
+    color: ${(p) => p.theme.palette.text.primary};
   }
 `;
 
@@ -33,7 +33,7 @@ export const InputRoot = styled(Box)`
 
 export const TokenAmountInUSD = styled(Box)`
   text-align: right;
-  color: ${({ theme }) => theme.palette.text.secondary};
+  color: ${({ theme }) => theme.palette.text.primary};
   font-size: 0.85rem;
   font-weight: 500;
 `;

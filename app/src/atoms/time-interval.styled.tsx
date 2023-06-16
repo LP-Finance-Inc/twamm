@@ -23,5 +23,5 @@ export const Label = styled(Box)`
 
 export const InfoControl = styled(IconButton)`
   padding: 0;
-  color: #0c0;
+  color: ${({ theme }) => theme.palette.text.primary};
 `;

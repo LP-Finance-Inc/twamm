@@ -41,13 +41,15 @@ import {
   TrustWalletAdapter,
 } from "@solana/wallet-adapter-wallets";
 import { useCallback, useMemo } from "react";
-import { WalletModalProvider } from "@solana/wallet-adapter-react-ui";
 import { WalletProvider as Provider } from "@solana/wallet-adapter-react";
 
 import { useSnackbar } from "./notification-context";
+import { WalletModalProvider } from "../lib";
+import useTheme from "./theme-context";
 
 export const WalletProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const { enqueueSnackbar } = useSnackbar();
+  const { theme } = useTheme();
 
   const wallets = useMemo(() => {
     const adapters = [
@@ -102,10 +104,10 @@ export const WalletProvider: FC<{ children: ReactNode }> = ({ children }) => {
     },
     [enqueueSnackbar]
   );
-  // autoConnect
+
   return (
     <Provider wallets={wallets} onError={onError}>
-      <WalletModalProvider>{children}</WalletModalProvider>
+      <WalletModalProvider theme={theme}>{children}</WalletModalProvider>
     </Provider>
   );
 };

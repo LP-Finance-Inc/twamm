@@ -4,12 +4,11 @@ import ListItem from "@mui/material/ListItem";
 import { styled } from "@mui/material/styles";
 
 export const HeaderRow = styled(ListItem)`
-  background: #161724;
+  background: ${({ theme }) => theme.palette.background.default};
   border-radius: ${(p) => 2 * p.theme.shape.borderRadius}px;
   padding: ${(p) => p.theme.spacing(2)};
   padding-top: 24px;
-  box-shadow: 6px 6px 8px rgba(9, 9, 14, 0.4),
-    -6px -6px 8px rgba(87, 87, 87, 0.1);
+  box-shadow: ${({ theme }) => theme.shadows[1]};
 `;
 
 export const Columns = styled(Grid)`
@@ -27,16 +26,16 @@ export const ColumnInner = styled(Box)`
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+  font-weight: 600;
 `;
 
 export const Row = styled(ListItem)`
-  background: #161724;
+  background: ${({ theme }) => theme.palette.background.default};
   border-radius: ${(p) => p.theme.shape.borderRadius}px;
   cursor: pointer;
   font-size: 15px;
   padding: ${(p) => p.theme.spacing(2)};
-  box-shadow: 4px 4px 6px rgba(9, 9, 14, 0.4),
-    -4px -4px 6px rgba(87, 87, 87, 0.1);
+  box-shadow: ${({ theme }) => theme.shadows[1]};
 
   & + & {
     margin-top: ${(p) => p.theme.spacing(2)};

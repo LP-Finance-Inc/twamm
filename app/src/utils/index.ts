@@ -66,4 +66,31 @@ export const formatIntervalTillM = (value: number) => {
   return populateIntervals([w, d, h, s > 30 ? m + 1 : m, 0]);
 };
 
+const userLocale =
+  // eslint-disable-next-line no-nested-ternary
+  typeof window !== "undefined"
+    ? navigator.languages && navigator.languages.length
+      ? navigator.languages[0]
+      : navigator.language
+    : "en-US";
+
+export const numberFormatter = new Intl.NumberFormat(userLocale, {
+  style: "decimal",
+  minimumFractionDigits: 0,
+  maximumFractionDigits: 9,
+});
+
+export const formatNumber = {
+  format: (val?: number, precision?: number) => {
+    if (!val && val !== 0) {
+      return "--";
+    }
+
+    if (precision !== undefined) {
+      return val.toFixed(precision);
+    }
+    return numberFormatter.format(val);
+  },
+};
+
 export const formatInterval = formatIntervalTillM;

@@ -5,21 +5,29 @@ import CircularProgress from "@mui/material/CircularProgress";
 
 import i18n from "../i18n";
 import DesktopLogo from "../../public/images/lp-logo.png";
+import eDesktopLogo from "../../public/images/elp-logo.png";
+import useTheme from "../contexts/theme-context";
 
-const OfflineOverlay = ({ open }: { open: boolean }) =>
-  !open ? null : (
+const OfflineOverlay = ({ open }: { open: boolean }) => {
+  const { theme: Theme } = useTheme();
+
+  if (!open) {
+    return null;
+  }
+
+  return (
     <Backdrop
       sx={{
         background: "ragb(0, 0, 0, 0.5)",
         backdropFilter: "blur(20px)",
-        color: "#0c0",
+        color: Theme === "dark" ? "#0c0" : "#7620E0",
         flexDirection: "column",
         zIndex: (theme) => theme.zIndex.tooltip + 1,
       }}
       open={open}
     >
       <Image
-        src={DesktopLogo}
+        src={Theme === "dark" ? DesktopLogo : eDesktopLogo}
         alt="logo"
         width={120}
         height={70}
@@ -32,5 +40,6 @@ const OfflineOverlay = ({ open }: { open: boolean }) =>
       </Box>
     </Backdrop>
   );
+};
 
 export default OfflineOverlay;

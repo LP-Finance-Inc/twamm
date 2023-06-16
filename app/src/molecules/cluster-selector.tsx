@@ -26,7 +26,13 @@ const clusterChangeAlert = (isError: boolean | undefined, moniker: string) => {
   return { msg, variant };
 };
 
-export default function ClusterSelector({ onClose }: { onClose?: () => void }) {
+export default function ClusterSelector({
+  onClose,
+  theme,
+}: {
+  onClose?: () => void;
+  theme: string;
+}) {
   const { enqueueSnackbar } = useSnackbar();
 
   const { cluster, clusters, presets, setCluster } = useBlockchain();
@@ -93,7 +99,16 @@ export default function ClusterSelector({ onClose }: { onClose?: () => void }) {
             <FormControlLabel
               key={c.name}
               label={c.name}
-              control={<Radio />}
+              control={
+                <Radio
+                  sx={{
+                    color: theme === "dark" ? "#0c0" : "rgb(51, 51, 51)",
+                    "&.Mui-checked": {
+                      color: theme === "dark" ? "#0f0" : "#7620E0",
+                    },
+                  }}
+                />
+              }
               value={c.moniker}
             />
           ))}
@@ -122,7 +137,7 @@ export default function ClusterSelector({ onClose }: { onClose?: () => void }) {
                     size="small"
                     variant="outlined"
                   />
-                  <Styled.FormButton type="submit" variant="contained">
+                  <Styled.FormButton type="submit" variant="outlined">
                     Switch
                   </Styled.FormButton>
                 </Styled.FormInner>

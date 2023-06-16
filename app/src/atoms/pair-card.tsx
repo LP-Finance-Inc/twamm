@@ -65,7 +65,9 @@ export default ({
   });
 
   const OracleComponent =
-    oracleType === "Pyth" ? Styled.TableCellBoxPyth : Styled.TableCellBox;
+    oracleType === "Pyth"
+      ? Styled.TableCellBoxPyth
+      : Styled.TableCellBoxLpfinance;
 
   return (
     <Styled.TableRowBox>

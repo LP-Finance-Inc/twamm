@@ -4,15 +4,16 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import useTxRunner from "../contexts/transaction-runner-context";
-import { muiPaperCustomVariant } from "../theme/overrides";
 import i18n from "../i18n";
 
 export default ({
   label,
   onClose,
+  theme,
 }: {
   label: string;
   onClose?: () => void;
+  theme: string;
 }) => {
   const { setSlippage, slippage, slippages } = useTxRunner();
 
@@ -24,7 +25,12 @@ export default ({
 
   const menuProps = {
     sx: {
-      "& > .MuiPaper-root": muiPaperCustomVariant,
+      "& > .MuiPaper-root": {
+        background: theme === "dark" ? "#161724" : "#DDE7F4",
+        border: "0.5px solid rgba(255, 255, 255, 0.16)",
+        boxShadow: "0px 8px 32px rgba(0, 0, 0, 0.08)",
+        borderRadius: "8px",
+      },
     },
   };
 

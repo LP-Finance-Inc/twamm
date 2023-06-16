@@ -1,5 +1,6 @@
 import type { NextPage } from "next";
 import Head from "next/head";
+
 import IndexPage from "../src/pages/index-page";
 
 const Home: NextPage = () => (

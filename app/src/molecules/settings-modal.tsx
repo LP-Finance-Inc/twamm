@@ -10,6 +10,7 @@ import PerformanceFeeSelector from "./performance-fee-selector";
 import Tooltip, { TooltipRef } from "../atoms/tooltip";
 import SlippageSelector from "./slippage-selector";
 import useTxRunner from "../contexts/transaction-runner-context";
+import useTheme from "../contexts/theme-context";
 
 export default ({
   id,
@@ -20,6 +21,7 @@ export default ({
 }) => {
   const tooltipRef = useRef<TooltipRef>();
   const { performanceFee } = useTxRunner();
+  const { theme } = useTheme();
 
   const onClose = () => onToggle(false);
 
@@ -35,6 +37,7 @@ export default ({
         <ExplorerSelector
           label={i18n.SettingsSettingExplorer}
           onClose={onClose}
+          theme={theme}
         />
       </Styled.Setting>
       <Styled.Setting direction="row" py={1}>
@@ -49,7 +52,7 @@ export default ({
             </Typography>
           )}
         </Box>
-        <PerformanceFeeSelector />
+        <PerformanceFeeSelector theme={theme} />
       </Styled.Setting>
       <Styled.Setting direction="row" py={1}>
         <Box>
@@ -63,6 +66,7 @@ export default ({
         <SlippageSelector
           label={i18n.SettingsSettingSlippage}
           onClose={onClose}
+          theme={theme}
         />
       </Styled.Setting>
       <Box py={2}>
@@ -72,7 +76,7 @@ export default ({
         <Typography variant="body2" pb={1}>
           {i18n.SettingsSettingClusterSelector}
         </Typography>
-        <ClusterSelector onClose={onClose} />
+        <ClusterSelector onClose={onClose} theme={theme} />
       </Styled.ClusterSetting>
       <Tooltip ref={tooltipRef} text={i18n.SettingsSettingVersionedTxInfo} />
     </Styled.Container>

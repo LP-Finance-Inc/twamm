@@ -2,6 +2,7 @@ import Box from "@mui/material/Box";
 import M from "easy-maybe/lib";
 import Skeleton from "@mui/material/Skeleton";
 import type { MaybeTokens } from "../hooks/use-tokens-by-mint";
+
 import * as Styled from "./pair-card-symbols.styled";
 
 const TokenImage = ({ data }: { data: MaybeTokens[0] }) => {
@@ -16,7 +17,9 @@ const TokenImage = ({ data }: { data: MaybeTokens[0] }) => {
 };
 
 const TokenSymbol = ({ data }: { data: MaybeTokens[0] }) => (
-  <span>{data instanceof Error ? "Unknown" : data.symbol.toUpperCase()}</span>
+  <span style={{ fontWeight: 600 }}>
+    {data instanceof Error ? "Unknown" : data.symbol.toUpperCase()}
+  </span>
 );
 
 export default ({

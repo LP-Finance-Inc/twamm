@@ -19,35 +19,23 @@ import useBreakpoints from "../hooks/use-breakpoints";
 import useTxRunner from "../contexts/transaction-runner-context";
 import DesktopLogo from "../../public/images/lp-logo.png";
 import MobileLogo from "../../public/images/lp-logo-mobile.png";
+import eDesktopLogo from "../../public/images/elp-logo.png";
+import eMobileLogo from "../../public/images/elp-logo-mobile.png";
+import useTheme from "../contexts/theme-context";
+import { navItems } from "../assets/registry";
 
 interface Props {
   window?: () => Window;
 }
 
 const drawerWidth = 240;
-const navItems = [
-  {
-    id: 1,
-    title: "Document",
-    link: "https://docs.lp.finance/twamm/time-weighted-average-market-maker",
-  },
-  {
-    id: 2,
-    title: "Listing",
-    link: "https://docs.lp.finance/twamm-as-a-service/token-listing",
-  },
-  {
-    id: 3,
-    title: "Custom Order",
-    link: "https://docs.lp.finance/twamm-as-a-service/custom-orders-and-otc",
-  },
-];
 
 export default (props: Props) => {
   const { window } = props;
 
   const { isDesktop, isMobile } = useBreakpoints();
   const { active } = useTxRunner();
+  const { handleTheme, theme } = useTheme();
 
   const [mobileOpen, setMobileOpen] = useState<boolean>(false);
 
@@ -80,13 +68,19 @@ export default (props: Props) => {
     <Styled.DrawerCard onClick={handleDrawerToggle}>
       <Styled.DrawerLogo direction="row">
         <Image
-          src={DesktopLogo}
+          src={theme === "dark" ? DesktopLogo : eDesktopLogo}
           alt="logo"
           width={90}
           height={50}
           object-fit="cover"
           priority
         />
+        <Box pl={isMobile ? 1 : 2}>
+          <Styled.AntSwitch
+            inputProps={{ "aria-label": "ant design" }}
+            onClick={handleTheme}
+          />
+        </Box>
       </Styled.DrawerLogo>
       <Styled.DividerLine />
       <List>
@@ -135,14 +129,25 @@ export default (props: Props) => {
               >
                 <Styled.DrawerIcon />
               </IconButton>
-              <Image
-                src={isMobile ? MobileLogo : DesktopLogo}
-                alt="logo"
-                width={isMobile ? 56 : 117}
-                height={isMobile ? 56 : 65}
-                object-fit="cover"
-                priority
-              />
+              {theme === "dark" ? (
+                <Image
+                  src={isMobile ? MobileLogo : DesktopLogo}
+                  alt="logo"
+                  width={isMobile ? 56 : 117}
+                  height={isMobile ? 56 : 65}
+                  object-fit="cover"
+                  priority
+                />
+              ) : (
+                <Image
+                  src={isMobile ? eMobileLogo : eDesktopLogo}
+                  alt="logo"
+                  width={isMobile ? 56 : 117}
+                  height={isMobile ? 56 : 65}
+                  object-fit="cover"
+                  priority
+                />
+              )}
             </Styled.Logo>
             <Styled.Controls direction="row">
               <Box
@@ -173,6 +178,17 @@ export default (props: Props) => {
               </Box>
               <Box py={isDesktop ? 1 : 0}>
                 <Styled.WalletButton />
+              </Box>
+              <Box
+                pl={isMobile ? 1 : 2}
+                sx={{
+                  display: { xs: "none", sm: "none", md: "block" },
+                }}
+              >
+                <Styled.AntSwitch
+                  inputProps={{ "aria-label": "ant design" }}
+                  onClick={handleTheme}
+                />
               </Box>
             </Styled.Controls>
           </Styled.Header>

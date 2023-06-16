@@ -11,23 +11,28 @@ export const FundSkeleton = styledSkeleton`
   height: 100%;
   background: linear-gradient(110.5deg, rgba(26, 31, 46, 0.4) 3.75%, rgba(36, 41, 57, 0.4) 117.62%);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 4px 4px 6px rgba(9, 9, 14, 0.4),
-    -4px -4px 6px rgba(87, 87, 87, 0.1);
+  box-shadow: ${({ theme }) => theme.shadows[1]};
 `;
 
 export const TableRowBox = styled(TableRow)`
-  box-shadow: 3px 3px 5px rgba(9, 9, 14, 0.4),
-    -3px -3px 5px rgba(87, 87, 87, 0.1);
+  box-shadow: ${({ theme }) => theme.shadows[1]};
   border-radius: 0.8rem;
 `;
 
 export const TableCellBox = styled(TableCell)`
   border: none;
   padding: 0.8rem 1rem;
+  font-weight: 500;
 `;
 
-export const TableCellBoxPyth = styled(TableCell)`
-  border: none;
-  padding: 0.8rem 1rem;
-  color: #bf00ff;
-`;
+export const TableCellBoxPyth = styled(TableCell)(({ theme }) => ({
+  border: "none",
+  padding: "0.8rem 1rem",
+  color: theme.palette.mode === "dark" ? "#bf00ff" : "#7620E0",
+}));
+
+export const TableCellBoxLpfinance = styled(TableCell)(({ theme }) => ({
+  border: "none",
+  padding: "0.8rem 1rem",
+  color: theme.palette.mode === "dark" ? "#00ff00" : "#00BC00",
+}));

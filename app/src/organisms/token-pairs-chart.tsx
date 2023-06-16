@@ -12,24 +12,36 @@ import {
   Tooltip,
 } from "recharts";
 
+import { useMemo } from "react";
 import i18n from "../i18n";
 import useBreakpoints from "../hooks/use-breakpoints";
 import { DataFormatter, getDate } from "../helpers";
 import Loading from "../atoms/loading";
 
-const filterList = [
-  {
-    id: 0,
-    name: "volume",
-    dataKey: "volume",
-    fill: `url(#volume)`,
-    stroke: "#0c0",
-    checked: true,
-  },
-];
-
-export default ({ data, isLoading }: { data?: any; isLoading: boolean }) => {
+export default ({
+  data,
+  isLoading,
+  theme,
+}: {
+  data?: any;
+  isLoading: boolean;
+  theme: string;
+}) => {
   const { isMobile } = useBreakpoints();
+
+  const filterList = useMemo(() => {
+    const List = [
+      {
+        id: 0,
+        name: "volume",
+        dataKey: "volume",
+        fill: `url(#volume)`,
+        stroke: theme === "dark" ? "#0c0" : "#7620E0",
+        checked: true,
+      },
+    ];
+    return List;
+  }, [theme]);
 
   return (
     <Box mt={4}>
@@ -72,17 +84,23 @@ export default ({ data, isLoading }: { data?: any; isLoading: boolean }) => {
                       dataKey="timestamp"
                       tickFormatter={getDate}
                       tick={{
-                        fill: "#0c0",
+                        fill: theme === "dark" ? "#0c0" : "#7620E0",
                         fontSize: "0.95rem",
+                        fontWeight: 600,
                       }}
-                      tickLine={{ stroke: "#0c0" }}
+                      tickLine={{
+                        stroke: theme === "dark" ? "#0c0" : "#7620E0",
+                      }}
                     />
                     <YAxis
                       tick={{
-                        fill: "#0c0",
+                        fill: theme === "dark" ? "#0c0" : "#7620E0",
                         fontSize: "0.95rem",
+                        fontWeight: 600,
                       }}
-                      tickLine={{ stroke: "#d1d1d1" }}
+                      tickLine={{
+                        stroke: theme === "dark" ? "#0c0" : "#7620E0",
+                      }}
                       tickFormatter={(val: any) => DataFormatter(val)}
                     />
                     <Tooltip
