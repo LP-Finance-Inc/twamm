@@ -32,8 +32,8 @@ export const SelectedScheduleButton = styled(Button)(({ theme }) => ({
   color: theme.palette.text.secondary,
   animation:
     theme.palette.mode === "dark"
-      ? "0.4s darkSelect ease infinite"
-      : "0.4s lightSelect ease infinite",
+      ? "1.0s darkSelect ease infinite"
+      : "1.0s lightSelect ease infinite",
 
   "@keyframes lightSelect": {
     to: {
