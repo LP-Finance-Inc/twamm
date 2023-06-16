@@ -139,6 +139,15 @@ npx ts-node -P tsconfig.json app/src/crank.ts https://rpc.ankr.com/solana <TOKEN
 
 Where `TOKEN_MINT1` and `TOKEN_MINT2` are corresponding mints of the token pair to crank.
 
+### Banners
+Modify .../molecules/notification-model.tsx to add banners.
+
+Enable/disable banners on .../molecules/notification-popover.tsx
+```ts
+// Notify model we can toggle (set to true if use)
+const [open, setOpen] = useState(true);
+```
+
 ## Support
 
 If you are experiencing technical difficulties while working with the Twamm codebase, ask your question on [StackExchange](https://solana.stackexchange.com) (tag your question with `twamm`).

@@ -30,7 +30,24 @@ export const SelectedScheduleButton = styled(Button)(({ theme }) => ({
   fontSize: "0.9rem",
   whiteSpace: "nowrap",
   color: theme.palette.text.secondary,
-  boxShadow: theme.shadows[9],
+  animation:
+    theme.palette.mode === "dark"
+      ? "0.4s darkSelect ease infinite"
+      : "0.4s lightSelect ease infinite",
+
+  "@keyframes lightSelect": {
+    to: {
+      boxShadow:
+        "4px 4px 4px rgba(118, 32, 224, 0.25), -4px -4px 4px rgba(118, 32, 224, 0.25)",
+    },
+  },
+
+  "@keyframes darkSelect": {
+    to: {
+      boxShadow:
+        "-4px -4px 4px rgba(46, 189, 46, 0.47), 4px 4px 4px rgba(28, 184, 28, 0.47)",
+    },
+  },
 
   "&.Mui-disabled": {
     color: theme.palette.text.secondary,
