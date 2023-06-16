@@ -4,32 +4,40 @@ import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
 import { Button } from "@mui/material";
 
-export const Root = styled(Card)`
-  position: relative;
-  width: 100%;
-  min-height: 160px;
-  height: 100%;
-  background: #161724;
-  box-shadow: -2px -2px 4px rgba(0, 204, 0, 0.07),
-    2px 2px 4px rgba(0, 255, 0, 0.07);
-  border-radius: 17px;
-  animation: 3s rotate ease infinite;
+export const Root = styled(Card)(({ theme }) => ({
+  position: "relative",
+  width: "100%",
+  minHeight: "160px",
+  height: "100%",
+  background: theme.palette.background.default,
+  boxShadow: theme.shadows[10],
+  borderRadius: "17px",
+  animation:
+    theme.palette.mode === "dark"
+      ? "3s darkRotate ease infinite"
+      : "3s lightRotate ease infinite",
 
-  @keyframes rotate {
-    to {
-      box-shadow: -4px -4px 4px rgba(46, 189, 46, 0.47),
-        4px 4px 4px rgba(28, 184, 28, 0.47);
-    }
-  }
-`;
+  "@keyframes lightRotate": {
+    to: {
+      boxShadow:
+        "4px 4px 4px rgba(118, 32, 224, 0.25), -4px -4px 4px rgba(118, 32, 224, 0.25)",
+    },
+  },
+
+  "@keyframes darkRotate": {
+    to: {
+      boxShadow:
+        "-4px -4px 4px rgba(46, 189, 46, 0.47), 4px 4px 4px rgba(28, 184, 28, 0.47)",
+    },
+  },
+}));
 
 export const ImageGroup = styled(Box)`
   width: 100%;
   min-height: 160px;
   height: 100%;
-  background: #161724;
-  box-shadow: -2px -2px 4px rgba(0, 204, 0, 0.07),
-    2px 2px 4px rgba(0, 255, 0, 0.07);
+  background: ${({ theme }) => theme.palette.background.default};
+  box-shadow: ${({ theme }) => theme.shadows[10]};
   border-radius: 17px;
   display: flex;
   justify-content: center;
