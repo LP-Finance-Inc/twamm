@@ -45,8 +45,8 @@ export default ({ onToggle }: { onToggle: (arg: boolean) => void }) => {
                 BONK Trading Competition is Live!
               </Typography>
               <Typography variant="subtitle2" gutterBottom>
-                Place BONK TWAP buy order to earn pool of 950M BONK rewards! (2
-                weeks competition)
+                Place BONK TWAP buy order to earn pool of 950M BONK rewards
+                every 2 weeks!
               </Typography>
               <Link
                 href="http://twitter.com/LPFinance_"
