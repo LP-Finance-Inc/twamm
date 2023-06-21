@@ -17,26 +17,22 @@ export default ({ onToggle }: { onToggle: (arg: boolean) => void }) => {
         <Grid container>
           <Grid item xs={2}>
             <Styled.ImageGroup>
-              <Link href="http://" target="_blank" rel="noopener noreferrer">
-                <Image
-                  src="https://lptokenbucket.s3.amazonaws.com/lpfi.png"
-                  alt="lpfi-token"
-                  height={50}
-                  width={50}
-                />
-              </Link>
-              <Link href="http://" target="_blank" rel="noopener noreferrer">
-                <Image
-                  src="https://lptokenbucket.s3.amazonaws.com/bonk.png"
-                  alt="bonk-token"
-                  height={50}
-                  width={50}
-                  style={{
-                    position: "relative",
-                    bottom: "5px",
-                  }}
-                />
-              </Link>
+              <Image
+                src="https://lptokenbucket.s3.amazonaws.com/lpfi.png"
+                alt="lpfi-token"
+                height={50}
+                width={50}
+              />
+              <Image
+                src="https://lptokenbucket.s3.amazonaws.com/bonk.png"
+                alt="bonk-token"
+                height={50}
+                width={50}
+                style={{
+                  position: "relative",
+                  bottom: "5px",
+                }}
+              />
             </Styled.ImageGroup>
           </Grid>
           <Grid item xs={9}>
