@@ -37,7 +37,13 @@ export default ({ onToggle }: { onToggle: (arg: boolean) => void }) => {
           </Grid>
           <Grid item xs={9}>
             <Styled.DetailsControls>
-              <Typography pb={2} variant="subtitle1" marginTop={2}>
+              <Typography
+                pb={2}
+                variant="subtitle1"
+                mt={2}
+                color="#7620e0"
+                style={{ fontWeight: 600 }}
+              >
                 BONK Trading Competition is Live!
               </Typography>
               <Typography variant="subtitle2" gutterBottom>
