@@ -19,21 +19,21 @@ export default ({ onToggle }: { onToggle: (arg: boolean) => void }) => {
             <Styled.ImageGroup>
               <Link href="http://" target="_blank" rel="noopener noreferrer">
                 <Image
-                  src="https://jup.ag/coins/king-token.svg"
-                  alt="king-token"
+                  src="https://lptokenbucket.s3.amazonaws.com/lpfi.png"
+                  alt="lpfi-token"
                   height={50}
                   width={50}
                 />
               </Link>
               <Link href="http://" target="_blank" rel="noopener noreferrer">
                 <Image
-                  src="https://jup.ag/coins/samo-token.svg"
-                  alt="samo-token"
+                  src="https://lptokenbucket.s3.amazonaws.com/bonk.png"
+                  alt="bonk-token"
                   height={50}
                   width={50}
                   style={{
                     position: "relative",
-                    bottom: "15px",
+                    bottom: "5px",
                   }}
                 />
               </Link>
@@ -41,15 +41,19 @@ export default ({ onToggle }: { onToggle: (arg: boolean) => void }) => {
           </Grid>
           <Grid item xs={9}>
             <Styled.DetailsControls>
-              <Typography pb={1} variant="subtitle1">
-                Trade on Limit Order with 0% fees
+              <Typography pb={2} variant="subtitle1" marginTop={2}>
+                BONK Trading Competition is Live!
               </Typography>
               <Typography variant="subtitle2" gutterBottom>
-                Trading Limit Orders are now free for a limited time only. Also
-                stand a chance to win 100k $SAMO and 1M $KING weekly!
+                Place BONK TWAP buy order to earn pool of 950M BONK rewards! (2
+                weeks competition)
               </Typography>
-              <Link href="http://" target="_blank" rel="noopener noreferrer">
-                <Styled.PlaceOrder>Place an Order Now</Styled.PlaceOrder>
+              <Link
+                href="http://twitter.com/LPFinance_"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Styled.PlaceOrder>Learn More</Styled.PlaceOrder>
               </Link>
             </Styled.DetailsControls>
           </Grid>
