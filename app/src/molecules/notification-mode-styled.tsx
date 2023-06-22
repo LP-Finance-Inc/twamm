@@ -57,4 +57,5 @@ export const DetailsControls = styled(Box)`
 
 export const PlaceOrder = styled(Button)`
   text-transform: capitalize;
+  color: #7620e0;
 `;

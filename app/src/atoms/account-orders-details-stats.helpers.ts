@@ -53,7 +53,7 @@ export const format = {
     const value = (({ prices }) => {
       // eslint-disable-next-line no-nested-ternary
       const avg = isFloat(prices[1])
-        ? Number(prices[1]).toFixed(6)
+        ? Number(prices[1]).toFixed(9)
         : prices[1] < 0
         ? "-"
         : prices[1];
