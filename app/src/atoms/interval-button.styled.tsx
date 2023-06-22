@@ -5,7 +5,7 @@ export const ScheduleButton = styled(Button)`
   padding: 3px 3px;
   text-transform: capitalize;
   font-size: 0.9rem;
-  white-space: nowrap;
+
   color: ${(p) => p.theme.palette.text.primary};
 
   &.Mui {

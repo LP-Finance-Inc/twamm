@@ -89,10 +89,10 @@ export const tokenPairRegistry: Registry = {
     "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"
   ],
   // BATCH 2
-  // PRNT
-  "4TUNzcgp2fPD48fcW4seRjyqyDZMrPj4ZubnXFEsKeYk": [
-    "So11111111111111111111111111111111111111112"
-  ],
+  // // PRNT
+  // "4TUNzcgp2fPD48fcW4seRjyqyDZMrPj4ZubnXFEsKeYk": [
+  //   "So11111111111111111111111111111111111111112"
+  // ],
   // BONK
   "DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263": [
     "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",

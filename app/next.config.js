@@ -8,6 +8,9 @@ const withBundleAnalyzer = bundleAnalyzer({
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
+  images: {
+    domains: ["lptokenbucket.s3.amazonaws.com"],
+  },
   webpack: (config, options) => {
     const cfg = {
       ...config,
