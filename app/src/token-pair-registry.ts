@@ -24,10 +24,6 @@ export const tokenPairRegistry: Registry = {
   "hntyVP6YFm1Hg25TN9WGLqM12b8TQmcknKrdu1oxWux": [
     "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
   ],
-  // RLB
-  "RLBxxFkseAZ4RgJH3Sqn8jXxhmGoz9jWxDNJMh8pL7a": [
-    "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
-  ],
   // SAMO
   "7xKXtg2CW87d97TXJSDpbD5jBkheTqA83TZRuJosgAsU": [
     "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
@@ -60,10 +56,6 @@ export const tokenPairRegistry: Registry = {
   "HBB111SCo9jkCejsZfz8Ec8nH7T6THF8KEKSnvwT6XK6": [
     "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
   ],
-  // // MPLX
-  // "METAewgxyPbgwsseH8T16a39CQ5VyVxZi9zXiDPY18m": [
-  //   "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
-  // ],
   // TULIP
   "TuLipcqtGVXP9XR62wM8WWCm6a9vhLs7T1uoWBk6FDs": [
     "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
@@ -76,10 +68,10 @@ export const tokenPairRegistry: Registry = {
   "BWXrrYFhT7bMHmNBFoQFWdsSgA3yXoAnMhDK6Fn1eSEn": [
     "9TVjnzpF3X8DHsfVqYWoCGphJxtGYh1PDCFN5QmsHW5t"
   ],
-  // // MDS
-  // "9TVjnzpF3X8DHsfVqYWoCGphJxtGYh1PDCFN5QmsHW5t": [
-  //   "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"
-  // ]
+  // MDS
+  "9TVjnzpF3X8DHsfVqYWoCGphJxtGYh1PDCFN5QmsHW5t": [
+    "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"
+  ],
   // ATLAS
   "ATLASXmbPQxBUYbxPsV97usA3fPQYEqzQBUHgiFCUsXx": [
     "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"
@@ -88,31 +80,14 @@ export const tokenPairRegistry: Registry = {
   "DUSTawucrTsGU8hcqRdHDCbuYhCPADMLM2VcCb8VnFnQ": [
     "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"
   ],
-  // BATCH 2
-  // PRNT
-  "4TUNzcgp2fPD48fcW4seRjyqyDZMrPj4ZubnXFEsKeYk": [
-    "So11111111111111111111111111111111111111112"
-  ],
   // BONK
   "DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263": [
     "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
   ], 
-  // GUAC
-  "AZsHEMXd36Bj1EMNXhowJajpUXzrKcK57wW4ZGXVa7yR": [
-    "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
-  ], 
-  // KING
-  "9noXzpXnkyEcKF3AeXqUHTdR59V5uvrRBUZ9bwfQwxeq": [
-    "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"
-  ],
-  // FISHY
-  "Fishy64jCaa3ooqXw7BHtKvYD8BTkSyAPh6RNE3xZpcN": [
-    "So11111111111111111111111111111111111111112"
-  ],
-  // FORGE
-  "FoRGERiW7odcCBGU1bztZi16osPBHjxharvDathL5eds": [
-    "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"
-  ],
+  // // UXP
+  // "UXPhBoR3qG4UCiGNJfV7MqhHyFqKN68g45GoYvAeL2M": [
+  //   "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"
+  // ],
 };
 
 export const tokenBRegistry = [

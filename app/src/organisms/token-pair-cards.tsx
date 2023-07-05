@@ -39,7 +39,7 @@ export default ({ info }: { info?: TokenPair[] }) => {
   const { data, isLoading } = useSWR(api.tokenList, fetcher);
 
   const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [rowsPerPage, setRowsPerPage] = useState(15);
 
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
@@ -135,7 +135,7 @@ export default ({ info }: { info?: TokenPair[] }) => {
         </Styled.TableBodyMain>
       </Styled.TableRoot>
       <TablePagination
-        rowsPerPageOptions={[10, 25, 40]}
+        rowsPerPageOptions={[15, 30, 50]}
         component="div"
         count={tokenPairs.length}
         rowsPerPage={rowsPerPage}
