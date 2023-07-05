@@ -84,10 +84,10 @@ export const tokenPairRegistry: Registry = {
   "DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263": [
     "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
   ], 
-  // // UXP
-  // "UXPhBoR3qG4UCiGNJfV7MqhHyFqKN68g45GoYvAeL2M": [
-  //   "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"
-  // ],
+  // UXP
+  "UXPhBoR3qG4UCiGNJfV7MqhHyFqKN68g45GoYvAeL2M": [
+    "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"
+  ],
 };
 
 export const tokenBRegistry = [
