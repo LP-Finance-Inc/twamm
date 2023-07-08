@@ -140,7 +140,7 @@ export default ({
           `${api.quoteJup}?inputMint=${tokenA}&outputMint=${tokenB}&amount=${tifAccountedTokenAFormattedAmount}&onlyDirectRoutes=true`
         ),
         fetch(
-          `${api.quoteJup}?inputMint=${tokenA}&outputMint=${tokenB}&amount=${tokenAFormattedAmount}&onlyDirectRoutes=true`
+          `${api.quoteJup}?inputMint=${tokenA}&outputMint=${tokenB}&amount=${tokenAFormattedAmount}`
         ),
       ])
         .then(([res1, res2]) => Promise.all([res1.json(), res2.json()]))

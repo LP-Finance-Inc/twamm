@@ -62,7 +62,7 @@ const fetcher =
 
     if (!routes.data || routes.data.length === 0)
       throw new Error(
-        "Can not fetch best route for the order. Try again later"
+        "Can not fetch route for the order. Try reducing size or place TWAP orders."
       );
 
     return { best: routes.data[0] as Route, routes: routes.data as Route[] };
