@@ -7,7 +7,7 @@ export type Props = {
 
 export default forwardRef(({ children }: Props, ref) => {
   // Notify model we can toggle
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
 
   useImperativeHandle(ref, () => ({
     isOpend: open,
