@@ -88,6 +88,10 @@ export const tokenPairRegistry: Registry = {
   "UXPhBoR3qG4UCiGNJfV7MqhHyFqKN68g45GoYvAeL2M": [
     "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"
   ],
+  // GUAC
+  "AZsHEMXd36Bj1EMNXhowJajpUXzrKcK57wW4ZGXVa7yR": [
+    "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"
+  ],
 };
 
 export const tokenBRegistry = [
