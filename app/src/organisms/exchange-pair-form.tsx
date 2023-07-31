@@ -148,7 +148,6 @@ export default ({
           const bestRoute = data1.data[0];
           const { outAmount } = bestRoute;
           const tifAccountedAmount = outAmount * epochs;
-
           const noTwapBestAmount = data2.data[0].outAmount;
 
           if (tokenBDecimals) {
@@ -280,18 +279,18 @@ export default ({
         amount > 0 &&
         selected.tif > 0 &&
         sellRate && (
-          <Box>
+          <Box sx={{ marginTop: "20px" }}>
             <Typography
               textAlign="center"
               variant="body2"
               sx={{ color: "#FF69B4" }}
             >
-              Sell Rate: {sellRate} {a?.symbol} (≈$
-              {(sellRate * priceA.data).toFixed(3)}) / minute
+              Swap {sellRate} {a?.symbol} (≈$
+              {(sellRate * priceA.data).toFixed(3)}) / minute for {b?.symbol}
             </Typography>
             <Styled.PriceImpactText textAlign="center" variant="body2">
-              Saving ${savedUsdRef.current} ({savedPercentageRef.current}%) from
-              price impact!
+              Save ${savedUsdRef.current} ({savedPercentageRef.current}%) from
+              price impact
             </Styled.PriceImpactText>
           </Box>
         )}
