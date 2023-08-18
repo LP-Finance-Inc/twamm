@@ -1,5 +1,5 @@
 import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
+// import Typography from "@mui/material/Typography";
 import { address } from "@twamm/client.js";
 import { ErrorBoundary } from "react-error-boundary";
 import { OrderSide } from "@twamm/types/lib";
@@ -57,14 +57,14 @@ export default () => {
   return (
     <Styled.MainContainer maxWidth={maxWidth}>
       <Box pt={4} px={{ xs: 0, sm: 2, md: 4 }}>
-        <Styled.TitleControls>
+        {/* <Styled.TitleControls>
           <Typography pb={1} variant="h4">
             LP Finance TWAMM
           </Typography>
           <Typography variant="subtitle1" gutterBottom>
             Permissionless TWAP Order Execution
           </Typography>
-        </Styled.TitleControls>
+        </Styled.TitleControls> */}
         <Styled.Controls py={1}>
           <ModeToggle mode={mode} onChange={onModeChange} />
         </Styled.Controls>
