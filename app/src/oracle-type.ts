@@ -8,4 +8,5 @@ export const lpfinanceOracleTokens = [
   "TuLipcqtGVXP9XR62wM8WWCm6a9vhLs7T1uoWBk6FDs", // TULIP
   "DUSTawucrTsGU8hcqRdHDCbuYhCPADMLM2VcCb8VnFnQ", // DUST
   "BLZEEuZUBVqFhj8adcCFPJvPVCiCyVmh3hkJMrU8KuJA", // BLZE
+  "4TUNzcgp2fPD48fcW4seRjyqyDZMrPj4ZubnXFEsKeYk", // PRNT
 ];

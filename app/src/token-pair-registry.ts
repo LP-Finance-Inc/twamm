@@ -83,7 +83,11 @@ export const tokenPairRegistry: Registry = {
   // BLZE
   "BLZEEuZUBVqFhj8adcCFPJvPVCiCyVmh3hkJMrU8KuJA": [
     "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"
-  ]
+  ],
+  // PRNT
+  "4TUNzcgp2fPD48fcW4seRjyqyDZMrPj4ZubnXFEsKeYk": [
+    "So11111111111111111111111111111111111111112"
+  ],
 };
 
 export const tokenBRegistry = [
